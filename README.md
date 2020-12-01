@@ -1,13 +1,10 @@
-## My Project
+## AWS Panorama Developer Guide
 
-TODO: Fill this README out!
+This repository contains the Markdown version of the AWS Panorama Developer Guide and additional resources that you can use to learn about AWS Panorama concepts and features.
 
-Be sure to:
+Table of contents: [index.md](/doc-source/index.md)
 
-* Change the title in this README
-* Edit your repository description on GitHub
+## License Summary
 
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
+The documentation is made available under the Creative Commons Attribution-ShareAlike 4.0 International License. See the [LICENSE](./LICENSE) file.
 

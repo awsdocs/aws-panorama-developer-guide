@@ -1,0 +1,26 @@
+# What is AWS Panorama?<a name="panorama-welcome"></a>
+
+With AWS Panorama, you can build computer vision applications for your business or customers without purchasing special cameras\. By using the AWS Panorama Appliance with your existing network cameras, you can run applications that use machine learning \(ML\) to collect data from video streams, output video with text and graphical overlays, and interact with other AWS services\. AWS Panorama applications run computer vision workloads locally on the AWS Panorama Appliance and can communicate with AWS services to store results and run secondary workflows\.
+
+The AWS Panorama Appliance is a compact edge appliance that uses a powerful system\-on\-module \(SOM\) that is optimized for machine learning workloads\. The appliance can run multiple computer vision models against multiple video streams in parallel and output the results in real time\. It is designed for use in commercial and industrial settings and is rated for dust and liquid protection \(IP\-62\)\.
+
+**Note**  
+AWS Panorama is available in preview with the AWS Panorama Appliance Developer Kit for developing computer vision applications in a non\-production environment\. The AWS Panorama Appliance will be available at AWS Panorama GA\. To get an AWS Panorama Appliance Developer Kit, visit [aws\.amazon\.com/panorama](https://aws.amazon.com/panorama)\.
+
+The AWS Panorama Appliance enables you to run self\-contained computer vision applications at the edge, without sending images to the AWS Cloud\. By using the AWS SDK, you can integrate with other AWS services and use them to track data from the application over time\. By integrating with other AWS services, you can use AWS Panorama to do the following:
+
+****
++ **Improve quality control** – Monitor an assembly line's output to identify widgets that don't conform to requirements\. Highlight images of nonconformant widgets with text and a bounding box and display them on a monitor for review by your quality control team\.
++ **Analyze traffic patterns** – Use the AWS SDK to record data for retail analytics in Amazon DynamoDB\. Use a serverless application to analyze the collected data over time, detect anomalies in the data, and predict future behavior\.
++ **Receive notifications** – Monitor workplace safety and social distancing\. When your application detects a potentially unsafe situation, upload the image to Amazon Simple Storage Service \(Amazon S3\) and send a notification to an Amazon Simple Notification Service \(Amazon SNS\) topic so recipients can take corrective action\.
++ **Collect training and test data** – Upload images of objects that your computer vision model couldn't identify, or where the model's confidence in its guess was borderline\. Use a serverless application to create a queue of images that need to be tagged\. Tag the images and use them to retrain the model in Amazon SageMaker\.
+
+AWS Panorama uses other AWS services to manage the AWS Panorama Appliance, access models and code, and deploy applications\. AWS Panorama does as much as possible without requiring you to interact with other services, but a knowledge of the following services can help you understand how AWS Panorama works\.
+
+****
++ [SageMaker](https://aws.amazon.com/sagemaker/) – Collect training data from cameras or sensors, build and train a machine learning model, and optimize it for use on hardware such as the AWS Panorama Appliance\. AWS Panorama can import trained computer vision models from SageMaker, and it uses SageMaker Neo to optimize models to run on the AWS Panorama Appliance\.
++ [Amazon S3](https://aws.amazon.com/s3/) – Store trained models, even those built with an ML framework other than SageMaker, for use with AWS Panorama\. You can also use Amazon S3 to store your application code\.
++ [AWS Lambda](https://aws.amazon.com/lambda/) – You author AWS Panorama application code in Lambda\. Although your code doesn't run in Lambda, you can use it for versioning and to store the application code that AWS Panorama deploys to the AWS Panorama Appliance\.
++ [AWS IoT](https://aws.amazon.com/iot/) – AWS Panorama uses AWS IoT services to monitor the state of the AWS Panorama Appliance, manage software updates, and deploy applications\. You don't need to use AWS IoT directly\.
+
+To get started with the AWS Panorama Appliance and learn more about the service, continue to [the next chapter](panorama-gettingstarted.md)\.

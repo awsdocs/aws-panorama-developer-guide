@@ -1,0 +1,4 @@
+*.zip
+*.tar.gz
+bucket-name.txt
+out.yml

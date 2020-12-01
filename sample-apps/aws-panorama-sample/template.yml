@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Panorama application that counts people.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda_function.main
+      Runtime: python3.7
+      CodeUri: code/.
+      Description: Count people
+      Timeout: 10
+      # Function's role
+      Policies:
+        - AWSLambdaBasicExecutionRole
+  version:
+    Type: AWS::Lambda::Version
+    Properties: 
+      FunctionName: !Ref function
+      Description: Sample application.

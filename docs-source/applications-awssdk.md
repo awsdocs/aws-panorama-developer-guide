@@ -6,7 +6,7 @@ The appliance does not have permission to access all AWS services by default\. T
 
 **Topics**
 + [Using Amazon S3](#applications-awssdk-s3)
-+ [Using the AWS IoT message stream](#monitoring-messagestream)
++ [Using the AWS IoT MQTT topic](#monitoring-messagestream)
 
 ## Using Amazon S3<a name="applications-awssdk-s3"></a>
 
@@ -22,9 +22,9 @@ s3_clients3.upload_file(data_file,
 
 The appliance has permission to access buckets that include `aws-panorama` in the name\. To grant it additional permission, you can modify the appliance's role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\.
 
-## Using the AWS IoT message stream<a name="monitoring-messagestream"></a>
+## Using the AWS IoT MQTT topic<a name="monitoring-messagestream"></a>
 
-You can monitor an AWS Panorama application by sending application data or message to MQTT message queue and watch the message stream in the AWS IoT console\.
+You can use the SDK for Python \(Boto3\) to send messages to an [MQTT topic](https://docs.aws.amazon.com/iot/latest/developerguide/topics.html) in AWS IoT\. In the following example, the application posts to a topic named after the appliance's *thing name*, which you can find in [AWS IoT console](https://console.aws.amazon.com/iot/home#/thinghub)\.
 
 ```
 import boto3
@@ -33,10 +33,12 @@ topic = "panorama/panorama_my-appliance_Thing_a01e373b"
 iot_client.publish(topic=topic, payload="my message")
 ```
 
+The topic name can be anything\. To publish messages, the device needs permission to call `iot:Publish`\.
+
 **To monitor an MQTT queue**
 
-1. Open the [AWS IoT console **Test** page](https://console.aws.amazon.com/iot/home?region=us-east-1#/test)\.
+1. Open the [AWS IoT console Test page](https://console.aws.amazon.com/iot/home?region=us-east-1#/test)\.
 
-1. Paste the "`{topic}/infer`" value into the **Subscription topic** input field\.
+1. For **Subscription topic**, enter the name of the topic\. For example, `panorama/panorama_my-appliance_Thing_a01e373b`\.
 
-1. Choose **Subscribe to topic** to watch the messages published by the `iot_client` from your application code\.
+1. Choose **Subscribe to topic**\.

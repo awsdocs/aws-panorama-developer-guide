@@ -52,5 +52,5 @@ Amazon's trademarks and trade dress may not be used in
    + [Compliance validation for AWS Panorama](security-compliance.md)
    + [Resilience in AWS Panorama](security-resilience.md)
    + [Infrastructure security in AWS Panorama](security-infrastructure.md)
-   + [Network security for AWS Panorama](security-network.md)
+   + [Security considerations for the AWS Panorama Appliance Developer Kit](security-devkit.md)
 + [Releases](panorama-releases.md)

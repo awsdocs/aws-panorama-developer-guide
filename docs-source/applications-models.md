@@ -5,7 +5,7 @@ A computer vision model is a software program that is trained to detect objects 
 **Note**  
 For a list of models that have been tested with AWS Panorama, see [Model compatibility](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/model-compatibility.md)\.
 
-You can use sample models or build your own\. A model can detect multiple objects in an image, and each result can have multiple outputs, such as the name of a class, a confidence rating, and a bounding box\. You can train a model outside of AWS and store it in Amazon Simple Storage Service \(Amazon S3\), or train it in Amazon SageMaker\.
+You can use sample models or build your own\. A model can detect multiple objects in an image, and each result can have multiple outputs, such as the name of a class, a confidence rating, and a bounding box\. You can train a model outside of AWS and store it in Amazon Simple Storage Service \(Amazon S3\), or train it in Amazon SageMaker\. To build a model in SageMaker, you can use the built\-in [image classification algorithm](https://docs.aws.amazon.com/sagemaker/latest/dg/image-classification.html)\.
 
 **Important**  
 Whether you import a model from a SageMaker training job or directly from Amazon S3, the Amazon S3 bucket where the model is stored must contain `aws-panorama` in the name\.

@@ -3,7 +3,7 @@
 The AWS Panorama Appliance Developer Kit is a pre\-production device for developing and testing AWS Panorama applications\. It has the following hardware specifications\.
 
 **Important**  
-The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security in AWS Panorama](panorama-security.md)\.
+The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security considerations for the AWS Panorama Appliance Developer Kit](security-devkit.md)\.
 
 
 | Component | Specification | 

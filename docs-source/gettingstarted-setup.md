@@ -20,7 +20,7 @@ To follow this tutorial, you need an AWS Panorama Appliance Developer Kit and th
 The tutorial uses a sample computer vision model and application code\. Download the model and code before you get started\.
 
 ****
-+ **Model** – [ssd\_512\_resnet50\_v1\_voc\.tar\.gz](samples/ssd_512_resnet50_v1_voc.tar.gz)
++ **Model** – [ssd\_512\_resnet50\_v1\_voc\.tar\.gz](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz)
 + **Code** – [aws\-panorama\-sample\.zip](samples/aws-panorama-sample.zip)
 
 The AWS Panorama console uses other AWS services to assemble application components, manage permissions, and verify settings\. To register a developer kit and deploy the sample application, you need access to the following services:

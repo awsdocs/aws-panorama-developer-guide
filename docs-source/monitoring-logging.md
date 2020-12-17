@@ -15,7 +15,7 @@ To debug and validate that your code is working as expected, you can output logs
 
      Replace the highlighted values with your AWS Region, account ID, and function name\.
    + **AWS IoT Greengrass system** – `/aws/greengrass/GreengrassSystem/component-name`
-   + **AWS Panorama Appliance system** – `/aws/panorama_appliance/iot-thing-name`
+   + **AWS Panorama Appliance system** – `/aws/panorama_device/iot-thing-name`
 
      Log streams include `syslog`, `iot_job_agent`, `mediapipeline`, and a stream for each camera\.
 

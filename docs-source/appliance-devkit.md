@@ -3,7 +3,7 @@
 The AWS Panorama Appliance Developer Kit is a version of the AWS Panorama Appliance hardware that has developer features enabled\. With the AWS Panorama Appliance Developer Kit, you can connect to the appliance over SSH to run commands\.
 
 **Important**  
-The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security in AWS Panorama](panorama-security.md)\.
+The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security considerations for the AWS Panorama Appliance Developer Kit](security-devkit.md)\.
 
 If you are using the AWS Panorama Appliance Developer Kit for the first time, follow the tutorial at [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)\. The tutorial provides an introduction to connecting to the device with SSH, viewing logs, and using Python libraries\.
 

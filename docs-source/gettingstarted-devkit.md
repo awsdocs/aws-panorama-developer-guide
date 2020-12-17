@@ -3,9 +3,9 @@
 The AWS Panorama Appliance Developer Kit is an appliance for developing and testing AWS Panorama applications\. You connect to the developer kit from your computer to run commands, view logs, and explore the AWS Panorama Application SDK\.
 
 **Important**  
-The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security in AWS Panorama](panorama-security.md)\.
+The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security considerations for the AWS Panorama Appliance Developer Kit](security-devkit.md)\.
 
-This tutorial provides an introduction to connecting to the device with SSH, viewing logs, and using Python libraries in application code\.
+This tutorial provides an introduction to connecting to the developer kit with SSH, viewing logs, and using Python libraries in application code\.
 
 **Topics**
 + [Prerequisites](#gettingstarted-devkit-prereqs)
@@ -13,11 +13,11 @@ This tutorial provides an introduction to connecting to the device with SSH, vie
 + [Get superuser access](#gettingstarted-devkit-sudo)
 + [View logs](#gettingstarted-devkit-logs)
 + [View the AWS Panorama Application SDK help](#gettingstarted-devkit-panoramasdk)
-+ [Use the AWS SDK for Python \(Boto\)](#gettingstarted-devkit-awssdk)
++ [Use the AWS SDK for Python \(Boto3\)](#gettingstarted-devkit-awssdk)
 
 ## Prerequisites<a name="gettingstarted-devkit-prereqs"></a>
 
-To connect to the appliance and run commands, you must enable SSH during [setup](gettingstarted-setup.md)\.
+To connect to the developer kit and run commands, you must enable SSH during [setup](gettingstarted-setup.md)\.
 
 **Important**  
 Be sure to record the username and password for SSH\. They are not stored in AWS Panorama\. If you lose them, you must repeat the setup process\.
@@ -33,13 +33,13 @@ For long commands, we use an escape character \(`\`\) to split a command over mu
 
 On Linux and macOS, use your preferred shell and package manager\. On Windows 10, you can [install the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows\-integrated version of Ubuntu and Bash\.
 
-This tutorial includes sample scripts that you can run on the appliance as\-is or by replacing some values with your own\. For scripts and other resources that you want to save, you can create a directory under `/data` on the appliance's local storage\. Files outside of `/data` are not saved when you update your appliance's software\.
+This tutorial includes sample scripts that you can run on the developer kit as\-is or by replacing some values with your own\. For scripts and other resources that you want to save, you can create a directory under `/data` on the developer kit's local storage\. Files outside of `/data` are not saved when you update your developer kit's software\.
 
 ## Connect with SSH<a name="gettingstarted-devkit-ssh"></a>
 
-The AWS Panorama Appliance reports its IP address to AWS Panorama\. You can find it in the AWS Panorama console, on the appliance's settings page\. Use this address to connect to the appliance with SSH\.
+The AWS Panorama Appliance Developer Kit reports its IP address to AWS Panorama\. You can find it in the AWS Panorama console, on the developer kit's settings page\. Use this address to connect to the developer kit with SSH\.
 
-**To get an appliance's IP address**
+**To get the developer kit's IP address**
 
 1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
 
@@ -50,9 +50,9 @@ The AWS Panorama Appliance reports its IP address to AWS Panorama\. You can find
 1. Find the IP address under **Appliance network**\.
 
 **Note**  
-The appliance renews its IP address lease with your network's DHCP server automatically\. If you disconnect the appliance from your network for longer than the lease time\. it might be assigned a different IP address\. To avoid this, you can configure a static IP address during [the setup process](gettingstarted-setup.md)\.
+The developer kit renews its IP address lease with your network's DHCP server automatically\. If you disconnect the developer kit from your network for longer than the lease time\. it might be assigned a different IP address\. To avoid this, you can configure a static IP address during [the setup process](gettingstarted-setup.md)\.
 
-To connect to the appliance, use the `ssh` command with your username and the appliance's IP address\.
+To connect to the developer kit, use the `ssh` command with your username and the developer kit's IP address\.
 
 ```
 $ ssh 10.24.34.0 -l me
@@ -61,7 +61,7 @@ me@10.24.34.0's password:
 
 To end the session and return to your computer's shell, use the `exit` command\.
 
-To copy logs and other files from the appliance onto your computer, you can use the `scp` command\. The following example copies the AWS IoT job agent log from an appliance to the current directory\.
+To copy logs and other files from the developer kit onto your computer, you can use the `scp` command\. The following example copies the AWS IoT job agent log from a developer kit to the current directory\.
 
 ```
 $ scp me@10.0.0.100:/opt/aws/panorama/iot/jobs_agent.log .
@@ -85,13 +85,13 @@ root@tegra-ubuntu:/home/me# tail /var/log/awslogs.log
 ```
 
 **Important**  
-Be careful when using root privileges\. Making changes to the software or file system can have unintended consequences\. When you update the appliance, change settings in the AWS Panorama console, or deploy applications, changes to the appliance can be reverted\.
+Be careful when using root privileges\. Making changes to the software or file system can have unintended consequences\. When you update the developer kit, change settings in the AWS Panorama console, or deploy applications, changes to the developer kit can be reverted\.
 
 To exit superuser mode, use the `exit` command\.
 
 ## View logs<a name="gettingstarted-devkit-logs"></a>
 
-AWS Panorama generates logs in several locations on the appliance\. In addition to logs for your application code,AWS Panorama generates logs for camera streams, outputs, and AWS client processes\. The AWS Panorama Appliance sends many of these logs to Amazon CloudWatch Logs\.
+AWS Panorama generates logs in several locations on the developer kit\. In addition to logs for your application code,AWS Panorama generates logs for camera streams, outputs, and AWS client processes\. The AWS Panorama Appliance sends many of these logs to Amazon CloudWatch Logs\.
 
 Your application code's output log is stored under `/data/greengrass`, in a folder structure that includes your AWS Region, account number, and AWS Lambda function name\. To use the following example, replace the account ID and the name of the Lambda function with your own\.
 
@@ -130,7 +130,7 @@ ls $SOURCES*
 ls $SINKS*
 ```
 
-The Amazon CloudWatch Logs agent outputs logs to `/var/log/awslogs.log`\. If you don't see logs for your appliance in CloudWatch Logs, check this file for errors\.
+The Amazon CloudWatch Logs agent outputs logs to `/var/log/awslogs.log`\. If you don't see logs for your developer kit in CloudWatch Logs, check this file for errors\.
 
 **Example get\-cwl\-log\.sh \(requires sudo\) – Show CloudWatch Logs agent log**  
 
@@ -143,7 +143,7 @@ For more information about using CloudWatch Logs to view logs, see [Viewing AWS 
 
 ## View the AWS Panorama Application SDK help<a name="gettingstarted-devkit-panoramasdk"></a>
 
-The AWS Panorama Application SDK is a Python library that is included in the appliance's software image\. You use it in your application code to interact with the appliance and model\.
+The AWS Panorama Application SDK is a Python library that is included in the developer kit's software image\. You use it in your application code to interact with the developer kit and model\.
 
 To see information about the library, load it into a Python interpreter and use the `help` command\.
 
@@ -168,9 +168,9 @@ The documentation for each class shows details about its methods' behavior and p
 
 For more information about the SDK, see [The AWS Panorama Application SDK](applications-panoramasdk.md)\.
 
-## Use the AWS SDK for Python \(Boto\)<a name="gettingstarted-devkit-awssdk"></a>
+## Use the AWS SDK for Python \(Boto3\)<a name="gettingstarted-devkit-awssdk"></a>
 
-to access resources in other AWS services, you can use the SDK for Python in your application code When your application code runs, it gets permission to call AWS services from an AWS Identity and Access Management \(IAM\) role that is attached to the device\.
+To access resources in other AWS services, you can use the SDK for Python in your application code\. When your application code runs, it gets permission to call AWS services from an AWS Identity and Access Management \(IAM\) role that is attached to the device\.
 
 To call AWS services with the SDK for Python, import the library \(`boto3`\) and create a client\. The following example shows how to use an Amazon Simple Storage Service \(Amazon S3\) client to get a list of objects in an AWS Panorama artifacts bucket\.
 
@@ -188,6 +188,6 @@ Python 3.7.5
 ssd_512_resnet50_v1_voc.tar.gz
 ```
 
-The AWS Panorama Appliance has limited permissions to access objects in buckets that include `aws-panorama` in the name, and a few other resources\. You can add permissions to the appliance's service role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\.
+The AWS Panorama Appliance has limited permissions to access objects in buckets that include `aws-panorama` in the name, and a few other resources\. You can add permissions to the developer kit's service role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\.
 
 Next, learn more about [AWS Panorama concepts](gettingstarted-concepts.md)\.

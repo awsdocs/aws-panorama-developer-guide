@@ -16,7 +16,7 @@ In a retail setting, analyzing foot traffic patterns enables you to predict traf
 
 ## Create a bucket for storage<a name="gettingstarted-deploy-createbucket"></a>
 
-Create an Amazon S3 bucket for the sample model file and Lambda function deployment package\.
+Create an Amazon S3 bucket for the sample model file\.
 
 **To create a bucket**
 

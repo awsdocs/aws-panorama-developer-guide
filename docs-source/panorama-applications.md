@@ -6,7 +6,7 @@ A [model](applications-models.md) analyzes images to detect people, vehicles, an
 
 The application's [code](applications-code.md) loads a model, sends still images to it, and processes the result\. A model might detect multiple objects and return their shape and location\. The code can use this information to draw overlays on the video or send results to an AWS service for storage or further processing\.
 
-To get images from a stream, interact with a model, and output video, application code uses [the AWS Panorama Application SDK](applications-panoramasdk.md)\. The SDK is a Python library that supports models generated with PyTorch, Apache MXNet, and TensorFlow\.
+To get images from a stream, interact with a model, and output video, application code uses [the AWS Panorama Application SDK](applications-panoramasdk.md)\. The application SDK is a Python library that supports models generated with PyTorch, Apache MXNet, and TensorFlow\.
 
 **Topics**
 + [Managing applications and application versions in AWS Panorama](applications-manage.md)

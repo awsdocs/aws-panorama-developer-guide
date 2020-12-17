@@ -2,6 +2,8 @@
 
 The following topics provide troubleshooting advice for errors and issues that you might encounter when using the AWS Panorama console, appliance, or SDK\. If you find an issue that is not listed here, you can use the **Provide feedback** button on this page to report it\.
 
+You can find logs for your appliance in [the Amazon CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)\. The appliance uploads logs from your application code, the appliance software, and AWS IoT processes as they are generated\. For more information, see [Viewing AWS Panorama event logs in CloudWatch Logs](monitoring-logging.md)\.
+
 For more troubleshooting advice and answers to common support questions, visit the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
 
 ## Application configuration<a name="troubleshooting-application"></a>
@@ -42,4 +44,4 @@ Automatic camera discovery uses [ONVIF profile S](https://www.onvif.org/conforma
 
 If you can connect the appliance to the camera in the AWS Panorama console, but errors such as these appear in the appliance logs, there may be an issue with the camera or the appliance software\. Use the **Provide feedback** link on this page to send us the camera model and error\.
 
-For a list of cameras that have been tested for compatibility with the AWS Panorama Appliance, see [Supported camera models](appliance-cameras.md#appliance-cameras-models)\.
+For a list of cameras that have been tested for compatibility with the AWS Panorama Appliance, see [Supported cameras](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras)\.

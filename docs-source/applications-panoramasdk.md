@@ -24,7 +24,7 @@ Python 3.7.5
     ...
 ```
 
-For an introduction to using the AWS Panorama Appliance Developer Kit for development, see [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)\.
+For an introduction to using the AWS Panorama Appliance Developer Kit for development, see [Using the developer kit](gettingstarted-devkit.md)\.
 
 **Topics**
 + [base](#applications-sdk-base)

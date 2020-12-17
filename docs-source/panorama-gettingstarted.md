@@ -14,6 +14,6 @@ After you've used the developer kit with the sample application, [connect to the
 + [Setting up the AWS Panorama Appliance Developer Kit](gettingstarted-setup.md)
 + [Deploying an AWS Panorama application](gettingstarted-deploy.md)
 + [Sample application code](gettingstarted-code.md)
-+ [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)
-+ [Supported computer vision models](gettingstarted-models.md)
++ [Using the developer kit](gettingstarted-devkit.md)
++ [Supported computer vision models and cameras](gettingstarted-compatibility.md)
 + [AWS Panorama Appliance Developer Kit specifications](gettingstarted-hardware.md)

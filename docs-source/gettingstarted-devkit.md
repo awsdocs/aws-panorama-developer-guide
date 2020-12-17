@@ -1,4 +1,4 @@
-# Using the AWS Panorama Appliance Developer Kit<a name="gettingstarted-devkit"></a>
+# Using the developer kit<a name="gettingstarted-devkit"></a>
 
 The AWS Panorama Appliance Developer Kit is an appliance for developing and testing AWS Panorama applications\. You connect to the developer kit from your computer to run commands, view logs, and explore the AWS Panorama Application SDK\.
 
@@ -14,6 +14,7 @@ This tutorial provides an introduction to connecting to the developer kit with S
 + [View logs](#gettingstarted-devkit-logs)
 + [View the AWS Panorama Application SDK help](#gettingstarted-devkit-panoramasdk)
 + [Use the AWS SDK for Python \(Boto3\)](#gettingstarted-devkit-awssdk)
++ [Next steps](#gettingstarted-devkit-next)
 
 ## Prerequisites<a name="gettingstarted-devkit-prereqs"></a>
 
@@ -189,5 +190,9 @@ ssd_512_resnet50_v1_voc.tar.gz
 ```
 
 The AWS Panorama Appliance has limited permissions to access objects in buckets that include `aws-panorama` in the name, and a few other resources\. You can add permissions to the developer kit's service role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\.
+
+## Next steps<a name="gettingstarted-devkit-next"></a>
+
+If you encountered errors while connecting to the developer kit or running commands, see [Troubleshooting](panorama-troubleshooting.md)\.
 
 Next, learn more about [AWS Panorama concepts](gettingstarted-concepts.md)\.

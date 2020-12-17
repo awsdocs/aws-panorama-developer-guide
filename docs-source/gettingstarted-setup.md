@@ -15,7 +15,7 @@ To follow this tutorial, you need an AWS Panorama Appliance Developer Kit and th
 ****
 + **Display** – A display with HDMI input for viewing the sample application output
 + **USB drive** \(included\) – A FAT32\-formatted USB flash memory drive with at least 1 GB of storage, for transferring an archive with configuration files and a certificate to the AWS Panorama Appliance Developer Kit
-+ **Camera** – A [network\-connected camera](appliance-cameras.md#appliance-cameras-models) that outputs an RTSP video stream for providing input to the camera\. The developer kit can automatically discover streams from cameras that support [ONVIF Profile S](https://www.onvif.org/conformant-products/)\.
++ **Camera** – A [network\-connected camera](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras) that outputs an RTSP video stream for providing input to the camera\. The developer kit can automatically discover streams from cameras that support [ONVIF Profile S](https://www.onvif.org/conformant-products/)\.
 
 The tutorial uses a sample computer vision model and application code\. Download the model and code before you get started\.
 
@@ -30,7 +30,7 @@ The AWS Panorama console uses other AWS services to assemble application compone
 + **AWS Lambda** – To manage function code, configuration, and versions\.
 + **AWS Identity and Access Management \(IAM\)** – On first run, to create roles used by the AWS Panorama service, the AWS Panorama console, the AWS Panorama Appliance Developer Kit, AWS IoT Greengrass, SageMaker, and Lambda functions\.
 
-If you don't have permission to create roles in IAM, have an administrator open [the AWS Panorama console](url-console-domain;panorama/home) and accept the prompt to create service roles\. For the Lambda function's permissions, you can [create an execution role with basic permissions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) ahead of time, in which case you only need [permission to pass the role](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.
+If you don't have permission to create roles in IAM, have an administrator open [the AWS Panorama console](https://console.aws.amazon.com/panorama/home) and accept the prompt to create service roles\. For the Lambda function's permissions, you can [create an execution role with basic permissions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) ahead of time, in which case you only need [permission to pass the role](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.
 
 ## Register and configure the developer kit<a name="gettingstarted-device"></a>
 
@@ -78,6 +78,8 @@ The upgrade process can take 30 minutes or more\.
 ## Add a camera stream<a name="gettingstarted-setup-camera"></a>
 
 After the software upgrade completes, add a camera stream 
+
+If you encountered errors during setup, see [Troubleshooting](panorama-troubleshooting.md)\.
 
 **To add a camera stream**
 

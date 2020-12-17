@@ -14,8 +14,8 @@ At a minimum, an AWS Panorama user needs permission to use the following service
 + **AWS Lambda** – To manage function code, configuration, and versions\.
 + **IAM** – To create a Lambda function, a user needs access to assign a role to the function\. You can [create an execution role with basic permissions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) ahead of time, in which case the user needs only [permission to pass the role](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.
 
-****  
-The first time you use [the AWS Panorama console](https://console.aws.amazon.com/panorama/home), you need permission to create service roles used by the AWS Panorama service, the AWS Panorama console, the AWS Panorama Appliance, AWS IoT Greengrass, and SageMaker\. A [service role](permissions-services.md) gives a service permission to manage resources or interact with other services\. Create these roles before granting access to your users\.
+**Creating service roles**  
+The first time you use [the AWS Panorama console](https://console.aws.amazon.com/panorama/home), you need permission to create [service roles](permissions-services.md) used by the AWS Panorama service, the AWS Panorama console, the AWS Panorama Appliance, AWS IoT Greengrass, and SageMaker\. A service role gives a service permission to manage resources or interact with other services\. Create these roles before granting access to your users\.
 
 To create machine learning models or to monitor application output in the console, additional permissions are required\. To use all features of AWS Panorama, also grant a user permission to use the following services:
 

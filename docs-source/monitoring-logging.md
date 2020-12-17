@@ -21,4 +21,4 @@ To debug and validate that your code is working as expected, you can output logs
 
 If you don't see logs in CloudWatch Logs, confirm that you are in the correct AWS Region\. If you are, there might be an issue with the appliance's connection to AWS, or with permissions on [the appliance's AWS Identity and Access Management \(IAM\) role](permissions-services.md)\.
 
-With the AWS Panorama Appliance Developer Kit, you can connect to the appliance over a local network to view logs and configuration files\. For more information, see [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)\.
+With the AWS Panorama Appliance Developer Kit, you can connect to the appliance over a local network to view logs and configuration files\. For more information, see [Using the developer kit](gettingstarted-devkit.md)\.

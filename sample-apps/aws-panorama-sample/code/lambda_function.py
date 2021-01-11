@@ -32,7 +32,6 @@ class people_counter(panoramasdk.base):
         try:
             self.threshold = parameters.threshold
             self.person_index = parameters.person_index
-            self.threshold = parameters.threshold
             self.frame_num = 0
             self.number_people = 0
             self.colours = np.random.rand(32, 3)

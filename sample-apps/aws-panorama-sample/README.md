@@ -1,7 +1,5 @@
 # AWS Panorama sample application
 
-![Architecture](/sample-apps/aws-panorama-sample/images/sample-aws-panorama-sample.png)
-
 The project source includes function code and supporting resources:
 
 - `function` - A Python function.

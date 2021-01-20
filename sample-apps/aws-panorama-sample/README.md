@@ -24,6 +24,10 @@ To create a new bucket for deployment artifacts, run `1-create-bucket.sh`.
     aws-panorama-sample$ ./1-create-bucket.sh
     make_bucket: aws-panorama-artifacts-a5e491dbb5b22e0d
 
+Download the sample model that's attached to this repo.
+
+    aws-panorama-sample$ wget https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz
+
 # Deploy
 To deploy the application, run `2-deploy.sh`.
 
@@ -37,11 +41,11 @@ This script uses AWS CloudFormation to deploy the Lambda functions and an IAM ro
 
 # Upload model
 
-Download the sample application's model and save it in the project directory.
+If you haven't already, download the sample application's [model](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz) and save it in the project directory.
 
 To upload the model to your S3 bucket, run `3-upload-model.sh`.
 
-    aws-panorama-sample$ ./3-deploy.sh
+    aws-panorama-sample$ ./3-upload-model.sh
 
 # Configure
 To get configuration values, run `4-get-configuration.sh`.
@@ -54,7 +58,7 @@ To get configuration values, run `4-get-configuration.sh`.
     MODEL OBJECT URI
     s3://aws-panorama-artifacts-672b1549d86aad55/ssd_512_resnet50_v1_voc.tar.gz
 
-
+You can use these values to configure a Panorama application in [the Panorama console](https://console.aws.amazon.com/panorama).
 
 # Cleanup
 To delete the application stack and bucket, run `5-cleanup.sh`.

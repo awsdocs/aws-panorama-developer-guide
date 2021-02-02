@@ -5,7 +5,7 @@ To get started with AWS Panorama, use the AWS Panorama console to register your 
 The sample application analyzes a video stream to tally the number of people detected and display the results on a connected display\. It includes a model that has been trained with SageMaker and [sample code](gettingstarted-code.md) that uses the AWS Panorama Application SDK to run inference and output video\.
 
 **Note**  
-For sample applications that you can run locally or on the AWS Panorama Appliance, visit the [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository on GitHub\.
+For sample applications that you can run on the AWS Panorama Appliance Developer Kit, visit the [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository on GitHub\.
 
 After you've used the developer kit with the sample application, [connect to the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md) with SSH\. When you are logged in to the appliance, you can explore the execution environment and view logs for applications, cameras, and the appliance itself\.
 

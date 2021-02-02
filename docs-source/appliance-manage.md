@@ -1,21 +1,21 @@
 # Managing an AWS Panorama Appliance<a name="appliance-manage"></a>
 
-You can use the AWS Panorama console to configure, upgrade or deregister the AWS Panorama Appliance\.
+You use the AWS Panorama console to configure, upgrade or deregister the AWS Panorama Appliance\.
 
 To set up an appliance, follow the instructions in the [getting started tutorial](gettingstarted-setup.md)\. The setup process creates the resources in AWS Panorama that track your appliance and coordinate updates and deployments\.
 
 **Topics**
-+ [Upgrade the appliance software](#appliance-manage-software)
++ [Update the appliance software](#appliance-manage-software)
 + [Deregister an appliance](#appliance-manage-delete)
 
-## Upgrade the appliance software<a name="appliance-manage-software"></a>
+## Update the appliance software<a name="appliance-manage-software"></a>
 
-You can view and deploy software updates for the AWS Panorama Appliance in the AWS Panorama console\. Updates can be required or optional\. When a required update is available, the console prompts you to apply it\. You can apply optional updates on the appliance settings page\.
+You view and deploy software updates for the AWS Panorama Appliance in the AWS Panorama console\. Updates can be required or optional\. When a required update is available, the console prompts you to apply it\. You can apply optional updates on the appliance **Settings** page\.
 
 **Important**  
-When you update the appliance software, all data on the device is reset except the `/data` directory\. This directory includes your application data and logs\. You can also use `/data` to store scripts and other files\. For details, see [The AWS Panorama Appliance Developer Kit](appliance-devkit.md)\.
+When you update the appliance software, all data on the device is overwritten except for the contents of the `/data` directory\. This directory includes your application data and logs\. You can also use `/data` to store scripts and other files\. For more information, see [The AWS Panorama Appliance Developer Kit](appliance-devkit.md)\.
 
-**To upgrade the appliance software**
+**To update the appliance software**
 
 1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
 

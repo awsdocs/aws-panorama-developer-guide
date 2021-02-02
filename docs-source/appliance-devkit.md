@@ -55,11 +55,10 @@ After connecting to the appliance with SSH, you can find logs in the following l
 + **Application code** – `/data/greengrass/ggc/var/log/user/us-east-1/123456789012/function-name.log`
 
   Replace the highlighted values with your AWS Region, account ID, and function name\.
++ **Appliance software** – `/var/log/syslog`, `/opt/aws/panorama/mediapipeline`
 + **AWS IoT Greengrass system** – `/data/greengrass/ggc/var/log/system`
-+ **AWS Panorama Appliance** – `/aws/panorama_device/iot-thing-name`
-
-  Log streams include `syslog`, `iot_job_agent`, `mediapipeline`, and a stream for each camera\.
-+ **CloudWatch Logs agent** – `/var/log/awslogs.log`
++ **AWS IoT agents** – `/opt/aws/panorama/iot`
++ **CloudWatch Logs agent** – `/var/log/awslogs.log`, `/var/log/log_daemon.log`
 
 Most of these logs are also sent to CloudWatch Logs\. For more information, see [Monitoring AWS Panorama resources and applications](panorama-monitoring.md)\.
 

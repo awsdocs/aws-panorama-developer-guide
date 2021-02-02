@@ -17,7 +17,7 @@ For more information, see [Managing the AWS Panorama Appliance](panorama-applian
 
 ## Applications<a name="gettingstarted-concepts-application"></a>
 
-Applications run on the AWS Panorama Appliance to do computer vision tasks on video streams\. You can build computer vision applications by combining Python code and machine learning models, and deploy them to the AWS Panorama Appliance over the internet\. Applications can output video to an attached display, or use the AWS SDK to send results to AWS services\.
+Applications run on the AWS Panorama Appliance to perform computer vision tasks on video streams\. You can build computer vision applications by combining Python code and machine learning models, and deploy them to the AWS Panorama Appliance over the internet\. Applications can send video to a display, or use the AWS SDK to send results to AWS services\.
 
 
 

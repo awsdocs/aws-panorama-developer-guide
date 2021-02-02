@@ -1,7 +1,7 @@
 # AWS Panorama Developer Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -36,7 +36,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Managing applications and application versions in AWS Panorama](applications-manage.md)
    + [Computer vision models](applications-models.md)
    + [Authoring application code](applications-code.md)
-   + [AWS SDK for Python (Boto3)](applications-awssdk.md)
+   + [Calling AWS services from your application code](applications-awssdk.md)
    + [Adding text and boxes to output video](applications-overlays.md)
    + [The AWS Panorama Application SDK](applications-panoramasdk.md)
 + [Monitoring AWS Panorama resources and applications](panorama-monitoring.md)

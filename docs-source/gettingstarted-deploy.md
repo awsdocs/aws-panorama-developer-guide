@@ -150,7 +150,7 @@ The Lambda function and Amazon S3 bucket that you created are not deleted automa
 
 ## Next steps<a name="gettingstarted-deploy-next"></a>
 
-For sample applications that you can run locally or on the AWS Panorama Appliance, visit the [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository on GitHub\.
+For sample applications that you can run on the AWS Panorama Appliance Developer Kit, visit the [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository on GitHub\.
 
 If you encountered errors while deploying or running the sample application, see [Troubleshooting](panorama-troubleshooting.md)\.
 

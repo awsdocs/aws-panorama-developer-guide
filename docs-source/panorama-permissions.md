@@ -6,6 +6,8 @@ To [manage permissions for users](permissions-roles.md) in your account, use the
 
 An AWS Panorama Appliance also has a role that grants it permission to access AWS services and resources\. If your application accesses services with the AWS SDK, you grant it permission to call them in the appliance's role\. The appliance's role is one of several [service roles](permissions-services.md) that the AWS Panorama service uses to access other services on your behalf\.
 
+You can restrict user permissions by the resource an action affects and, in some cases, by additional conditions\. For example, you can specify a pattern for the Amazon Resource Name \(ARN\) of an application that requires a user to include their user name in the name of applications that they create\. For the resources and conditions that are supported by each action, see [Actions, resources, and condition keys for AWS Panorama](https://docs.aws.amazon.com/service-authorization/latest/reference/list_awspanorama.html) in the Service Authorization Reference\.
+
 For more information, see [What is IAM?](https://docs.aws.amazon.com/IAM/latest/UserGuide/) in the IAM User Guide\.
 
 **Topics**

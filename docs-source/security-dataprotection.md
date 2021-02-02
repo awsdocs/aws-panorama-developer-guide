@@ -18,16 +18,20 @@ We strongly recommend that you never put sensitive identifying information, such
 
 ## Encryption in transit<a name="security-privacy-intransit"></a>
 
-AWS Panorama API endpoints support secure connections only over HTTPS\. When you manage AWS Panorama resources with the AWS Management Console, AWS SDK, or the AWS Panorama API, all communication is encrypted with Transport Layer Security \(TLS\)\.
+AWS Panorama API endpoints support secure connections only over HTTPS\. When you manage AWS Panorama resources with the AWS Management Console, AWS SDK, or the AWS Panorama API, all communication is encrypted with Transport Layer Security \(TLS\)\. Communication between the AWS Panorama Appliance and AWS is also encrypted with TLS\. Communication between the AWS Panorama Appliance and cameras over RTSP is not encrypted\.
 
 For a complete list of API endpoints, see [AWS Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\.
 
 ## Encryption at rest<a name="security-privacy-atrest"></a>
 
-The AWS Panorama service does not copy or store data such as machine learning models and application code\. These artifacts are stored in other services and AWS Panorama uses AWS IoT Greengrass to copy them onto the AWS Panorama Appliance\.
+The AWS Panorama service does not copy or store data such as machine learning models and application code\. These artifacts are stored in other services and AWS Panorama uses AWS IoT Greengrass to deploy them to the AWS Panorama Appliance Developer Kit\. Configuration files, models, and code are not encrypted at rest on the AWS Panorama Appliance Developer Kit\.
 
-The contents of the configuration archive, which includes the appliance's private key and network configuration, are not encrypted\. The network configuration file contains the Wi\-Fi password and SSH credentials in plain text\. AWS Panorama does not store these files; they can only be retrieved when you register an appliance\.
+The contents of the configuration archive, which includes the appliance's private key and network configuration, are not encrypted\. The network configuration file contains the Wi\-Fi password and SSH credentials in plain text\. AWS Panorama does not store these files; they can only be retrieved when you register an appliance\. After you transfer the configuration archive to an appliance, delete it from your computer and USB storage device\.
 
-Camera stream credentials \(username and password\) are not encrypted at rest in the AWS Panorama service\. AWS Panorama stores stream credentials and sends them to the application with AWS IoT Greengrass\.
+Other settings, such as camera stream credentials \(username and password\) are encrypted at rest in AWS\. Settings are decrypted prior to transport and sent to the appliance over TLS\.
 
-The AWS Panorama Appliance sends log data to Amazon CloudWatch Logs\. CloudWatch Logs encrypts this data by default, and can be configured to use a customer managed key\. For more information, see [Encrypt log data in CloudWatch Logs using AWS KMS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html) in the *Amazon CloudWatch Logs User Guide*\.
+To store your models securely in Amazon S3, you can use server\-side encryption with a key that Amazon S3 manages, or one that you provide\. For more information, see [Protecting data using encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the Amazon Simple Storage Service Developer Guide\.
+
+When you author application code in AWS Lambda, Lambda encrypts the function code by default\. For more information, see [Data protection in AWS Lambda ](https://docs.aws.amazon.com/lambda/latest/dg/security-dataprotection.html) in the AWS Lambda Developer Guide\.
+
+The AWS Panorama Appliance sends log data to Amazon CloudWatch Logs\. CloudWatch Logs encrypts this data by default, and can be configured to use a customer managed key\. For more information, see [Encrypt log data in CloudWatch Logs using AWS KMS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html) in the Amazon CloudWatch Logs User Guide\.

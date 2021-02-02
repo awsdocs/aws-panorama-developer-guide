@@ -1,8 +1,8 @@
-# AWS SDK for Python \(Boto3\)<a name="applications-awssdk"></a>
+# Calling AWS services from your application code<a name="applications-awssdk"></a>
 
 You can use the AWS SDK for Python \(Boto\) to call AWS services from your application code\. For example, if your model detects something out of the ordinary, you could post metrics to Amazon CloudWatch, send an notification with Amazon SNS, save an image to Amazon S3, or invoke a Lambda function for further processing\. Most AWS services have a public API that you can use with the AWS SDK\.
 
-The appliance does not have permission to access all AWS services by default\. To grant it permission, add the API actions that it uses to the appliance's role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\. You create this role when you first use the AWS Panorama console; it comes with limited permission to use Amazon S3 CloudWatch, and Amazon CloudWatch Logs\.
+The appliance does not have permission to access all AWS services by default\. To grant it permission, add the API actions that it uses to the appliance's role \([AWSPanoramaGreengrassGroupRole](permissions-services.md)\)\. You create this role when you first use the AWS Panorama console\. It comes with limited permission to use Amazon S3 CloudWatch, and Amazon CloudWatch Logs\.
 
 **Topics**
 + [Using Amazon S3](#applications-awssdk-s3)

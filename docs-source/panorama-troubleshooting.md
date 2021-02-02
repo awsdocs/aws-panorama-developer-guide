@@ -42,6 +42,6 @@ Automatic camera discovery uses [ONVIF profile S](https://www.onvif.org/conforma
 
 **Error:** *initNal\(63\) Error encountered while processing NAL\.*
 
-If you can connect the appliance to the camera in the AWS Panorama console, but errors such as these appear in the appliance logs, there may be an issue with the camera or the appliance software\. Use the **Provide feedback** link on this page to send us the camera model and error\.
+If you can connect the appliance to the camera in the AWS Panorama console, but errors such as these appear in the appliance logs, there may be an issue with the camera or the appliance software\. Verify that your camera supports H\.264 streams and is configured to use H\.264 if multiple codecs are available\.
 
-For a list of cameras that have been tested for compatibility with the AWS Panorama Appliance, see [Supported cameras](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras)\.
+Use the **Provide feedback** link on this page to send us the camera model and error\. For a list of cameras that have been tested for compatibility with the AWS Panorama Appliance, see [Supported cameras](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras)\.

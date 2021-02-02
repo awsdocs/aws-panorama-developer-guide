@@ -1,8 +1,6 @@
 # Compliance validation for AWS Panorama<a name="security-compliance"></a>
 
-Third\-party auditors assess the security and compliance of AWS Panorama as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, HIPAA, and others\.
-
-For a list of AWS services in scope of specific compliance programs, see [AWS services in scope by compliance program](http://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS compliance programs](http://aws.amazon.com/compliance/programs/)\.
+AWS Panorama is not in scope of any AWS compliance programs\. For a list of AWS services in scope of specific compliance programs, see [AWS services in scope by compliance program](http://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS compliance programs](http://aws.amazon.com/compliance/programs/)\.
 
 You can download third\-party audit reports using AWS Artifact\. For more information, see [Downloading reports in AWS artifact](https://docs.aws.amazon.com/artifact/latest/ug/downloading-documents.html)\.
 
@@ -12,3 +10,13 @@ Your compliance responsibility when using AWS Panorama is determined by the sens
 + [AWS compliance resources](http://aws.amazon.com/compliance/resources/) – This collection of workbooks and guides might apply to your industry and location\.
 + [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html) – This AWS service assesses how well your resource configurations comply with internal practices, industry guidelines, and regulations\.
 + [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html) – This AWS service provides a comprehensive view of your security state within AWS that helps you check your compliance with security industry standards and best practices\.
+
+## Additional considerations for when people are present<a name="security-compliance-people"></a>
+
+Below are some best practices to consider when using AWS Panorama for scenarios where people might be present:
+
+****
++ Ensure that you are aware of and compliant with all applicable laws and regulations for your use case\. This may include laws related to the positioning and field of view of your cameras, notice and signage requirements when placing and using cameras, and the rights of people that may be present in your videos, including their privacy rights\.
++ Take into account the effect of your cameras on people and their privacy\. In addition to legal requirements, consider whether it would be appropriate to place notice in areas where your cameras are located, and whether cameras should be placed in plain sight and free of any occlusions, so people are not surprised that they may be on camera\.
++ Have appropriate policies and procedures in place for the operation of your cameras and review of data obtained from the cameras\.
++ Consider appropriate access controls, usage limitations, and retention periods for the data obtained from your cameras\.

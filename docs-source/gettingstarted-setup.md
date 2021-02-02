@@ -38,7 +38,7 @@ The AWS Panorama Appliance is a hardware device that connects to network\-enable
 
 To connect to AWS for appliance management and application deployment, the AWS Panorama Appliance Developer Kit uses device certificates\. You use the AWS Panorama console to generate certificates that authenticate the developer kit and authorize it to call AWS API operations\.
 
-When you set up the AWS Panorama Appliance Developer Kit, enable SSH to so that you can connect to it for testing and debugging\. Do not add cameras at this time\.
+When you set up the AWS Panorama Appliance Developer Kit, enable SSH to so that you can connect to it for testing and debugging\. To enable Wi\-Fi, configure an SSID and password during setup\. Enabling Wi\-Fi does not disable Ethernet, and a wired connection is required to complete setup prior to updating the appliance's software\.
 
 **To register an AWS Panorama Appliance Developer Kit**
 
@@ -54,13 +54,13 @@ When you set up the AWS Panorama Appliance Developer Kit, enable SSH to so that 
 
 1. The developer kit copies the configuration archive and network configuration file to itself, connects to the network, and connects to the AWS Cloud\. To continue, choose **Next**\.
 
-1. Follow the instructions to complete setup\.
+1. Do not add cameras at this time\. Proceed through the remaining steps to complete setup\.
 
 ## Upgrade the developer kit software<a name="gettingstarted-upgrade"></a>
 
 The AWS Panorama Appliance Developer Kit has several software components, including a Linux operating system, the [AWS Panorama application SDK](applications-panoramasdk.md), and supporting computer vision libraries and frameworks\. To ensure that you can use the latest features and applications with your developer kit, upgrade its software after setup and whenever an update is available\.
 
-**To upgrade the appliance software**
+**To update the appliance software**
 
 1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
 
@@ -81,21 +81,22 @@ After the software upgrade completes, add a camera stream
 
 If you encountered errors during setup, see [Troubleshooting](panorama-troubleshooting.md)\.
 
-**To add a camera stream**
+**To add a camera stream to the AWS Panorama Appliance**
 
 1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
 
 1. Choose an appliance\.
 
-1. Choose **Camera streams**\.
+1. Choose **Inputs**\.
 
-1. Choose **Add camera**\.
+1. Choose **Add camera**\.  
+![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/console-device-addstream.png)
 
-1. Choose a connection mode\.
+1. Choose a connection mode\. Try **Automatic** first\. If it doesn't find your camera stream, use **Manual**\.
    + **Automatic** – The AWS Panorama Appliance discovers cameras on the local network\. Choose a camera and then choose a stream to add\. If the camera has multiple streams, repeat the process to add additional streams\.
    + **Manual** – Enter the IP address of the camera and the RTSP URL of a stream\.
 
-   Both workflows support password\-protected cameras\.
+   Both workflows support password\-protected cameras\. 
 
 1. Choose **Confirm**\.
 

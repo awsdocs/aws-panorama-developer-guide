@@ -10,25 +10,25 @@ To process video and get images to send to a model, the AWS Panorama Appliance c
 
 ## Supported models<a name="gettingstarted-compatibility-models"></a>
 
-When you deploy an application, AWS Panorama uses the SageMaker Neo compiler to compile it\. SageMaker Neo is a compiler that optimizes models to run efficiently on edge devices such as the AWS Panorama Appliance\. AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\.
+When you build an application for AWS Panorama, you provide a machine learning model that the application uses for computer vision\. You can use pre\-built and pre\-trained models provided by model frameworks, [a sample model](applications-models.md#applications-models-sample), or a model that you build and train yourself\.
 
 **Note**  
-For a list of models that have been tested with AWS Panorama, see [Model compatibility](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/model-compatibility.md)\.
+For a list of pre\-built models that have been tested with AWS Panorama, see [Model compatibility](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/model-compatibility.md)\.
 
-For more information, see the following topics:
+When you deploy an application, AWS Panorama uses the SageMaker Neo compiler to compile your computer vision model\. SageMaker Neo is a compiler that optimizes models to run efficiently on a target platform, which can be an instance in Amazon Elastic Compute Cloud \(Amazon EC2\), or an edge device such as the AWS Panorama Appliance\.
 
-****
-+ [Compile and deploy models with Amazon SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html)
-+ [SageMaker Neo supported frameworks and operators](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/)
-+ [Computer vision models](applications-models.md)
+AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\. When you build your own model, you can use the framework versions listed in the [SageMaker Neo release notes](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/) under **Edge devices**\.
+
+For more information about using models in AWS Panorama, see [Computer vision models](applications-models.md)\.
 
 ## Supported cameras<a name="gettingstarted-compatibility-cameras"></a>
 
-The AWS Panorama Appliance supports H\.264 video streams from cameras that output RTSP over a local network\. The following camera models have been tested for compatibility with the AWS Panorama Appliance\.
+The AWS Panorama Appliance supports H\.264 video streams from cameras that output RTSP over a local network\. The following camera models have been tested for compatibility with the AWS Panorama Appliance:
 + [Anpviz](https://anpvizsecurity.com/) – IPC\-B850W\-S\-3X, IPC\-D250W\-S
 + [Axis](https://www.axis.com/) – M3057\-PLVE, M3058\-PLVE, P1448\-LE, P3225\-LV Mk II
 + [LaView](https://www.laviewsecurity.com/) – LV\-PB3040W
 + [Vivotek](https://www.vivotek.com/) – IB9360\-H
++ [Amcrest](https://amcrest.com/) – IP2M\-841B
 + **WGCC** – Dome PoE 4MP ONVIF
 
 For the appliance's hardware specifications, see [AWS Panorama Appliance Developer Kit specifications](gettingstarted-hardware.md)\.

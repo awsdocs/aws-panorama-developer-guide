@@ -1,6 +1,6 @@
 # Managing applications and application versions in AWS Panorama<a name="applications-manage"></a>
 
-Use the AWS Panorama console to manage applications and application versions\. An *application* is a computer vision program that runs on the AWS Panorama Appliance\. *Application versions* are immutable snapshots of an application's configuration\.
+Use the AWS Panorama console to manage applications and application versions\. An *application* is a computer vision program that runs on the AWS Panorama Appliance\. *Application versions* are immutable snapshots of an application's configuration\. AWS Panorama saves previous versions of your applications so that you can roll back updates that aren't successful, or run different versions on different appliances\.
 
 To create an application, you need an AWS Lambda function and a computer vision model that is stored in Amazon SageMaker or Amazon Simple Storage Service \(Amazon S3\)\. The application code is a Python script that uses the AWS Panorama Application SDK to process inputs, run inference, and output video\. If you have not created an application yet, see [Getting started with AWS Panorama](panorama-gettingstarted.md) for a walkthrough\.
 
@@ -11,7 +11,7 @@ To create an application, you need an AWS Lambda function and a computer vision 
 
 ## Deploy an application<a name="applications-manage-deploy"></a>
 
-To deploy an application, use the AWS Panorama console\. During the deployment process, you'll choose which camera streams to pass to the application code, and whether to send the output to a display\.
+To deploy an application, use the AWS Panorama console\. During the deployment process, you choose which camera streams to pass to the application code, and whether to send the output to a display\.
 
 **To deploy an application**
 
@@ -19,7 +19,7 @@ To deploy an application, use the AWS Panorama console\. During the deployment p
 
 1. Choose an application\.
 
-1. \(Optional\) To deploy a previous version of the application, choose a **Version**\.
+1. \(Optional\) To deploy a previous version of the application, for **Version**, choose the version you want to deploy\.
 
 1. Choose **Deploy**\.
 
@@ -29,7 +29,7 @@ The deployment process takes a few minutes\. The appliance's output can be blank
 
 ## Update or copy an application<a name="applications-manage-clone"></a>
 
-To update an application or create a copy of it, use the **Clone** option\. Previous versions of applications are saved until you delete them\. When you clone an application, you can update its function or models\.
+To update an application or create a copy of it, use the **Clone** option\. AWS Panorama saves all versions of applications until you delete them\. When you clone an application, you can update its function or models\.
 
 **To clone an application**
 
@@ -51,7 +51,7 @@ To clean up unused application versions, delete them\. When you delete an applic
 
 1. Choose an application\.
 
-1. Under **Version**, choose a version\.
+1. For **Version**, choose a version\.
 
 1. Choose **Delete**\.
 

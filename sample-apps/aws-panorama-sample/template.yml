@@ -10,6 +10,7 @@ Resources:
       CodeUri: code/.
       Description: Count people
       Timeout: 10
+      VersionDescription: auto-published version
       # Function's role
       Policies:
         - AWSLambdaBasicExecutionRole

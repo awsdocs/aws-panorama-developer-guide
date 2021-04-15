@@ -10,12 +10,7 @@ Resources:
       CodeUri: code/.
       Description: Count people
       Timeout: 10
-      VersionDescription: auto-published version
+      AutoPublishAlias: DEVELOPMENT
       # Function's role
       Policies:
         - AWSLambdaBasicExecutionRole
-  version:
-    Type: AWS::Lambda::Version
-    Properties: 
-      FunctionName: !Ref function
-      Description: Sample application.

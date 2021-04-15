@@ -104,8 +104,10 @@ A batch of results for a model output, retrieved from a `panoramasdk.batch_set`.
 A frame of video from a camera stream.
 
 **Instance methods**
-+ `media.image()` – Gets the frame's image data \(a numpy array\).
 + `media.add_rect(rect)` – Draws a rectangle around an object. The input is a tuple of 4 floating point values: left, right, top, bottom.
 + `media.add_label(text, left_pos, top_pos)` – Adds text to the image. The input is a string and two floats: a horizontal offset and vertical offset.
-+ `media.stream_uri()` – Gets the URI of the camera stream that provided the frame.
-+ `media.time_stamp()` – Gets the timestamp of the image frame in both seconds and milliseconds \(a tuple of 2 numbers\).
+
+**Instance attributes**
++ `media.image` – The frame's image data \(a numpy array\).
++ `media.stream_uri` – The URI of the camera stream that provided the frame.
++ `media.time_stamp` – The timestamp of the image frame in both seconds and milliseconds \(a tuple of 2 numbers\).

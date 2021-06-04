@@ -2,4 +2,4 @@ sagemaker
 boto3
 botocore
 protobuf
-tensorflow==2.2.0
+tensorflow==2.5.0

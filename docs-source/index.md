@@ -1,7 +1,7 @@
 # AWS Panorama Developer Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -16,11 +16,11 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is AWS Panorama?](panorama-welcome.md)
 + [Getting started with AWS Panorama](panorama-gettingstarted.md)
-   + [Concepts](gettingstarted-concepts.md)
+   + [AWS Panorama concepts](gettingstarted-concepts.md)
    + [Setting up the AWS Panorama Appliance Developer Kit](gettingstarted-setup.md)
-   + [Deploying an AWS Panorama application](gettingstarted-deploy.md)
-   + [Sample application code](gettingstarted-code.md)
-   + [Using the developer kit](gettingstarted-devkit.md)
+   + [Deploying the AWS Panorama sample application](gettingstarted-deploy.md)
+   + [AWS Panorama sample application features](gettingstarted-code.md)
+   + [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)
    + [Supported computer vision models and cameras](gettingstarted-compatibility.md)
    + [AWS Panorama Appliance Developer Kit specifications](gettingstarted-hardware.md)
 + [AWS Panorama permissions](panorama-permissions.md)
@@ -48,6 +48,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Identity and access management for AWS Panorama](security-iam.md)
       + [How AWS Panorama works with IAM](security_iam_service-with-iam.md)
       + [AWS Panorama identity-based policy examples](security_iam_id-based-policy-examples.md)
+      + [AWS managed policies for AWS Panorama](security-iam-awsmanpol.md)
       + [Troubleshooting AWS Panorama identity and access](security_iam_troubleshoot.md)
    + [Compliance validation for AWS Panorama](security-compliance.md)
    + [Resilience in AWS Panorama](security-resilience.md)

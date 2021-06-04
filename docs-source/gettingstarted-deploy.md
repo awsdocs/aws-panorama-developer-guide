@@ -1,8 +1,8 @@
-# Deploying an AWS Panorama application<a name="gettingstarted-deploy"></a>
+# Deploying the AWS Panorama sample application<a name="gettingstarted-deploy"></a>
 
 After you've [set up your AWS Panorama Appliance Developer Kit](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you define the application code, import a machine learning model, and deploy an application with the AWS Panorama console\.
 
-The sample application uses a machine learning model to detect people in frames of video from network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
+The sample application uses a machine learning model to detect people in frames of video from a network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
 
 In a retail setting, analyzing foot traffic patterns enables you to predict traffic levels\. By combining the analysis with other data, you can plan for increased staffing needs around holidays and other events, measure the effectiveness of advertisements and sales promotions, or optimize display placement and inventory management\.
 
@@ -55,7 +55,7 @@ Lambda creates the function and opens the function details page\. Modify the fun
 
 **To update the function's code and configuration**
 
-1. For **Function code**, choose **Actions** and then choose **Upload a ZIP file**\. 
+1. For **Code source**, choose **Upload from** and then choose **\.zip file**\. 
 
 1. Upload the [sample code deployment package](samples/aws-panorama-sample.zip) and then choose **Save**\.
 
@@ -66,7 +66,9 @@ Lambda creates the function and opens the function details page\. Modify the fun
 
 1. Choose **Save**\.
 
-1. In the **Basic settings** section, choose **Edit**\.
+1. Above the code editor, choose the **Configuration** tab\.
+
+1. In the **General configuration** section, choose **Edit**\.
 
 1. Configure the following settings:
    + **Timeout** – **2 minutes**\.
@@ -76,7 +78,7 @@ Lambda creates the function and opens the function details page\. Modify the fun
 
 1. Choose **Actions**\.
 
-1. Choose **Publish new version**\.
+1. Choose **Publish new version**, and then choose **Publish**\.
 
 When you configure an application, you choose a function version\. Using a version ensures that the application continues to work if you make changes to the function's code\. To update the application's code, you publish a new version in Lambda and configure the application to use it\.
 
@@ -95,7 +97,7 @@ To import the sample model and create an application, use the AWS Panorama conso
 1. Complete the workflow with the following settings:
    + **Name** – **aws\-panorama\-sample**
    + Model source – **External model**
-   + **Model artifact path** – The Amazon S3 path of the [model archive](gettingstarted-setup.md#gettingstarted-prerequisites)\. For example: **`s3://aws-panorama-artifacts-123456789012/ssd_512_resnet50_v1_voc.tar.gz`**
+   + **Model artifact path** – The Amazon S3 URI of the [model archive](gettingstarted-setup.md#gettingstarted-prerequisites)\. For example: **`s3://aws-panorama-artifacts-123456789012/ssd_512_resnet50_v1_voc.tar.gz`**
    + **Model name** – **aws\-panorama\-sample\-model**
 
      This value is used by the application code\. Enter it exactly as shown\.
@@ -150,8 +152,8 @@ The Lambda function and Amazon S3 bucket that you created are not deleted automa
 
 ## Next steps<a name="gettingstarted-deploy-next"></a>
 
-For sample applications that you can run on the AWS Panorama Appliance Developer Kit, visit the [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository on GitHub\.
-
 If you encountered errors while deploying or running the sample application, see [Troubleshooting](panorama-troubleshooting.md)\.
 
-To learn about the AWS Panorama Appliance Developer Kit, continue to [the next topic](gettingstarted-devkit.md)\.
+To learn more about the sample application's features and implementation, continue to [the next topic](gettingstarted-devkit.md)\.
+
+To learn about the AWS Panorama Appliance Developer Kit, continue to [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)\.

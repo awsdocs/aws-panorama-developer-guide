@@ -17,7 +17,7 @@ For a list of pre\-built models that have been tested with AWS Panorama, see [Mo
 
 When you deploy an application, AWS Panorama uses the SageMaker Neo compiler to compile your computer vision model\. SageMaker Neo is a compiler that optimizes models to run efficiently on a target platform, which can be an instance in Amazon Elastic Compute Cloud \(Amazon EC2\), or an edge device such as the AWS Panorama Appliance\.
 
-AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\. When you build your own model, you can use the framework versions listed in the [SageMaker Neo release notes](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/) under **Edge devices**\.
+AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\. When you build your own model, you can use the framework versions listed in the [SageMaker Neo release notes](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/)\.
 
 For more information about using models in AWS Panorama, see [Computer vision models](applications-models.md)\.
 

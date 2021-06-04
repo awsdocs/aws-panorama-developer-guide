@@ -1,4 +1,4 @@
-# Using the developer kit<a name="gettingstarted-devkit"></a>
+# Using the AWS Panorama Appliance Developer Kit<a name="gettingstarted-devkit"></a>
 
 The AWS Panorama Appliance Developer Kit is an appliance for developing and testing AWS Panorama applications\. You connect to the developer kit from your computer to run commands, view logs, and explore the AWS Panorama Application SDK\.
 
@@ -108,14 +108,17 @@ tail -100 $LOG
 
 In addition to application logs, you can view the system logs for AWS IoT Greengrass\.
 
-**Example list\-greengrass\-logs\.sh \(requires sudo\) – Show application log**  
+**Example list\-greengrass\-logs\.sh \(requires sudo\) – List AWS IoT and AWS IoT Greengrass logs**  
 
 ```
 PANORAMA=/opt/aws/panorama
 IOT=$PANORAMA/iot
 GREENGRASS=/data/greengrass/ggc/var/log/system
-ls $IOT
-ls $GREENGRASS
+echo $IOT:
+ls -gGht $IOT
+echo ""
+echo $GREENGRASS:
+ls -gGht $GREENGRASS
 ```
 
 To view logs for cameras \(datasources\) and HDMI output \(datasinks\), navigate to the `mediapipeline` directory under `/opt/aws/panorama`\. Each camera and display has a separate log file\.

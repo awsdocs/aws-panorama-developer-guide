@@ -1,12 +1,13 @@
 # Setting up the AWS Panorama Appliance Developer Kit<a name="gettingstarted-setup"></a>
 
-To get started using your AWS Panorama Appliance Developer Kit, register it in the AWS Panorama console and update its software\.
+To get started using your AWS Panorama Appliance Developer Kit, register it in the AWS Panorama console and update its software\. During the setup process, you create an appliance *resource* in AWS Panorama that represents the physical appliance, and copy files to the appliance with a USB drive\. The appliance uses these certificates and configuration files to connect to the AWS Panorama service\. Then you use the AWS Panorama console to update the appliance's software and connect cameras\.
 
 **Topics**
 + [Prerequisites](#gettingstarted-prerequisites)
 + [Register and configure the developer kit](#gettingstarted-device)
 + [Upgrade the developer kit software](#gettingstarted-upgrade)
 + [Add a camera stream](#gettingstarted-setup-camera)
++ [Next steps](#gettingstarted-setup-nextsteps)
 
 ## Prerequisites<a name="gettingstarted-prerequisites"></a>
 
@@ -15,7 +16,7 @@ To follow this tutorial, you need an AWS Panorama Appliance Developer Kit and th
 ****
 + **Display** – A display with HDMI input for viewing the sample application output
 + **USB drive** \(included\) – A FAT32\-formatted USB flash memory drive with at least 1 GB of storage, for transferring an archive with configuration files and a certificate to the AWS Panorama Appliance Developer Kit
-+ **Camera** – A [network\-connected camera](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras) that outputs an RTSP video stream for providing input to the camera\. The developer kit can automatically discover streams from cameras that support [ONVIF Profile S](https://www.onvif.org/conformant-products/)\.
++ **Camera** – An [IP camera](gettingstarted-compatibility.md#gettingstarted-compatibility-cameras) that outputs an RTSP video stream for providing input to the camera\. The developer kit can automatically discover streams from cameras that support [ONVIF Profile S](https://www.onvif.org/conformant-products/)\.
 
 The tutorial uses a sample computer vision model and application code\. Download the model and code before you get started\.
 
@@ -77,9 +78,7 @@ The upgrade process can take 30 minutes or more\.
 
 ## Add a camera stream<a name="gettingstarted-setup-camera"></a>
 
-After the software upgrade completes, add a camera stream 
-
-If you encountered errors during setup, see [Troubleshooting](panorama-troubleshooting.md)\.
+After the software upgrade completes, add a camera stream\.
 
 **To add a camera stream to the AWS Panorama Appliance**
 
@@ -100,4 +99,8 @@ If you encountered errors during setup, see [Troubleshooting](panorama-troublesh
 
 1. Choose **Confirm**\.
 
-Next, [create and deploy the sample application](gettingstarted-deploy.md)\.
+## Next steps<a name="gettingstarted-setup-nextsteps"></a>
+
+If you encountered errors during setup, see [Troubleshooting](panorama-troubleshooting.md)\.
+
+To deploy a sample application, continue to [the next topic](gettingstarted-deploy.md)\.

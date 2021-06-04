@@ -29,6 +29,8 @@ When you update the appliance software, all data on the device is overwritten ex
 
 If you are done working with the AWS Panorama Appliance, you can use the AWS Panorama console to deregister it and delete the associated AWS IoT and AWS IoT Greengrass resources\.
 
+When you delete an appliance from the AWS Panorama service, data on the appliance is not deleted automatically\. This data includes applications, camera information, the appliance certificate, network configuration, and logs\. You can remove [applications](appliance-applications.md) and [cameras](appliance-cameras.md#appliance-cameras-remove) from the device prior to deregistering it, or reset the device to its factory state\.
+
 **To delete an appliance**
 
 1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
@@ -38,7 +40,5 @@ If you are done working with the AWS Panorama Appliance, you can use the AWS Pan
 1. Choose **Delete**\.
 
 1. Enter the appliance's name and choose **Delete**\.
-
-Data on the appliance is not deleted automatically\. This data includes the appliance certificate, network configuration, camera information, and logs\. To delete this data, reset the appliance to the factory image and state\.
 
 To fully reset the device and delete all data, press both the power button and the reset button for over 5 seconds\. For more information, see [AWS Panorama Appliance buttons and lights](appliance-buttons.md)\.

@@ -13,6 +13,7 @@ Whether you import a model from SageMaker or from Amazon S3, the name of the Ama
 **Topics**
 + [Sample model](#applications-models-sample)
 + [Using models in code](#applications-models-using)
++ [Training models](#applications-models-training)
 
 ## Sample model<a name="applications-models-sample"></a>
 
@@ -21,7 +22,7 @@ This guide uses a sample object detection model\. The sample model uses the obje
 ****
 + [Download the sample model](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz)
 
-To get started with the sample model, see [Deploying an AWS Panorama application](gettingstarted-deploy.md)\.
+To get started with the sample model, see [Deploying the AWS Panorama sample application](gettingstarted-deploy.md)\.
 
 ## Using models in code<a name="applications-models-using"></a>
 
@@ -52,3 +53,14 @@ For example, the following initialization code loads a model named `my-model`\.
             self.prob_array = np.empty(prob_info.get_dims(), dtype=prob_info.get_type())
             self.rect_array = np.empty(rect_info.get_dims(), dtype=rect_info.get_type())
 ```
+
+## Training models<a name="applications-models-training"></a>
+
+When you a model, use images from the target environment, or from a test environment that closely resembles the target environment\. Consider the following factors that can affect model performance:
+
+****
++ **Lighting** – The amount of light that is reflected by a subject determines how much detail the model has to analyze\. A model trained with images of well\-lit subjects might not work well in a low\-light or backlit environment\.
++ **Resolution** – The input size of a model is typically fixed at a resolution between 224 and 512 pixels wide in a square aspect ratio\. Before you pass a frame of video to the model, you can downscale or crop it to fit the required size\.
++ **Image distortion** – A camera's focal length and lens shape can cause images to exhibit distortion away from the center of the frame\. The position of a camera also determines which features of a subject are visible\. For example, an overhead camera with a wide angle lens will show the top of a subject when its in the center of the frame, and a skewed view of the subject's side as it moves farther away from center\.
+
+To address these issues, you can preprocess images before sending them to the model, and train the model on a wider variety of images that reflect variances in real\-world environments\. If a model needs to operate in a lighting situations and with a variety of cameras, you need more data for training\. In addition to gathering more images, you can get more training data by creating variations of your existing images that are skewed or have different lighting\.

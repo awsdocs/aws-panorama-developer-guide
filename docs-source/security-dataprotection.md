@@ -26,7 +26,7 @@ For a complete list of API endpoints, see [AWS Regions and endpoints](https://do
 
 The AWS Panorama service does not copy or store data such as machine learning models and application code\. These artifacts are stored in other services and AWS Panorama uses AWS IoT Greengrass to deploy them to the AWS Panorama Appliance Developer Kit\. Configuration files, models, and code are not encrypted at rest on the AWS Panorama Appliance Developer Kit\.
 
-The contents of the configuration archive, which includes the appliance's private key and network configuration, are not encrypted\. The network configuration file contains the Wi\-Fi password and SSH credentials in plain text\. AWS Panorama does not store these files; they can only be retrieved when you register an appliance\. After you transfer the configuration archive to an appliance, delete it from your computer and USB storage device\.
+The contents of the configuration archive, which includes the appliance's private key and network configuration, are not encrypted\. The network configuration file can contain Wi\-Fi passwords and SSH credentials in plain text\. AWS Panorama does not store these files; they can only be retrieved when you register an appliance\. After you transfer the configuration archive to an appliance, delete it from your computer and USB storage device\.
 
 Other settings, such as camera stream credentials \(username and password\) are encrypted at rest in AWS\. Settings are decrypted prior to transport and sent to the appliance over TLS\.
 

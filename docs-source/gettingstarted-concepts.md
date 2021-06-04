@@ -1,4 +1,4 @@
-# Concepts<a name="gettingstarted-concepts"></a>
+# AWS Panorama concepts<a name="gettingstarted-concepts"></a>
 
 In AWS Panorama, you create computer vision applications and deploy them to the AWS Panorama Appliance to analyze video streams from network cameras\. You write application code in Python and import machine learning models from Amazon SageMaker or Amazon Simple Storage Service \(Amazon S3\)\. Applications use the AWS Panorama Application SDK to receive video input from a datasource and output it to a data sink\.
 
@@ -25,6 +25,6 @@ For more information, see [Building AWS Panorama applications](panorama-applicat
 
 ## Models<a name="gettingstarted-concepts-model"></a>
 
-A computer vision model is a software program that is trained to detect objects in images\. A model learns to recognize a set of objects by analyzing images of those objects\. It takes an image as input and outputs information about objects that it detects\.
+A computer vision model is a machine learning network that is trained to process images\. Computer vision models can perform various tasks such as classification, detection, segmentation, and tracking\. A computer vision model takes an image as input and outputs information about the image or objects in the image\.
 
 AWS Panorama supports models built with PyTorch, Apache MXNet, and TensorFlow\. You can build models with Amazon SageMaker and import them from a SageMaker job or an Amazon Simple Storage Service \(Amazon S3\) bucket\. For more information, see [Computer vision models](applications-models.md)\.

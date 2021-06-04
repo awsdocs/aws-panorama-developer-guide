@@ -1,0 +1,5 @@
+sagemaker
+boto3
+botocore
+protobuf
+tensorflow==2.2.0

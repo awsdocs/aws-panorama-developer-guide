@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 instance
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+    Default: panorama-ec2
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: g4dn.xlarge
+    AllowedValues:
+    - g4dn.xlarge
+    - g4dn.2xlarge
+    - p3.2xlarge
+  SSHLocation:
+    Description: The IP address range that can be used to SSH to the EC2 instances
+    Type: String
+    MinLength: 9
+    MaxLength: 18
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+Mappings: 
+  RegionMap: 
+    us-east-1:
+      id: ami-01ed9075825ea17a9
+    us-east-2:
+      id: ami-0d4c77bfd5f925bf4
+    us-west-2:
+      id: ami-07e48e2dd923f4de4
+    eu-central-1:
+      id: ami-05f35a47cd289cc94
+    eu-west-1:
+      id: ami-0447a4273aa92fbc8
+    ap-northeast-1:
+      id: ami-0a11b94571518b28b
+Resources:
+  ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      SecurityGroups: [!Ref 'ec2SecurityGroup']
+      KeyName: !Ref KeyName
+      ImageId: !FindInMap
+        - RegionMap
+        - !Ref AWS::Region
+        - id
+      IamInstanceProfile: !Ref ec2InstanceProfile
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 50
+  ec2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref SSHLocation
+  ec2Role:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      - arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy
+      - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
+      - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+      AssumeRolePolicyDocument: |
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "sts:AssumeRole"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              }
+            }
+          ]
+        }
+  ec2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref ec2Role
+Outputs:
+  publicName:
+    Description: Public DNSName of the EC2 instance
+    Value: !GetAtt [ec2Instance, PublicDnsName]
+  publicIp:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt [ec2Instance, PublicIp]

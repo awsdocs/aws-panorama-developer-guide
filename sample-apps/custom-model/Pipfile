@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sagemaker = "*"
+ipykernel = "*"
+ipython = "*"
+jupyter-utils = "*"
+boto3 = "*"
+botocore = "*"
+protobuf = "*"
+tensorflow = "==2.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

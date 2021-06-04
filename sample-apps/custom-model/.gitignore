@@ -1,0 +1,8 @@
+*.tar.gz
+out.yml
+bucket-name.*
+custom-model
+model-uri.txt
+certificates
+__pycache__
+Pipfile.lock

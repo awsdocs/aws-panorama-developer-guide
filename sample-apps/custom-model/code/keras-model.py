@@ -38,7 +38,7 @@ class KerasModel():
         # Export model
         model = Model(self.BUCKET_NAME, self.SERVICE_ROLE_ARN)
         model_class = getattr(tf.keras.applications, model_name)
-        model_uri, model_input_name, model_input_shape = model.export_model(model_class)
+        model_uri, model_input_name, model_input_shape = model.export_model(model_class, model_name)
         # Compile model
         compilation_job = model.compile_model(model_uri,model_input_name,model_input_shape)
         logger.info('Input name: {}'.format(model_input_name))

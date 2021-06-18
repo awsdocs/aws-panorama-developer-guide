@@ -19,8 +19,8 @@ This project uses the following software.
 
 - The Bash shell. For Linux and macOS, this is included by default. In Windows 10, you can install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows-integrated version of Ubuntu and Bash.
 - [The AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) v1.17 or newer.
-- [Python 3.6](https://www.python.org/downloads/) (optional)
-- [TensorFlow 2.2.0](https://www.tensorflow.org/install) (optional)
+- [Python 3.7](https://www.python.org/downloads/) (optional)
+- [TensorFlow 1.15.5](https://www.tensorflow.org/install) (optional)
 - [Docker 19.03](https://docs.docker.com/get-docker/) (optional)
 
 The project provides options for exporting models locally in a Python virtual environment or Docker container, or in Amazon EC2 on an instance that comes with Docker and TensorFlow configured for GPU access.
@@ -162,7 +162,7 @@ After confirming that the model compiles, you can deploy it to an AWS Panorama A
     MODEL NAME
     custom-model
     MODEL OBJECT URI
-    s3://aws-panorama-artifacts-a5e4xmplb5b22e0d/models/DenseNet121-tf220.tar.gz
+    s3://aws-panorama-artifacts-a5e4xmplb5b22e0d/models/DenseNet121-tf1155.tar.gz
 
 Use these details to create an application in the AWS Panorama console and deploy it to your appliance. For instructions, see [Deploying an application](https://docs.aws.amazon.com/panorama/latest/dev/gettingstarted-deploy.html#gettingstarted-deploy-create).
 

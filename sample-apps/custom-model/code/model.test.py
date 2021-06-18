@@ -33,7 +33,7 @@ class TestFunction(unittest.TestCase):
         for model_name in model_names:
             model = Model(self.BUCKET_NAME, self.SERVICE_ROLE_ARN)
             model_class = getattr(tf.keras.applications, model_name)
-            model_uri, model_input_name, model_input_shape = model.export_model(model_class)
+            model_uri, model_input_name, model_input_shape = model.export_model(model_class, model_name)
 
             input_name = model_input.get('name')
             job = model.compile_model(model_uri,model_input_name,model_input_shape)

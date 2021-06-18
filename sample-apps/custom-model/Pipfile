@@ -5,15 +5,12 @@ name = "pypi"
 
 [packages]
 sagemaker = "*"
-ipykernel = "*"
-ipython = "*"
-jupyter-utils = "*"
 boto3 = "*"
 botocore = "*"
 protobuf = "*"
-tensorflow = "==2.2"
+tensorflow = "==1.15"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

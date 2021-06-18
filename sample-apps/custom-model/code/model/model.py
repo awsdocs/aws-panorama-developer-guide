@@ -28,9 +28,11 @@ class Model:
         self.bucket_name = bucket_name
         self.service_role_arn = service_role_arn
 
-    def export_model(self, model_class):
+    def export_model(self, model_class, model_name):
         """Export a TensorFlow model in SavedModel format and upload it to Amazon S3"""
-        MODEL_NAME=model_class.__name__
+        # TensorFlow 2 only
+        # MODEL_NAME=model_class.__name__
+        MODEL_NAME=model_name
         Path('/tmp/models').mkdir(exist_ok=True)
         MODEL_DIR='/tmp/models/{}'.format(MODEL_NAME)
         MODEL_KEY='models/{}-tf{}.tar.gz'.format(MODEL_NAME,tf.__version__.replace('.',''))
@@ -44,7 +46,7 @@ class Model:
         model_input_shape = '{},{},{}'.format(w,h,c)
         # Export model and create archive
         self.remove(MODEL_DIR)
-        model.save(MODEL_DIR)
+        model.save(MODEL_DIR, save_format='tf')
         self.remove(MODEL_TAR)
         with tarfile.open(MODEL_TAR, mode='w:gz') as archive:
             archive.add(MODEL_DIR,MODEL_NAME)

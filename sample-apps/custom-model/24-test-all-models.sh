@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-declare -a arr=("DenseNet121" "InceptionV3" "DenseNet201" "ResNet152" "MobileNet" "InceptionResNetV2" "Xception" "ResNet50" "ResNet50V2" "VGG16" "NASNetLarge" "DenseNet169" "VGG19" "ResNet101" "ResNet152V2" "NASNetMobile" "MobileNetV2" "ResNet101V2")
-
+declare -a arr=("DenseNet121" "DenseNet169" "DenseNet201" "InceptionResNetV2" "InceptionV3" "MobileNet" "MobileNetV2" "NASNetLarge" "NASNetMobile" "ResNet101" "ResNet101V2" "ResNet152" "ResNet152V2" "ResNet50" "ResNet50V2" "VGG16" "VGG19" "Xception")
 for i in "${arr[@]}"
 do
    echo "$i"

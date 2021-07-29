@@ -15,6 +15,7 @@ cfn_client = boto3.client('cloudformation')
 class TestFunction(unittest.TestCase):
 
     def setUp(self):
+        """Gets resource names and IDs from the CloudFormation stack."""
         stack = cfn_client.describe_stacks(
             StackName='panorama-custom-model'
         )
@@ -23,6 +24,7 @@ class TestFunction(unittest.TestCase):
         self.BUCKET_NAME=resources['bucketName']
 
     def test_function(self):
+        """Tests the compilation and packaging workflows with a single model."""
         #model_names = [model[0] for model in getmembers(tf.keras.applications, isfunction)]
         #model_names = ['ResNet50V2']
         #model_names = ['MobileNetV2']

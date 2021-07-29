@@ -20,7 +20,7 @@ cfn_client = boto3.client('cloudformation')
 class KerasModel():
 
     def __init__(self):
-        """Get service role and bucket name from CloudFormation stack outputs"""
+        """Gets the service role and bucket name from CloudFormation stack outputs."""
         stack = cfn_client.describe_stacks(
             StackName='panorama-custom-model'
         )
@@ -31,7 +31,7 @@ class KerasModel():
         logger.info('Bucket: {}'.format(self.BUCKET_NAME))
 
     def compile(self, model_name='DenseNet121'):
-        """Compile a Keras application model"""
+        """Compiles a Keras application model."""
         #model_names = [model[0] for model in getmembers(tf.keras.applications, isfunction)]
         compilation_jobs = {}
         packaging_jobs = {}

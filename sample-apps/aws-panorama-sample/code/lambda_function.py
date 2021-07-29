@@ -15,6 +15,7 @@ logger.setLevel(logging.INFO)
 class people_counter(panoramasdk.base):
 
     def interface(self):
+        """Defines the application's configurable settings, input type, and output type."""
         return {
             "parameters":
                 (
@@ -34,6 +35,7 @@ class people_counter(panoramasdk.base):
         }
 
     def init(self, parameters, inputs, outputs):
+        """Initializes the application's attributes with parameters from the interface, and default values."""
         try:
             self.threshold = parameters.threshold
             self.person_index = parameters.person_index
@@ -67,6 +69,7 @@ class people_counter(panoramasdk.base):
             return False
 
     def entry(self, inputs, outputs):
+        """Processes one frame of video from one or more video streams."""
         frame_start = time.time()
         self.frame_num += 1
         # Loop through attached video streams
@@ -92,6 +95,7 @@ class people_counter(panoramasdk.base):
         return True
 
     def process_media(self, media):
+        """Runs inference on a buffered frame of video, and buffers the new frame."""
         stream = media.stream_uri
         # Set up stream buffer
         if not self.buffered_media.get(stream):
@@ -120,6 +124,7 @@ class people_counter(panoramasdk.base):
         return output
 
     def process_results(self, batch_set, output_media):
+        """Processes output tensors from a computer vision model and annotates a video frame."""
         # Model outputs (classes, probabilities, bounding boxes) are collected in
         # the BatchSet returned by model.get_result
         # Each output is a Batch of arrays, one for each input in the batch
@@ -147,6 +152,7 @@ class people_counter(panoramasdk.base):
         return output_media
 
     def preprocess(self, img):
+        """Resizes and normalizes a frame of video."""
         resized = cv2.resize(img, (HEIGHT, WIDTH))
         mean = [0.485, 0.456, 0.406]
         std = [0.229, 0.224, 0.225]

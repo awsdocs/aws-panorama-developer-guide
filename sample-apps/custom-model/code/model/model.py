@@ -24,12 +24,12 @@ sagemaker_client=boto3.client('sagemaker')
 class Model:
 
     def __init__(self, bucket_name, service_role_arn):
-        """Save bucket name and service role ARN"""
+        """Saves the bucket name and service role ARN."""
         self.bucket_name = bucket_name
         self.service_role_arn = service_role_arn
 
     def export_model(self, model_class, model_name):
-        """Export a TensorFlow model in SavedModel format and upload it to Amazon S3"""
+        """Exports a TensorFlow model in SavedModel format and uploads it to Amazon S3."""
         # TensorFlow 2 only
         # MODEL_NAME=model_class.__name__
         MODEL_NAME=model_name
@@ -55,7 +55,7 @@ class Model:
         return model_uri, model_input_name, model_input_shape
 
     def compile_model(self, s3_uri, input_name='input_1', input_shape='224,224,3', framework='TENSORFLOW', device='jetson_xavier'):
-        """Compile a model with Amazon Sagemaker Neo"""
+        """Compiles a model with Amazon Sagemaker Neo."""
         MODEL_INPUT_SHAPE = '{{"{}":[1,{}]}}'.format(input_name,input_shape)
         COMPILED_MODEL_FOLDER_URI = 's3://{}/models-compiled'.format(self.bucket_name)
         COMPILATION_JOB = 'panorama-custom-model-'+ str(time.time()).split('.')[0]
@@ -80,7 +80,7 @@ class Model:
         return COMPILATION_JOB
 
     def package_model(self, model_name, compilation_job):
-        """Package a model with Amazon Sagemaker Neo"""
+        """Packages a model with Amazon Sagemaker Neo."""
         PACKAGING_JOB=compilation_job+"-packaging"
         MODEL_VERSION = "1.0"
         PACKAGED_MODEL_FOLDER_URI = 's3://{}/models-packaged'.format(self.bucket_name)
@@ -99,7 +99,7 @@ class Model:
         return PACKAGING_JOB
 
     def wait_compilation(self, job):
-        """Wait for a Sagemaker Neo compilation job to complete"""
+        """Waits for a Sagemaker Neo compilation job to complete."""
         while True:
             response = sagemaker_client.describe_compilation_job(CompilationJobName=job)
             if response['CompilationJobStatus'] == 'COMPLETED':
@@ -110,7 +110,7 @@ class Model:
             time.sleep(5)
 
     def wait_packaging(self, job):
-        """Wait for a Sagemaker Neo packaging job to complete"""
+        """Waits for a Sagemaker Neo packaging job to complete."""
         while True:
             response = sagemaker_client.describe_edge_packaging_job(EdgePackagingJobName=job)
             if response['EdgePackagingJobStatus'] == 'COMPLETED':
@@ -121,13 +121,13 @@ class Model:
             time.sleep(5)
 
     def upload(self, bucket, key, src):
-        """Upload a file to Amazon S3"""
+        """Uploads a file to Amazon S3."""
         uri = 's3://{}/{}'.format(bucket,key)
         s3_resource.Bucket(bucket).Object(key).upload_file(src)
         return uri
 
     def remove(self, path):
-        """Remove a file or directory from /tmp"""
+        """Removes a file or directory from /tmp."""
         if os.path.exists(path) and path.startswith('/tmp/') and len(path) > 5:
             if os.path.isfile(path) or os.path.islink(path):
                 os.unlink(path)

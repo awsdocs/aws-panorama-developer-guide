@@ -10,7 +10,7 @@ For data protection purposes, we recommend that you protect AWS account credenti
 + Use advanced managed security services such as Amazon Macie, which assists in discovering and securing personal data that is stored in Amazon S3\.
 + If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
 
-We strongly recommend that you never put sensitive identifying information, such as your customers' account numbers, into free\-form fields such as a **Name** field\. This includes when you work with AWS Panorama or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into AWS Panorama or other services might get picked up for inclusion in diagnostic logs\. When you provide a URL to an external server, don't include credentials information in the URL to validate your request to that server\.
+We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form fields such as a **Name** field\. This includes when you work with AWS Panorama or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
 
 **Topics**
 + [Encryption in transit](#security-privacy-intransit)
@@ -30,7 +30,7 @@ The contents of the configuration archive, which includes the appliance's privat
 
 Other settings, such as camera stream credentials \(username and password\) are encrypted at rest in AWS\. Settings are decrypted prior to transport and sent to the appliance over TLS\.
 
-To store your models securely in Amazon S3, you can use server\-side encryption with a key that Amazon S3 manages, or one that you provide\. For more information, see [Protecting data using encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the Amazon Simple Storage Service Developer Guide\.
+To store your models securely in Amazon S3, you can use server\-side encryption with a key that Amazon S3 manages, or one that you provide\. For more information, see [Protecting data using encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the Amazon Simple Storage Service User Guide\.
 
 When you author application code in AWS Lambda, Lambda encrypts the function code by default\. For more information, see [Data protection in AWS Lambda ](https://docs.aws.amazon.com/lambda/latest/dg/security-dataprotection.html) in the AWS Lambda Developer Guide\.
 

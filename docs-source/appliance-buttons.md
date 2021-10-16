@@ -18,9 +18,9 @@ To reset the device, use the following button combinations\. A short press is 1 
 
 **Reset operations**
 + **To shut down the appliance** – Short press power\. Starts a shutdown sequence that takes about 10 seconds\.
-+ **To restore the latest software image** – Short press reset\.
-+ **To restore the factory software image** – Long press reset\.
-+ **To restore the factory software image and delete all configuration files and applications** – Long press power and reset\.
++ **To restore the latest software image** – Shut down the appliance, and then short press reset\.
++ **To restore the factory software image** – Shut down the appliance, and then long press reset\.
++ **To restore the factory software image and delete all configuration files and applications** – Shut down the appliance, and then long press power and reset\.
 
 The network LED has the following states:
 

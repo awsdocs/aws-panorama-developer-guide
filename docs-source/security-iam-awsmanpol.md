@@ -9,8 +9,18 @@ Additionally, AWS supports managed policies for job functions that span multiple
 AWS Panorama provides the following managed policies\. For the full contents and change history of each policy, see the linked pages in the IAM console\.
 
 ****
-+ [AWSPanoramaFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSPanoramaFullAccess) – Provides full access to AWS Panorama\.
-+ [AWSPanoramaApplianceRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaApplianceRolePolicy) – Allows AWS IoT software on an AWS Panorama Appliance to upload logs to Amazon CloudWatch\.
-+ [AWSPanoramaGreengrassGroupRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaGreengrassGroupRolePolicy) – Allows an AWS Lambda function on an AWS Panorama Appliance to manage resources in Panorama, upload logs and metrics to Amazon CloudWatch, and to manage objects in buckets created for use with Panorama\.
-+ [AWSPanoramaSageMakerRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaSageMakerRolePolicy) – Allows Amazon SageMaker to manage objects in buckets created for use with AWS Panorama\.
-+ [AWSPanoramaServiceRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaServiceRolePolicy) – Allows AWS Panorama to manage resources in Amazon S3, AWS IoT, AWS IoT GreenGrass, AWS Lambda, Amazon SageMaker, and Amazon CloudWatch Logs, and to pass service roles to AWS IoT, AWS IoT GreenGrass, and Amazon SageMaker\.
++ [AWSPanoramaFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSPanoramaFullAccess) – Provides full access to AWS Panorama, AWS Panorama access points in Amazon S3, appliance credentials in AWS Secrets Manager, and appliance logs in Amazon CloudWatch\. Includes permission to create a [service\-linked role](permissions-services.md) for AWS Panorama\. 
++ [AWSPanoramaServiceLinkedRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaServiceLinkedRolePolicy) – Allows AWS Panorama to manage resources in AWS IoT, AWS Secrets Manager, and AWS Panorama\.
++ [AWSPanoramaApplianceServiceRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSPanoramaApplianceServiceRolePolicy) – Allows an AWS Panorama Appliance to upload logs to CloudWatch, and to get objects from Amazon S3 access points created by AWS Panorama\.
+
+## AWS Panorama updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
+
+The following table describes updates to managed policies for AWS Panorama\.
+
+
+| Change | Description | Date | 
+| --- | --- | --- | 
+|  AWSPanoramaFullAccess – Update to an existing policy  |  Added permissions to the user role to allow users to manage the AWS Panorama [service\-linked role](using-service-linked-roles.md), and to access AWS Panorama resources in other services including IAM, Amazon S3, CloudWatch, and Secrets Manager\.  |  2021\-10\-20  | 
+|  AWSPanoramaApplianceServiceRolePolicy – New policy  |  New policy for the AWS Panorama Appliance service role  |  2021\-10\-20  | 
+|  AWSPanoramaServiceLinkedRolePolicy – New policy  |  New policy for the AWS Panorama service\-linked role\.  |  2021\-10\-20  | 
+|  AWS Panorama started tracking changes  |  AWS Panorama started tracking changes for its AWS managed policies\.  |  2021\-10\-20  | 

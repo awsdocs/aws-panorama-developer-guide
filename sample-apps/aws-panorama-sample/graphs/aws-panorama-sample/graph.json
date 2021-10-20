@@ -1,0 +1,113 @@
+{
+    "nodeGraph": {
+        "envelopeVersion": "2021-01-01",
+        "packages": [
+            {
+                "name": "123456789012::SAMPLE_CODE",
+                "version": "1.0"
+            },
+            {
+                "name": "123456789012::SQUEEZENET_PYTORCH_V1",
+                "version": "1.0"
+            },
+            {
+                "name": "panorama::abstract_rtsp_media_source",
+                "version": "1.0"
+            },
+            {
+                "name": "panorama::hdmi_data_sink",
+                "version": "1.0"
+            }
+        ],
+        "nodes": [
+            {
+                "name": "code_node",
+                "interface": "123456789012::SAMPLE_CODE.interface"
+            },
+            {
+                "name": "model_node",
+                "interface": "123456789012::SQUEEZENET_PYTORCH_V1.interface"
+            },
+            {
+                "name": "camera_node",
+                "interface": "panorama::abstract_rtsp_media_source.rtsp_v1_interface",
+                "overridable": true,
+                "overrideMandatory": true,
+                "decorator": {
+                    "title": "IP camera",
+                    "description": "Choose a camera stream."
+                }
+            },
+            {
+                "name": "output_node",
+                "interface": "panorama::hdmi_data_sink.hdmi0"
+            },
+            {
+                "name": "detection_threshold",
+                "interface": "float32",
+                "value": 20.0,
+                "overridable": true,
+                "decorator": {
+                    "title": "Threshold",
+                    "description": "The minimum confidence percentage for a positive classification."
+                }
+            },
+            {
+                "name": "region",
+                "interface": "string",
+                "value": "us-east-1",
+                "overridable": true,
+                "decorator": {
+                    "title": "Region",
+                    "description": "Region used by AWS SDK for Python."
+                }
+            },
+            {
+                "name": "device_id",
+                "interface": "string",
+                "value": "1234ABCD",
+                "overridable": true,
+                "decorator": {
+                    "title": "Device name",
+                    "description": "Name of the device for application metrics."
+                }
+            },
+            {
+                "name": "log_level",
+                "interface": "string",
+                "value": "INFO",
+                "overridable": true,
+                "decorator": {
+                    "title": "Logging level",
+                    "description": "DEBUG, INFO, WARNING, ERROR, or CRITICAL."
+                }
+            }
+        ],
+        "edges": [
+            {
+                "producer": "camera_node.video_out",
+                "consumer": "code_node.video_in"
+            },
+            {
+                "producer": "code_node.video_out",
+                "consumer": "output_node.video_in"
+            },
+            {
+                "producer": "detection_threshold",
+                "consumer": "code_node.threshold"
+            },
+            {
+                "producer": "region",
+                "consumer": "code_node.region"
+            },
+            {
+                "producer": "device_id",
+                "consumer": "code_node.device_id"
+            },
+            {
+                "producer": "log_level",
+                "consumer": "code_node.log_level"
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title": "Node package manifest schema",
+    "description": "Node package defines one or more nodes and associated assets",
+
+    "oneOf":
+    [
+        {
+            "$ref": "ver_2021-01-01/nodePackage.schema.json#"
+        }
+    ]
+}

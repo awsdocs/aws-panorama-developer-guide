@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "SDK requirement",
+    "type": "object",
+
+    "properties":
+    {
+        "type":
+        {
+            "enum":
+            [
+                "sdk"
+            ]
+        },
+        "name":
+        {
+            "description": "SDK name",
+            "enum":
+            [
+                "panorama",
+                "python",
+                "jetpack"
+            ]
+        },
+        "version":
+        {
+            "description": "SDK version",
+            "type": "string"
+        }
+    },
+
+    "required":
+    [
+        "type",
+        "name"
+    ],
+
+    "additionalProperties": false
+}

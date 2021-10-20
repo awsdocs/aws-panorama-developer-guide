@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Node definition",
+
+    "oneOf":
+    [
+        {
+            "$ref": "nodeWithInterface.schema.json#"
+        },
+        {
+            "$ref": "nodeBoolean.schema.json#"
+        },
+        {
+            "$ref": "nodeFloat32.schema.json#"
+        },
+        {
+            "$ref": "nodeInt32.schema.json#"
+        },
+        {
+            "$ref": "nodeString.schema.json#"
+        }
+    ]
+}

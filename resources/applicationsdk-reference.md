@@ -1,113 +1,271 @@
 # Application SDK reference
+
 The AWS Panorama Application SDK defines the following classes. 
 
-For an introduction to writing and application and running inference with a model, see [Authoring application code](../docs-source/applications-code.md).
-
 **Classes**
-+ [base](#applications-sdk-base)
-+ [model](#applications-sdk-model)
-+ [input_array](#applications-sdk-input)
-+ [output_array](#applications-sdk-output)
-+ [batch_set](#applications-sdk-base-set)
-+ [batch](#applications-sdk-batch)
++ [node](#applications-sdk-node)
++ [port](#applications-sdk-port)
 + [media](#applications-sdk-media)
 
-## base<a name="applications-sdk-base"></a>
+#### CLASS: NODE
+Node is the class constructor for any AWS Panorama application. Your application code is contained in a class that inherits from `panoramasdk.node`. 
 
-The base class for AWS Panorama application. Your application code is contained in a class that inherits from `panoramasdk.base` and implements its interface.
+**node.node()**
 
-**Interface methods**
-+ `interface(self)` - Returns an object that defines the application's `parameters`, `inputs`, and `outputs`. You can use the `parameters` field to declare the application's high-level settings. The `inputs` and `outputs` have preset values.
+***Parameters:***
+*None*
 
-        def interface(self):
-            return {
-                "parameters":
-                    (
-                    ("model", "model_name", "Name of the model in AWS Panorama", "aws-panorama-sample-model"),
-                    ),
-                "inputs":
-                    (
-                    ("media[]", "video_in", "Camera input stream"),
-                    ),
-                "outputs":
-                    (
-                    ("media[video_in]", "video_out", "Camera output stream"),
-                    )
-            }
+***Return Value:***
+Node object
 
-+ `init(self, parameters, inputs, outputs)` - Perform one time initialization operations such as loading models and creating reusable resources such as AWS SDK clients.
-+ `entry(self, inputs, outputs)` - Process frames of video from one or more camera streams. `inputs.video_in[]` is an array of [media](#applications-sdk-media) objects that contain image data. Process images with a model and output results.
+***Exceptions:***
+If the node cannot be instantiated, an exception is thrown. 
+e.g. when application platform core cannot identify the node per application graph. 
 
-**Instance methods**
-+ `run()` - Starts the application. In your application's `main` function, you instantiate the application class and invoke `run()` on it.
+***Example***
 
-## model<a name="applications-sdk-model"></a>
+```python
+class Application(panoramasdk.node):
+    def __init__(self):
+        """Initializes the application's attributes with parameters from the interface, and default values."""
+        self.MODEL_NODE = "model_node"
+        self.MODEL_DIM = 512
+        self.frame_num = 0
+        self.threshold = 50.
+        # Desired class
+        self.classids = [14.]
+        
+        try:
+            # Parameters
+            logger.info('Getting parameters')
+            self.threshold = self.inputs.threshold.get()
+            self.region = self.inputs.region.get()
+            
+        except:
+            logger.exception('Error during initialization.')
+        finally:
+            logger.info('Initialiation complete.')
+            logger.info('Threshold: {}'.format(self.threshold))
+            logger.info('Region: {}'.format(self.region))
+...
+def main():
+    try:
+        logger.info("INITIALIZING APPLICATION")
+        app = Application()
+        logger.info("PROCESSING STREAMS")
+        while True:
+            app.process_streams()
+    except:
+        logger.exception('Exception during processing loop.')
 
-The `model` class represents a computer vision model. When you create an application in the AWS Panorama console, you import a model and give it a name. AWS Panorama includes this model with your application code when you deploy the application to an appliance.
+logger = get_logger(level=logging.INFO)
+main()
+```
 
-**Instance methods**
-+ `model.open(name)` – Opens a model by name. Use the name that you entered when you imported the model in the AWS Panorama console.
-+ `model.get_input(index)` – Gets details about an input for a model. To distinguish between multiple inputs, specify a numerical index. Returns a `panoramasdk.input_array`
-+ `model.get_output(index)` – Gets details about an output for a model. To distinguish between multiple outputs, specify a numerical index. Returns a `panoramasdk.output_array`
-+ `model.get_batch_size()` – Gets the input batch size for the model \(an integer\).
-+ `model.get_input_count()` – Gets the number of inputs that the model requires \(an integer\).
-+ `model.get_output_count()` – Gets the number of outputs that the model produces \(an integer\).
-+ `model.get_input_names()` – Gets the names of inputs that the model requires \(a tuple of strings\).
-+ `model.get_output_names()` – Gets the names of outputs that the model produces \(a tuple of strings\).
-+ `model.batch(input_index, input_data)` – Sends an array of data \(a numpy array\) to an input \(by index\) for inference.
-+ `model.flush()` – Runs inference with the provided batch input.
-+ `model.get_result()` – Gets inference results \(a `panoramasdk.batch_set`\).
-+ `model.release_result(batch_set)` – Deletes an inference result after the result has been processed.
-+ `model.finish()` – Stops the model's inference thread to clean up resources.
+**node.call(name,  input,  time_out = None)**'
 
-## input\_array<a name="applications-sdk-input"></a>
+Callable API is used to “call” another node (listed in the application graph manifest) 
 
-Represents the input for a model.
+Name must match that of one of the nodes defined and listed by the application graph manifest. If a valid node with the name exists, it will be connected to the calling process and pipeline will be built and the input will be sent out to the callable node through the constructed pipeline.
 
-**Instance methods**
-+ `input_array.get_index()` – Gets the index of the input.
-+ `input_array.get_name()` – Gets the name of the input.
-+ `input_array.get_type()` – Gets the type of the input.
-+ `input_array.get_dims()` – Gets the shape of the input.
-+ `input_array.get_size()` – Gets the size of the input data.
-+ `input_array.get_four_cc()` – Gets the input data's four character code, such as `RGBA` or `BGR3`.
-+ `input_array.get_range()` – Gets the valid range for values in the input \(a tuple of integers\). For example, `(0,255)`.
+This function is a blocking call until either result of the callable node is returned or otherwise either the timeout is reached or  calling node is terminated. This function returns a tuple of numpy arrays
 
-## output\_array<a name="applications-sdk-output"></a>
+**NOTE**: Right now we only support that a model node being callable node
 
-Represents an output for a model.
+***Parameters:***
+**name**
+name of the node to be called 
 
-**Instance methods**
-+ `output_array.get_index()` – Gets the index of the output.
-+ `output_array.get_name()` – Gets the name of the output.
-+ `output_array.get_type()` – Gets the type of the output.
-+ `output_array.get_dims()` – Gets the shape of the output.
-+ `output_array.get_size()` – Gets the size of the output data.
+**input**
+Input can either be a media object or a dictionary of numpy array (dictionary key comes from Neo model meta data.
 
-## batch\_set<a name="applications-sdk-base-set"></a>
+**time_out**
+Time out in second, default is set to None (indicating there is no time out) 
 
-A set of `panoramasdk.batch` objects, one for each output of a model.
+***Exceptions:***
+Exception is thrown when input format is incorrect, or callable name is invalid 
 
-**Instance methods**
-+ `output_array.size()` – The number of outputs.
-+ `output_array.get(index)` – Gets the batch of results for an output by index.
+***Examples:***
+Three ways to call the model callable node
 
-## batch<a name="applications-sdk-batch"></a>
+**Method 1**
+```python
+out = self.__node.call("model_name", {
+    'image':media_object.image,
+    'transform': batch_array.astype('float32'),
+    'bbox': batch_bbx.astype('float32'),
+    'index': np.array([i for i in range(self.batch_size)], dtype='float32')
+})
+```
+**Method 2**
+```python
+media_object = self.__node.inputs.video_in.get()
+out = self.__node.call("model_name", media_object)
+```
+**Method 3**
+```python
+media_object = self.__node.inputs.video_in.get()
+media_array = media_object.image
+media_array_prep = preprocessed(media_array)
 
-A batch of results for a model output, retrieved from a `panoramasdk.batch_set`.
+out = self.__node.call("model_name", media_array_prep)
+```
 
-**Instance methods**
-+ `batch.get(index, destination)` – Gets an output from a batch and writes it to a destination \(a numpy array\).
+**node.inputs()**
+“inputs” member represents the list of input ports. The list gets populated with input port objects as defined in the node interface, for example:
 
-## media<a name="applications-sdk-media"></a>
+| Input Port Name as per JSON interface | Access Name |
+| ------ | ------ |
+| example_app | node.inputs.example_app|
+| threshold | node.inputs.threshold|
+| video_in | node.inputs.video_in|
 
-A frame of video from a camera stream.
+***Example :***
+Please look at the example for node.outputs for a combined example
+    
+**node.outputs()**
 
-**Instance methods**
-+ `media.add_rect(rect)` – Draws a rectangle around an object. The input is a tuple of 4 floating point values: left, right, top, bottom.
-+ `media.add_label(text, left_pos, top_pos)` – Adds text to the image. The input is a string and two floats: a horizontal offset and vertical offset.
+“outputs” member represents the list of output ports. The list gets populated with output port objects as defined in the node interface, for example:
 
-**Instance attributes**
-+ `media.image` – The frame's image data \(a numpy array\).
-+ `media.stream_uri` – The URI of the camera stream that provided the frame.
-+ `media.time_stamp` – The timestamp of the image frame in both seconds and milliseconds \(a tuple of 2 numbers\).
+| Input Port Name as per JSON interface | Access Name |
+| ------ | ------ |
+| video_out | node.outputs.video_out|
+
+***Example :***
+```python
+def process_streams(self):
+    """Processes one frame of video from one or more video streams."""
+    self.frame_num += 1
+    logger.debug(self.frame_num)
+
+    # Loop through attached video streams
+    streams = self.inputs.video_in.get()
+    for stream in streams:
+        self.process_media(stream)
+
+    self.outputs.video_out.put(streams)
+```
+
+#### CLASS: PORT
+
+Manages an instance of a port of a node and used to read and write pipeline data 
+
+**port.put(data_tuple)**
+
+Sends the specified tuple of data to the stream FIFOs of the port.
+
+***Parameters:***
+**data_tuple**
+Tuple containing data instances to output from the port; the format of “data” objects has to match the port format as defined by the interface. *For now data tuple should only contain media object.* 
+
+***Return Value:***
+None
+
+***Exceptions:***
+If SDK is unable to convert “data” objects to the port format, an exception is thrown.
+
+***Example**
+```python
+self.outputs.video_out.put(frame)
+```
+    
+**port.get()**
+get the next available *set of* values from the port streams
+    
+***Return Value:***
+Returned data can be a literal (string, integer, float) or stream/pipeline data (e.g. media frame)
+Literal values are like string/integer/float values that can be used as parameter of the application
+
+***Exceptions:***
+If SDK is unable to convert “data” objects to the port format, an exception is thrown.
+
+***Example***
+```python
+threshold1 = self.inputs.threshold.get()
+threshold2 = self.inputs.threshold.get()
+threshold2 == threshold2
+self.inputs.url.get()
+```
+
+Pipeline data will be dequeued and returned as a media object.
+```python
+media_object = self.inputs.video_in.get()
+```
+    
+#### CLASS: MEDIA
+
+Built-in values:
+| Key | Type | Access | Description|
+| ------ | ------ | ------ | ------ |
+| stream_uri | string | read only | Source ID or name/URL |
+| time_stamp | tuple | read only | Original frame timestamp as it comes from the source (sec, µsec) |
+| image | numpy_array  | read only | Numpy array representation of the image frame |
+
+**media.add_label(x, y, text)**
+
+Add a text label to the frame represented by the media object.
+The label is not drawn on the frame, but instead is associated as metadata only for later processing
+
+***Parameters:***
+**x, y**
+Label coordinates; specified in [0..1) range.
+
+***text***
+Text of the label.
+
+***Return Value:***
+None
+
+***Example:***
+See combined example with media.add_rect
+    
+**media.add_rect(left, top, right, bottom)**
+
+Add a rectangle to the frame represented by the media object.
+The rectangle is not drawn on the frame, but instead is associated as metadata only for later processing.
+
+***Parameters:***
+**left, top, right, bottom**
+Rectangle coordinates; specified in [0..1) range
+
+***Return Value:***
+None
+
+***Example:***
+```python
+def process_results(self, inference_results, stream):
+    """Processes output tensors from a computer vision model and annotates a video frame."""
+    if inference_results is None:
+        logger.warning("Inference results are None.")
+        return
+
+    num_people = 0
+
+    class_data = None # Class Data
+    bbox_data = None # Bounding Box Data
+    conf_data = None # Confidence Data
+    
+    # Pulls data from the class holding the results
+    # inference_results is a class, which can be iterated through
+    # but inference_results has no index accessors (cannot do inference_results[0])
+
+    k = 0
+    for det_data in inference_results:
+        if k == 0:
+            class_data = det_data[0]
+        if k == 1:
+            conf_data = det_data[0]
+        if k == 2:
+            bbox_data = det_data[0]
+            for a in range(len(conf_data)):
+                if conf_data[a][0] * 100 > self.threshold and class_data[a][0] in self.classids:
+                    (left, top, right, bottom) = np.clip(det_data[0][a]/self.MODEL_DIM,0,1)
+                    stream.add_rect(left, top, right, bottom)
+                    num_people += 1
+                else:
+                    continue
+        k += 1
+    
+    logger.info('# people {}'.format(str(num_people)))
+    stream.add_label('# people {}'.format(str(num_people)), 0.1, 0.1)
+```

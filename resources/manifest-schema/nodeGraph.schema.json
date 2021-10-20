@@ -1,0 +1,12 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title": "Node graph manifest schema",
+    "description": "Node graph defines the list of nodes and relationships between them",
+
+    "oneOf":
+    [
+        {
+            "$ref": "ver_2021-01-01/nodeGraph.schema.json#"
+        }
+    ]
+}

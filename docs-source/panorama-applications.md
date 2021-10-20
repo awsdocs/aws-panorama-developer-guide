@@ -4,14 +4,14 @@ Applications run on the AWS Panorama Appliance to perform computer vision tasks 
 
 A [model](applications-models.md) analyzes images to detect people, vehicles, and other objects\. Based on images that it has seen during training, the model tells you what it thinks something is, and how confident it is in its guess\. You can train models with your own image data or get started with a sample\.
 
-The application's [code](applications-code.md) loads a model, sends still images to it, and processes the result\. A model might detect multiple objects and return their shapes and location\. The code can use this information to add text or graphics to the video, or to send results to an AWS service for storage or further processing\.
+The application's [code](gettingstarted-sample.md) process still images from a camera stream, sends them to a model, and processes the result\. A model might detect multiple objects and return their shapes and location\. The code can use this information to add text or graphics to the video, or to send results to an AWS service for storage or further processing\.
 
 To get images from a stream, interact with a model, and output video, application code uses [the AWS Panorama Application SDK](applications-panoramasdk.md)\. The application SDK is a Python library that supports models generated with PyTorch, Apache MXNet, and TensorFlow\.
 
 **Topics**
-+ [Managing applications and application versions in AWS Panorama](applications-manage.md)
++ [Managing applications in AWS Panorama](applications-manage.md)
++ [The application manifest](applications-manifest.md)
 + [Computer vision models](applications-models.md)
-+ [Authoring application code](applications-code.md)
 + [Calling AWS services from your application code](applications-awssdk.md)
 + [Adding text and boxes to output video](applications-overlays.md)
 + [The AWS Panorama Application SDK](applications-panoramasdk.md)

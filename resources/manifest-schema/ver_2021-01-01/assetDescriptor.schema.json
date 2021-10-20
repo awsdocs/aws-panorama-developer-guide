@@ -1,0 +1,253 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Asset descriptor",
+    "type": "object",
+
+    "properties":
+    {
+        "mlModelDescriptor":
+        {
+            "type": "object",
+
+            "properties":
+            {
+                "envelopeVersion":
+                {
+                    "enum": [ "2021-01-01" ]
+                },
+
+                "framework":
+                {
+                    "type": "string",
+                    "enum": [
+                        "TENSORFLOW",
+                        "PYTORCH",
+                        "MXNET"
+                    ]
+                },
+
+                "inputs":
+                {
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "tensor/inputTensor.schema.json#"
+                    }
+                }
+            },
+
+            "required":
+            [
+                "envelopeVersion",
+                "framework",
+                "inputs"
+            ],
+
+            "additionalProperties": false
+        },
+
+        "runtimeDescriptor":
+        {
+            "type": "object",
+
+            "properties":
+            {
+                "envelopeVersion":
+                {
+                    "enum": [ "2021-01-01" ]
+                },
+
+                "entry":
+                {
+                    "description": "Entry description",
+                    "type": "object",
+                    "properties":
+                    {
+                        "path":
+                        {
+                            "description": "Path to the entry",
+                            "type": "string",
+                            "default": "$default"
+                        },
+                        "name":
+                        {
+                            "description": "Name of the entry file",
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "arguments":
+                        {
+                            "description": "List of command line arguments for the entry",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string"
+                            }
+                        },
+                        "environment":
+                        {
+                            "description": "List of environment variables for the entry",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "object",
+                                "properties":
+                                {
+                                    "name":
+                                    {
+                                        "description": "Name of the environment variable",
+                                        "type": "string",
+                                        "minLength": 1
+                                    },
+                                    "value":
+                                    {
+                                        "description": "Value of the environment variable",
+                                        "type": "string"
+                                    }
+                                },
+                                "required":
+                                [
+                                    "name",
+                                    "value"
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "dependencies":
+                    {
+                        "path": [ "name" ],
+                        "arguments": [ "name" ],
+                        "environment": [ "name" ]
+                    },
+                    "additionalProperties": false
+                },
+                "events":
+                {
+                    "description": "List of event handlers",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "#/definitions/event"
+                    }
+                }
+            },
+
+            "required": [ "envelopeVersion" ],
+
+            "additionalProperties": false
+        }
+    },
+
+    "additionalProperties": false,
+
+    "definitions":
+    {
+        "event":
+        {
+            "oneOf":
+            [
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "description":
+                        {
+                            "type": "string"
+                        },
+                        "type":
+                        {
+                            "enum": [ "onExit" ]
+                        },
+                        "handler":
+                        {
+                            "description": "Name of the function defined by the node that will be called before the node terminates",
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "required":
+                    [
+                        "type",
+                        "handler"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "description":
+                        {
+                            "type": "string"
+                        },
+                        "type":
+                        {
+                            "enum": [ "onPartialInput" ]
+                        },
+                        "handler":
+                        {
+                            "description": "Name of the function defined by the node that will be called when at least some input data arrives at specified input ports",
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "inputs":
+                        {
+                            "description": "Monitored input ports",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "required":
+                    [
+                        "type",
+                        "handler",
+                        "inputs"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "description":
+                        {
+                            "type": "string"
+                        },
+                        "type":
+                        {
+                            "enum": [ "onCompleteInput" ]
+                        },
+                        "handler":
+                        {
+                            "description": "Name of the function defined by the node that will be called when all specified input ports have data",
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "inputs":
+                        {
+                            "description": "Monitored input ports",
+                            "type": "array",
+                            "items":
+                            {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "required":
+                    [
+                        "type",
+                        "handler",
+                        "inputs"
+                    ],
+                    "additionalProperties": false
+                }
+            ]
+        }
+    }
+}

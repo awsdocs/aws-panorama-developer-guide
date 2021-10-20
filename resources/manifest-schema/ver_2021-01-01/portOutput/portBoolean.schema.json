@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Single boolean value",
+    "type": "object",
+
+    "properties":
+    {
+        "description":
+        {
+            "type": "string"
+        },
+        "name":
+        {
+            "description": "Name of the port. The port name cannot contain hyphens, as it is used as variable in the python SDK",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[$A-Z_a-z0-9]+$"
+        },
+        "type":
+        {
+            "const": "boolean"
+        }
+    },
+
+    "required":
+    [
+        "name",
+        "type"
+    ],
+
+    "additionalProperties": false
+}

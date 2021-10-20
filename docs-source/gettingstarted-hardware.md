@@ -1,16 +1,12 @@
-# AWS Panorama Appliance Developer Kit specifications<a name="gettingstarted-hardware"></a>
+# AWS Panorama Appliance specifications<a name="gettingstarted-hardware"></a>
 
-The AWS Panorama Appliance Developer Kit is a pre\-production device for developing and testing AWS Panorama applications\. It has the following hardware specifications\.
-
-**Important**  
-The AWS Panorama Appliance Developer Kit is not secured for use on production networks or workloads\. For more information, see [Security considerations for the AWS Panorama Appliance Developer Kit](security-devkit.md)\.
+The AWS Panorama Appliance has the following hardware specifications\.
 
 
 | Component | Specification | 
 | --- | --- | 
 |  Processor and GPU  |  Nvidia Jetson Xavier AGX with 32GB RAM  | 
 |  Ethernet  |  2x 1000 Base\-T \(Gigabyte\)  | 
-|  Wi\-Fi  |  2x MIMO 802\.11ac  | 
 |  USB  |  1x USB 2\.0 and 1x USB 3\.0 type\-A female  | 
 |  HDMI output  |  2\.0a  | 
 |  Dimensions  |  7\.75” x 9\.6” x 1\.6” \(197mm x 243mm x 40mm\)  | 
@@ -31,6 +27,6 @@ The AWS Panorama Appliance Developer Kit is not secured for use on production ne
 |  Reset  |  Momentary switch  | 
 |  Status and network LEDs  |  Programmable 3\-color RGB LED  | 
 
-Bluetooth and SD card storage are present on the appliance but are not usable\.
+Wi\-Fi, Bluetooth and SD card storage are present on the appliance but are not usable\.
 
-The AWS Panorama Appliance Developer Kit includes two screws for mounting on a server rack\. You can mount two appliances side\-by\-side on a 19\-inch rack\.
+The AWS Panorama Appliance includes two screws for mounting on a server rack\. You can mount two appliances side\-by\-side on a 19\-inch rack\.

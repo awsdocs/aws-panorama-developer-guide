@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Normalization type: minmax",
+    "type": "object",
+
+    "properties":
+    {
+        "normalizeMinmax":
+        {
+            "type": "object",
+
+            "properties":
+            {
+                "type":
+                {
+                    "enum": [ "minmax" ]
+                },
+                "rangeMin":
+                {
+                    "type": "number"
+                },
+                "rangeMax":
+                {
+                    "type": "number"
+                }
+            },
+
+            "required":
+            [
+                "type",
+                "rangeMin",
+                "rangeMax"
+            ],
+
+            "additionalProperties": false
+        }
+    }
+}

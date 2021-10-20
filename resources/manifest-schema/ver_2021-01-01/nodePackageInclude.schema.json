@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Node package include definition",
+    "type": "object",
+
+    "properties":
+    {
+        "name":
+        {
+            "description": "Package name; for example: 'vendorA_accountid::my_people_counter_package'",
+            "pattern": "^[$A-Z_a-z0-9]+::[a-zA-Z_0-9\\-]+$",
+            "type": "string",
+            "maxLength": 255
+        },
+        "version":
+        {
+            "description": "Package version",
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+$",
+            "maxLength": 255
+        },
+        "patchVersion":
+        {
+            "description": "Identifier, sha256 or other, used to determine the node package filename; if omitted, the default name is used",
+            "type": "string",
+            "default": "package"
+        },
+        "generatedPatchVersion":
+        {
+            "description": "Identifier, sha256 or other, used to determine the node package overrides filename; if omitted, overrides are ignored. To be read from the generated prefix location.",
+            "type": "string"
+        },
+        "uri":
+        {
+            "description": "Additional location information, such as S3 bucket name",
+            "type": "string"
+        }
+    },
+
+    "required":
+    [
+        "name",
+        "version"
+    ],
+
+    "additionalProperties": false
+}

@@ -1,0 +1,73 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title": "Node graph overrides manifest definition",
+    "type": "object",
+
+    "properties":
+    {
+        "nodeGraphOverrides":
+        {
+            "type": "object",
+
+            "properties":
+            {
+                "envelopeVersion":
+                {
+                    "enum": [ "2021-01-01" ]
+                },
+
+                "description":
+                {
+                    "type": "string",
+                    "maxLength": 255
+                },
+
+                "packages":
+                {
+                    "description": "List of packages that define interfaces used in the graph overrides",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "nodePackageInclude.schema.json#"
+                    }
+                },
+
+                "nodes":
+                {
+                    "description": "List of node instantiations",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "node/node.schema.json#"
+                    }
+                },
+
+                "edges":
+                {
+                    "description": "List of edges",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "edge.schema.json#"
+                    }
+                },
+
+                "nodeOverrides":
+                {
+                    "description": "List of node overrides",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "nodeOverride.schema.json#"
+                    }
+                }
+            },
+
+            "required": [ "envelopeVersion" ],
+
+            "additionalProperties": false
+        }
+    },
+
+    "additionalProperties": false
+}

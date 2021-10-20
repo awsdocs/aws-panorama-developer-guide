@@ -1,6 +1,6 @@
 # Supported computer vision models and cameras<a name="gettingstarted-compatibility"></a>
 
-AWS Panorama integrates with Amazon SageMaker to support importing and compiling computer vision models for AWS Panorama applications\. You can start with a provided model, or build your own model with a supported framework\. You can import a model from an Amazon Simple Storage Service \(Amazon S3\) bucket or from the output of a SageMaker job\.
+AWS Panorama supports models built with PyTorch, Apache MXNet, and TensorFlow\. When you deploy an application, AWS Panorama compiles your model in SageMaker Neo\. You can build models in Amazon SageMaker or in your development environment, as long as you use layers that are compatible with SageMaker Neo\. 
 
 To process video and get images to send to a model, the AWS Panorama Appliance connects to an H\.264 encoded video stream with the RTSP protocol\. AWS Panorama tests a variety of common cameras for compatibility\.
 
@@ -31,4 +31,4 @@ The AWS Panorama Appliance supports H\.264 video streams from cameras that outpu
 + [Amcrest](https://amcrest.com/) – IP2M\-841B
 + **WGCC** – Dome PoE 4MP ONVIF
 
-For the appliance's hardware specifications, see [AWS Panorama Appliance Developer Kit specifications](gettingstarted-hardware.md)\.
+For the appliance's hardware specifications, see [AWS Panorama Appliance specifications](gettingstarted-hardware.md)\.

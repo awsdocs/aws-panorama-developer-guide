@@ -1,0 +1,17 @@
+{
+    "mlModelDescriptor": {
+        "envelopeVersion": "2021-01-01",
+        "framework": "PYTORCH",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [
+                    1,
+                    3,
+                    224,
+                    224
+                ]
+            }
+        ]
+    }
+}

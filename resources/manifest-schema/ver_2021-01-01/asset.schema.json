@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Asset definition",
+    "type": "object",
+
+    "properties":
+    {
+        "description":
+        {
+            "type": "string"
+        },
+        "name":
+        {
+            "description": "Unique name of the asset; interfaces use the name to refer to the implementing asset",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[$A-Z_a-z0-9\\-]+$"
+        },
+        "implementations":
+        {
+            "description": "List of possible implementations of the asset",
+            "type": "array",
+            "items":
+            {
+                "type": "object",
+                "properties":
+                {
+                    "description":
+                    {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "type":
+                    {
+                        "enum":
+                        [
+                            "system",
+                            "container",
+                            "model"
+                        ]
+                    },
+                    "assetUri":
+                    {
+                        "description": "Identifying name of the asset binary",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    },
+                    "descriptorUri":
+                    {
+                        "description": "Identifying name of the asset binary descriptor; this field is optional and the descriptor can be included in the main binary",
+                        "type": "string"
+                    },
+                    "requirements":
+                    {
+                        "description": "List of system requirements for this binary",
+                        "type": "array",
+                        "items":
+                        {
+                            "$ref": "requirement/requirement.schema.json#"
+                        }
+                    }
+                },
+                "required":
+                [
+                    "type",
+                    "assetUri"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+
+    "required":
+    [
+        "name"
+    ],
+
+    "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Normalization type: mean",
+    "type": "object",
+
+    "properties":
+    {
+        "normalizeMean":
+        {
+            "type": "object",
+
+            "properties":
+            {
+                "type":
+                {
+                    "enum": [ "mean" ]
+                },
+                "rangeMin":
+                {
+                    "type": "number"
+                },
+                "rangeMax":
+                {
+                    "type": "number"
+                }
+            },
+
+            "required":
+            [
+                "type",
+                "rangeMin",
+                "rangeMax"
+            ],
+
+            "additionalProperties": false
+        }
+    }
+}

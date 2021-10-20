@@ -6,26 +6,30 @@ You use AWS published API calls to access AWS Panorama through the network\. Cli
 
 Additionally, requests must be signed by using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use [AWS Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) \(AWS STS\) to generate temporary security credentials to sign requests\.
 
-## AWS Panorama Appliance network activity<a name="security-infrastructure-appliance"></a>
+The AWS Panorama Appliance needs internet access to communicate with AWS services\. It also needs access to your internal network of cameras\. It is important to consider your network configuration carefully and only provide each device the access that it needs\.
 
-The AWS Panorama Appliance connects to your cameras over a local Ethernet connection and uses TLS on port 443 to connect to the AWS Cloud\. The endpoint host name is not fixed, but the endpoint format is \*\.iot\.<aws\_region>\.amazonaws\.com\. For more information see [AWS IoT Core endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/iot-core.html) in the *AWS General Reference guide*\. 
+**Topics**
++ [Configuring internet access](#security-infrastructure-internet)
++ [Configuring local network access](#security-infrastructure-local)
 
-AWS Panorama uses your network for the following AWS Panorama Appliance functions\.
+## Configuring internet access<a name="security-infrastructure-internet"></a>
 
-**Application deployment**
+During [provisioning](gettingstarted-setup.md), you can configure the appliance to request a specific IP address\. Choose an IP address ahead of time to simplify firewall configuration and ensure that the appliance's address doesn't change if it's offline for a long period of time\.
 
-AWS Panorama uses your network to connect to AWS IoT Greengrass and uses remote AWS IoT jobs to deploy your application to your AWS Panorama Appliance\. The AWS IoT Greengrass core manages the network activity of AWS IoT Greengrass\. For more information see [Configure the AWS IoT Greengrass core](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-core.html)\. 
+The appliance uses multiple AWS services in addition to AWS Panorama\. Configure your firewall to allow the appliance to connect to these endpoints on port 443\.
 
-**Camera identification and connection**
+**Internet access**
++ AWS IoT \(HTTPS and MQTT, port 443\) – AWS IoT Core and device management endpoints\. For details, see [AWS IoT Device Management endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html) in the Amazon Web Services General Reference\.
++ **Amazon CloudWatch \(HTTPS, port 443\)** – `monitoring.<region>.aws.amazon.com`\.
++ **Amazon CloudWatch Logs \(HTTPS, port 443\)** – `logs.<region>.aws.amazon.com`\.
++ **Amazon Simple Storage Service \(HTTPS, port 443\)** – `s3-accesspoint.<region>.aws.amazon.com`\.
 
- When you add camera streams in Automatic connection mode, the AWS Panorama Appliance uses a remote AWS IoT job to scan your network and identify ONVIF compliant cameras on your subnet\. The AWS Panorama Appliance then uses Real\-time Streaming Protocol \(RTSP\) to connect to the video streams from IP cameras on your network\. For initial setup, you must use RTSTP on port 554 for streaming\. After initial setup, RTSP can use additional ports\.
+If your application calls other AWS services, the appliance needs access to the endpoints for those services as well\. For more information, see [Service endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)\.
 
- For more information see the RTSP [RFC 2326](https://tools.ietf.org/html/rfc2326)\. 
+## Configuring local network access<a name="security-infrastructure-local"></a>
 
-**Continuous monitoring**
+The appliance needs access to RTSP video streams locally, but not over the internet\. Configure your firewall to allow the appliance to access RTSP streams on port 554 internally, and to not allow streams to go out to or come in from the internet\. 
 
-AWS Panorama uses a remote AWS IoT job to monitor the network status and software version on your AWS Panorama Appliance\. The job runs every 30 seconds to determine whether your AWS Panorama Appliance is online and using the latest software\. 
-
-**AWS Panorama Appliance updates**
-
-When you request a software update or provide new credentials or configurations, AWS Panorama uses a remote AWS IoT job to send the updates to your AWS Panorama Appliance over the network\. 
+**Local access**
++ **Real\-time streaming protocol \(RTSP, port 554\)** – To read camera streams\.
++ **Network time protocol \(NTP, port 123\)** – To keep the appliance's clock in sync\. If you don't run an NTP server on your network, the appliance can also connect to public NTP servers over the internet\.

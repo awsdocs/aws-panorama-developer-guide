@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ML output tensor definition",
+    "type": "object",
+
+    "properties":
+    {
+        "name":
+        {
+            "type": "string"
+        },
+        "type":
+        {
+            "enum":
+            [
+                "int8",
+                "uint8",
+                "int16",
+                "uint16",
+                "int32",
+                "uint32",
+                "float16",
+                "float32",
+                "float64"
+            ]
+        },
+        "shape":
+        {
+            "type": "array",
+            "items":
+            {
+                "type": "integer"
+            }
+        }
+    },
+
+    "additionalProperties": false
+}

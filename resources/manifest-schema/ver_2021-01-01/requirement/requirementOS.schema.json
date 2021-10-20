@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "OS requirement",
+    "type": "object",
+
+    "properties":
+    {
+        "type":
+        {
+            "enum":
+            [
+                "os"
+            ]
+        },
+        "family":
+        {
+            "description": "OS family",
+            "enum":
+            [
+                "unix",
+                "windows"
+            ]
+        },
+        "version":
+        {
+            "description": "OS version",
+            "type": "string"
+        }
+    },
+
+    "required":
+    [
+        "type",
+        "family"
+    ],
+
+    "additionalProperties": false
+}

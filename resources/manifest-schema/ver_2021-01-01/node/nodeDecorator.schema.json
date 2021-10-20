@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Node package UI decorator definition",
+    "type": "object",
+
+    "properties":
+    {
+        "title":
+        {
+            "description": "Title of the parameter or input",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "description":
+        {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "constraintText":
+        {
+            "description": "Description of the value constraint to be displayed in UI",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "constraintRegex":
+        {
+            "description": "Value constraint defined by the regular expression",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        }
+    },
+    "additionalProperties": false
+}

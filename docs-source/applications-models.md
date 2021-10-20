@@ -7,9 +7,6 @@ For a list of pre\-built models that have been tested with AWS Panorama, see [Mo
 
 You can use a [sample model](#applications-models-sample) or build your own\. A model can detect multiple objects in an image, and each result can have multiple outputs, such as the name of a class, a confidence rating, and a bounding box\. You can train a model outside of AWS and store it in Amazon Simple Storage Service \(Amazon S3\), or train it with Amazon SageMaker\. To build a model in SageMaker, you can use the built\-in [image classification algorithm](https://docs.aws.amazon.com/sagemaker/latest/dg/image-classification.html)\. AWS Panorama can reference the training job to find the trained model that it created in Amazon S3\.
 
-**Important**  
-Whether you import a model from SageMaker or from Amazon S3, the name of the Amazon S3 bucket where the model is stored must contain `aws-panorama`\. The [service role](permissions-services.md) that gives AWS Panorama permission to access objects in Amazon S3 enforces this naming requirement\.
-
 **Topics**
 + [Sample model](#applications-models-sample)
 + [Building a custom model](#applications-models-custom)
@@ -22,8 +19,6 @@ This guide uses a sample object detection model\. The sample model uses the obje
 
 ****
 + [Download the sample model](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz)
-
-To get started with the sample model, see [Deploying the AWS Panorama sample application](gettingstarted-deploy.md)\.
 
 ## Building a custom model<a name="applications-models-custom"></a>
 
@@ -39,38 +34,52 @@ The repository for this guide provides a sample application that demonstrates th
 
 ![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/sample-custom-model.png)
 
-AWS Panorama uses SageMaker Neo to compile models for use on the AWS Panorama Appliance\. For each framework, use the [format that's supported by SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-compilation-preparing-model.html), package the model in a `.tar.gz` archive, and store it in an Amazon S3 bucket that AWS Panorama can access\.
+AWS Panorama uses SageMaker Neo to compile models for use on the AWS Panorama Appliance\. For each framework, use the [format that's supported by SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-compilation-preparing-model.html), and package the model in a `.tar.gz` archive\.
 
 For more information, see [Compile and Deploy Models with Neo ](https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html) in the Amazon SageMaker Developer Guide\.
 
 ## Using models in code<a name="applications-models-using"></a>
 
-On the appliance, model files are stored in a folder named after the model resource that you create in the AWS Panorama console when you [create an application](gettingstarted-deploy.md#gettingstarted-deploy-create)\. The application code uses the directory name to reference the model and load it with the AWS Panorama Application SDK\.
-
-For example, the following initialization code loads a model named `my-model`\.
-
-**Example [lambda\_function\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/code/lambda_function.py) – Initialization**  
+**Example [application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/application.py) – Inference**  
 
 ```
-    def init(self, parameters, inputs, outputs):
-        try:
-            self.threshold = parameters.threshold
-            self.person_index = parameters.person_index
-            self.frame_num = 0
-            self.number_people = 0
-            self.colours = np.random.rand(32, 3)
+    def process_media(self, stream):
+        """Runs inference on a frame of video."""
+        image_data = preprocess(stream.image,self.MODEL_DIM)
+        logger.debug('Image data: {}'.format(image_data))
+        # Run inference
+        inference_start = time.time()
+        inference_results = self.call({"data":image_data}, self.MODEL_NODE)
+         # Log metrics
+        inference_time = (time.time() - inference_start) * 1000
+        if inference_time > self.inference_time_max:
+            self.inference_time_max = inference_time
+        self.inference_time_ms += inference_time
+        # Process results (classification)
+        self.process_results(inference_results, stream)
+```
 
-            self.model = panoramasdk.model()
-            self.model.open('my-model', 1)
+A model returns one or more results, which can include probabilities for detected classes, location information, and other data\. The following example shows a function that processes results from basic classification model\. The model returns an array of probabilities, which is the first and only value in the results array\. The application code finds the values with the highest probabilities and maps them to labels in a resource file that's loaded during initialization\.
 
-            print("Creating input and output arrays")
-            class_info = self.model.get_output(0)
-            prob_info = self.model.get_output(1)
-            rect_info = self.model.get_output(2)
+**Example [application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/application.py) – Processing results**  
 
-            self.class_array = np.empty(class_info.get_dims(), dtype=class_info.get_type())
-            self.prob_array = np.empty(prob_info.get_dims(), dtype=prob_info.get_type())
-            self.rect_array = np.empty(rect_info.get_dims(), dtype=rect_info.get_type())
+```
+    def process_results(self, inference_results, stream):
+        """Processes output tensors from a computer vision model and annotates a video frame."""
+        if inference_results is None:
+            logger.warning("Inference results are None.")
+            return
+        max_results = 5
+        logger.debug('Inference results: {}'.format(inference_results))
+        class_tuple = inference_results[0]
+        enum_vals = [(i, val) for i, val in enumerate(class_tuple[0])]
+        sorted_vals = sorted(enum_vals, key=lambda tup: tup[1])
+        top_k = sorted_vals[::-1][:max_results]
+        indexes =  [tup[0] for tup in top_k]
+
+        for j in range(max_results):
+            label = 'Class [%s], with probability %.3f.'% (self.classes[indexes[j]], class_tuple[0][indexes[j]])
+            stream.add_label(label, 0.1, 0.1 + 0.1*j)
 ```
 
 ## Training models<a name="applications-models-training"></a>

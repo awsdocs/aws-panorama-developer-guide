@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+
+    "properties":
+    {
+        "description":
+        {
+            "type": "string",
+            "maxLength": 255
+        },
+        "name":
+        {
+            "description": "Name of the port",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[$A-Z_a-z0-9]+$"
+        },
+        "type":
+        {
+            "const": "media"
+        },
+        "maxConnections":
+        {
+            "description": "Maximum number of connections the port accepts; the value of 0 means no limit",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        }
+    },
+
+    "required":
+    [
+        "name",
+        "type"
+    ],
+
+    "additionalProperties": false
+}

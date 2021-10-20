@@ -1,159 +1,205 @@
 # Deploying the AWS Panorama sample application<a name="gettingstarted-deploy"></a>
 
-After you've [set up your AWS Panorama Appliance Developer Kit](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you define the application code, import a machine learning model, and deploy an application with the AWS Panorama console\.
+After you've [set up your AWS Panorama Appliance](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you import a sample application with the AWS Panorama Application CLI and deploy it with the AWS Panorama console\.
 
 The sample application uses a machine learning model to detect people in frames of video from a network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
 
 In a retail setting, analyzing foot traffic patterns enables you to predict traffic levels\. By combining the analysis with other data, you can plan for increased staffing needs around holidays and other events, measure the effectiveness of advertisements and sales promotions, or optimize display placement and inventory management\.
 
 **Topics**
-+ [Create a bucket for storage](#gettingstarted-deploy-createbucket)
-+ [Create a Lambda function](#gettingstarted-deploy-code)
-+ [Create the application](#gettingstarted-deploy-create)
++ [Prerequisites](#gettingstarted-deploy-prerequisites)
++ [Import the sample application](#gettingstarted-deploy-import)
 + [Deploy the application](#gettingstarted-deploy-deploy)
++ [Enable the SDK for Python](#gettingstarted-deploy-redeploy)
 + [Clean up](#gettingstarted-deploy-cleanup)
 + [Next steps](#gettingstarted-deploy-next)
 
-## Create a bucket for storage<a name="gettingstarted-deploy-createbucket"></a>
+## Prerequisites<a name="gettingstarted-deploy-prerequisites"></a>
 
-Create an Amazon S3 bucket for the sample model file\.
+To follow the procedures in this tutorial, you need a command line terminal or shell to run commands\. In the code listings, commands are preceded by a prompt symbol \($\) and the name of the current directory, when appropriate\.
 
-**To create a bucket**
+```
+~/panorama-project$ this is a command
+this is output
+```
 
-1. Open the [Amazon S3 console](https://console.aws.amazon.com/s3/home)\.
+For long commands, we use an escape character \(`\`\) to split a command over multiple lines\.
 
-1. Choose **Create bucket**\.
+On Linux and macOS, use your preferred shell and package manager\. On Windows 10, you can [install the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows\-integrated version of Ubuntu and Bash\.
 
-1. Follow the instructions to create a bucket with the following settings:
-   + **Bucket name** – The name must contain the phrase `aws-panorama`\. For example, `aws-panorama-artifacts-123456789012`\.
-   + **Region** – The AWS Region where you use AWS Panorama\.
+This tutorial uses the AWS Command Line Interface \(AWS CLI\) to call service API operations\. To install the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. If you already have the AWS CLI, upgrade it to the latest version\.
 
-1. Upload [the model archive](gettingstarted-setup.md#gettingstarted-prerequisites) to the bucket\.
+In this tutorial, you use Docker to build the container that runs your application code\. Install Docker from the Docker website: [Get Docker](https://docs.docker.com/get-docker/)
 
-When the upload operation is complete, view the details of the model file and note the **S3 URL** value for later use\.
+This tutorial uses the AWS Panorama Application CLI to import the sample application, build packages, and upload artifacts\.
 
-## Create a Lambda function<a name="gettingstarted-deploy-code"></a>
+**To install the AWS Panorama Application CLI**
 
-Use the Lambda console to create the Lambda function that the application uses to run inference against the model\. The code is stored and versioned in Lambda, but it is not invoked in Lambda\. You deploy the code to the AWS Panorama Appliance Developer Kit and it runs continually while the developer kit is on\.
+1. Clone the [AWS Panorama Application CLI repo](https://github.com/aws/aws-panorama-cli)\.
 
-When you create a Lambda function, you give it a role that enables it to upload logs and access services with the AWS SDK\. This role is typically used when the function runs in Lambda, but when you run the application on the developer kit, the developer kit's permissions are used\. You can let the Lambda console create a role or, if you don't have permission to create roles, use a role that an administrator creates for you\.
+   ```
+   $ git clone git@github.com:aws/aws-panorama-cli.git
+   ```
 
-**To create a Lambda function**
+1. Run the installation script\. This creates a link to the CLI executable in `/usr/local/bin`\.
 
-1. Sign in to the AWS Management Console and open the AWS Lambda console at [https://console\.aws\.amazon\.com/lambda/](https://console.aws.amazon.com/lambda/)\.
+   ```
+   panorama-cli$ ./install.sh
+   ```
 
-1. Choose **Create function**\.
+Download the sample application, and extract it into your workspace\.
 
-1. For **Basic information**, configure the following settings:
-   + **Function name** – `aws-panorama-sample-function`\.
-   + **Runtime** – **Python 3\.7**\.
-   + **Permissions** – To create a new role, use the default setting\. If you have a role that you want to use, choose **Use an existing role**\.
+****
++ **Sample application** – [aws\-panorama\-sample\.zip](samples/aws-panorama-sample.zip)
 
-1. Choose **Create function**\.
+## Import the sample application<a name="gettingstarted-deploy-import"></a>
 
-Lambda creates the function and opens the function details page\. Modify the function code and configure the function's runtime settings\. Then, to create an immutable snapshot of the function's code and configuration, publish a version\.
+To import the sample application for use in your account, use the AWS Panorama Application CLI\. The application's folders and manifest contain references to a placeholder account number\. To update these with your account number, run the `panorama-cli import-application` command\.
 
-**To update the function's code and configuration**
+```
+aws-panorama-sample$ panorama-cli import-application
+```
 
-1. For **Code source**, choose **Upload from** and then choose **\.zip file**\. 
+The `SAMPLE_CODE` package, in the `packages` directory, contains the application's code and configuration, including a Dockerfile that uses the application base image, `panorama-application`\. To build the application container that runs on the appliance, use the `panorama-cli build-container` command\.
 
-1. Upload the [sample code deployment package](samples/aws-panorama-sample.zip) and then choose **Save**\.
+```
+aws-panorama-sample$ ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account')
+aws-panorama-sample$ panorama-cli build-container --container-asset-name code_asset --package-path packages/${ACCOUNT_ID}-SAMPLE_CODE-1.0
+```
 
-1. When the operation is complete, in the **Runtime settings** section, choose **Edit**\.
+The final step with the AWS Panorama Application CLI is to register the application's code and model nodes, and upload assets to an Amazon S3 access point provided by the service\. The assets include the code's container image, the model, and a descriptor file for each\. To register the nodes and upload assets, run the `panorama-cli package-application` command\.
 
-1. Configure the following settings:
-   + **Handler** – `lambda_function.main`\. In the sample application, the `lambda_function.py` file exports a method named `main` that serves as the handler\.
-
-1. Choose **Save**\.
-
-1. Above the code editor, choose the **Configuration** tab\.
-
-1. In the **General configuration** section, choose **Edit**\.
-
-1. Configure the following settings:
-   + **Timeout** – **2 minutes**\.
-   + **Memory** – **2048 MB**\.
-
-1. Choose **Save**\.
-
-1. Choose **Actions**\.
-
-1. Choose **Publish new version**, and then choose **Publish**\.
-
-When you configure an application, you choose a function version\. Using a version ensures that the application continues to work if you make changes to the function's code\. To update the application's code, you publish a new version in Lambda and configure the application to use it\.
-
-## Create the application<a name="gettingstarted-deploy-create"></a>
-
-In this example, the application uses a Lambda function named `aws-panorama-sample-function` to run inference against the aws\-panorama\-sample\-model model on video streams from a camera\. The function displays the result on an HDMI display connected to the developer kit\.
-
-To import the sample model and create an application, use the AWS Panorama console\.
-
-**To create an application**
-
-1. Open the AWS Panorama console [Getting started page](https://console.aws.amazon.com/panorama/home#getting-started)\.
-
-1. Choose **Create application**\.
-
-1. Complete the workflow with the following settings:
-   + **Name** – **aws\-panorama\-sample**
-   + Model source – **External model**
-   + **Model artifact path** – The Amazon S3 URI of the [model archive](gettingstarted-setup.md#gettingstarted-prerequisites)\. For example: **`s3://aws-panorama-artifacts-123456789012/ssd_512_resnet50_v1_voc.tar.gz`**
-   + **Model name** – **aws\-panorama\-sample\-model**
-
-     This value is used by the application code\. Enter it exactly as shown\.
-   + **Model framework** – **MXNet**
-   + **Input name** – **data**
-   + **Shape** – **1,3,512,512**
-   + **Lambda functions** – aws\-panorama\-sample\-function version 1
-
-The value for **Shape**, `1,3,512,512`, indicates the number of images that the model takes as input \(1\), the number of channels in each image \(3\-\-red, green, and blue\), and the dimensions of the image \(512 x 512\)\. The values and order of the array varies among models\.
+```
+aws-panorama-sample$ panorama-cli package-application
+Uploading package model
+Registered model with patch version bc9c58bd6f83743f26aa347dc86bfc3dd2451b18f964a6de2cc4570cb6f891f9
+Uploading package code
+Registered code with patch version 11fd7001cb31ea63df6aaed297d600a5ecf641a987044a0c273c78ceb3d5d806
+```
 
 ## Deploy the application<a name="gettingstarted-deploy-deploy"></a>
 
-Use the AWS Panorama console to deploy the application to your AWS Panorama Appliance Developer Kit\. AWS Panorama uses AWS IoT Greengrass to deploy the application code and model to the developer kit\.
+Use the AWS Panorama console to deploy the application to your AWS Panorama Appliance\.
 
 **To deploy the application**
 
-1. Open the AWS Panorama console [Applications page](https://console.aws.amazon.com/panorama/home#applications)\.
+1. Open the AWS Panorama console [Deployed applications page](https://console.aws.amazon.com/panorama/home#deployed-applications)\.
 
-1. To open the application page, choose **aws\-panorama\-sample**\.
+1. Choose **Deploy application**\.
 
-1. Choose **Deploy**\.
+1. Paste the contents of the application manifest, `graphs/aws-panorama-sample/graph.json`, into the text editor\. Choose **Next**\.
 
-1. Follow the instructions to deploy the application\.
+1. For **Application name**, enter `aws-panorama-sample`\.
 
-When the deployment is complete, the application starts processing the video stream and displays the output on the connected monitor\.
+1. Choose **Proceed to deploy**\.
+
+1. Choose **Begin deployment**\.
+
+1. Choose **Next** without selecting a role\.
+
+1. Choose **Select device**, and then choose your appliance\. Choose **Next**\.
+
+1. On the **Select data sources** step, choose **View input\(s\)**, and add your camera stream as a data source\. Choose **Next**\.
+
+1. On the **Configure** step, choose **Next**\.
+
+1. Choose **Deploy**, and then choose **Done**\.
+
+1. In the list of deployed applications, choose **aws\-panorama\-sample**\.
+
+Refresh this page for updates, or use the following script to monitor the deployment from the command line\.
+
+**Example monitor\-deployment\.sh**  
+
+```
+while true; do
+  aws panorama list-application-instances --query 'ApplicationInstances[?Name==`aws-panorama-sample`]'
+  sleep 10
+done
+```
+
+```
+[
+    {
+        "Name": "aws-panorama-sample",
+        "ApplicationInstanceId": "applicationInstance-x264exmpl33gq5pchc2ekoi6uu",
+        "DefaultRuntimeContextDeviceName": "my-appliance",
+        "Status": "DEPLOYMENT_PENDING",
+        "HealthStatus": "NOT_AVAILABLE",
+        "StatusDescription": "Deployment Workflow has been scheduled.",
+        "CreatedTime": 1630010747.443,
+        "Arn": "arn:aws:panorama:us-west-2:123456789012:applicationInstance/applicationInstance-x264exmpl33gq5pchc2ekoi6uu",
+        "Tags": {}
+    }
+]
+[
+    {
+        "Name": "aws-panorama-sample",
+        "ApplicationInstanceId": "applicationInstance-x264exmpl33gq5pchc2ekoi6uu",
+        "DefaultRuntimeContextDeviceName": "my-appliance",
+        "Status": "DEPLOYMENT_PENDING",
+        "HealthStatus": "NOT_AVAILABLE",
+        "StatusDescription": "Deployment Workflow has completed data validation.",
+        "CreatedTime": 1630010747.443,
+        "Arn": "arn:aws:panorama:us-west-2:123456789012:applicationInstance/applicationInstance-x264exmpl33gq5pchc2ekoi6uu",
+        "Tags": {}
+    }
+]
+...
+```
+
+ When the deployment is complete, the application starts processing the video stream and sends logs to CloudWatch\.
+
+**To view logs in CloudWatch Logs**
+
+1. Open the [Log groups page of the CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)\.
+
+1. Find AWS Panorama application and appliance logs in the following groups:
+
+****
+   + **AWS Panorama Appliance system** – `/aws/panorama/devices/device-id`
+   + **Application instance** – `/aws/panorama/devices/device-id/applications/instance-id`
 
 If the application doesn't start running, check the [application and device logs](monitoring-logging.md) in Amazon CloudWatch Logs\.
 
-## Clean up<a name="gettingstarted-deploy-cleanup"></a>
+## Enable the SDK for Python<a name="gettingstarted-deploy-redeploy"></a>
 
-If you are done working with the sample application, you can use the AWS Panorama console to remove it from the developer kit and delete it\.
+The sample application uses the AWS SDK for Python \(Boto\) to send metrics to Amazon CloudWatch\. To enable this functionality, create a role that grants the application permission to send metrics, and redeploy the application with the role attached\.
 
-**To remove the application from the developer kit**
+The sample application includes a AWS CloudFormation template that creates a role with the permissions that it needs\. To create the role, use the `aws cloudformation deploy` command\.
 
-1. Open the AWS Panorama console [Appliances page](https://console.aws.amazon.com/panorama/home#appliances)\.
+```
+$ aws cloudformation deploy --template-file aws-panorama-sample.yml --stack-name aws-panorama-sample-runtime --capabilities CAPABILITY_NAMED_IAM
+```
 
-1. Choose the developer kit\.
 
-1. Check the box next to the application's name\.
 
-1. Choose **Delete application**\.
+**To redeploy the application**
 
-**To delete the application from AWS Panorama**
-
-1. Open the AWS Panorama console [Applications page](https://console.aws.amazon.com/panorama/home#applications)\.
+1. Open the AWS Panorama console [Deployed applications page](https://console.aws.amazon.com/panorama/home#deployed-applications)\.
 
 1. Choose an application\.
 
-1. Choose **Delete**\.
+1. Choose **Replace**\.
 
-The Lambda function and Amazon S3 bucket that you created are not deleted automatically\. You can delete them in the [Lambda console](https://console.aws.amazon.com/lambda/home) and [Amazon S3 console](https://console.aws.amazon.com/s3/home), respectively\.
+1. Complete the steps to deploy the application\. In the **Specify IAM role**, choose the role that you created\. Its name starts with `aws-panorama-sample-runtime`\.
+
+1. When the deployment completes, open the [CloudWatch console](https://console.aws.amazon.com/cloudwatch/home#metricsV2:graph=~();namespace=~'AWSPanoramaApplication) and view the metrics in the `AWSPanoramaApplication` namespace\. Every 150 frames, the application logs and uploads metrics for frame processing and inference time\.
+
+## Clean up<a name="gettingstarted-deploy-cleanup"></a>
+
+If you are done working with the sample application, you can use the AWS Panorama console to remove it from the appliance\.
+
+**To remove the application from the appliance**
+
+1. Open the AWS Panorama console [Deployed applications page](https://console.aws.amazon.com/panorama/home#deployed-applications)\.
+
+1. Choose an application\.
+
+1. Choose **Delete from device**\.
 
 ## Next steps<a name="gettingstarted-deploy-next"></a>
 
 If you encountered errors while deploying or running the sample application, see [Troubleshooting](panorama-troubleshooting.md)\.
 
-To learn more about the sample application's features and implementation, continue to [the next topic](gettingstarted-devkit.md)\.
-
-To learn about the AWS Panorama Appliance Developer Kit, continue to [Using the AWS Panorama Appliance Developer Kit](gettingstarted-devkit.md)\.
+To learn more about the sample application's features and implementation, continue to [the next topic](gettingstarted-sample.md)\.

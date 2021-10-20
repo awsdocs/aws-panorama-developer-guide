@@ -9,6 +9,8 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [How AWS Panorama works with IAM](security_iam_service-with-iam.md)
 + [AWS Panorama identity\-based policy examples](security_iam_id-based-policy-examples.md)
 + [AWS managed policies for AWS Panorama](security-iam-awsmanpol.md)
++ [Using service\-linked roles for AWS Panorama](using-service-linked-roles.md)
++ [Cross\-service confused deputy prevention](security-iam-trustpolicies.md)
 + [Troubleshooting AWS Panorama identity and access](security_iam_troubleshoot.md)
 
 ## Audience<a name="security_iam_audience"></a>

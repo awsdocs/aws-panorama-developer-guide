@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Node port schema",
+
+    "oneOf":
+    [
+        {
+            "$ref": "portBoolean.schema.json#"
+        },
+        {
+            "$ref": "portInt32.schema.json#"
+        },
+        {
+            "$ref": "portFloat32.schema.json#"
+        },
+        {
+            "$ref": "portString.schema.json#"
+        },
+        {
+            "$ref": "portMedia.schema.json#"
+        }
+    ]
+}

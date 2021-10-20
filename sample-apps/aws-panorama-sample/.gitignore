@@ -1,2 +1,2 @@
-bucket-name.*
-*.tar.gz
+.tar.gz
+*.pyc

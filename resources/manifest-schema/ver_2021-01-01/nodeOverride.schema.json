@@ -1,0 +1,51 @@
+{
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title": "Node override definition",
+    "type": "object",
+
+    "properties":
+    {
+        "envelopeVersion":
+        {
+            "enum": [ "2021-01-01" ]
+        },
+
+        "replace":
+        {
+            "type": "string",
+            "pattern": "^[$A-Z_a-z0-9\\-]+$"
+        },
+
+        "with":
+        {
+            "type": "array",
+            "items":
+            {
+                "type": "object",
+                "properties":
+                {
+                    "name":
+                    {
+                        "type": "string",
+                        "pattern": "^[$A-Z_a-z0-9\\-]+$"
+                    }
+                },
+
+                "required":
+                [
+                    "name"
+                ],
+
+                "additionalProperties": false
+            }
+        }
+    },
+
+    "required":
+    [
+        "replace",
+        "with"
+    ],
+
+    "additionalProperties": false
+}

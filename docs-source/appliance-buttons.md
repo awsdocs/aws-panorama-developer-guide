@@ -4,23 +4,19 @@ The AWS Panorama Appliance has two LED lights above the power button that indica
 
 ![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/appliance-leds.png)
 
+## Status light<a name="appliance-buttons-status"></a>
+
 The LEDs change color and blink to indicate status\. A slow blink is once every three seconds\. A fast blink is once per second\.
 
 **Status LED states**
 + **Fast blinking green** – The appliance is booting up\.
 + **Solid green** – The appliance is operating normally\.
-+ **Slow blinking blue** – The appliance is copying configuration files and attempting to register with AWS IoT Greengrass\.
++ **Slow blinking blue** – The appliance is copying configuration files and attempting to register with AWS IoT\.
 + **Fast blinking red** – The appliance encountered an error during startup or is overheated\.
 + **Slow blinking orange** – The appliance is restoring the latest software image\.
 + **Fast blinking orange** – The appliance is restoring the factory software image\.
 
-To reset the device, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
-
-**Reset operations**
-+ **To shut down the appliance** – Short press power\. Starts a shutdown sequence that takes about 10 seconds\.
-+ **To restore the latest software image** – Shut down the appliance, and then short press reset\.
-+ **To restore the factory software image** – Shut down the appliance, and then long press reset\.
-+ **To restore the factory software image and delete all configuration files and applications** – Shut down the appliance, and then long press power and reset\.
+## Network light<a name="appliance-buttons-network"></a>
 
 The network LED has the following states:
 
@@ -29,3 +25,20 @@ The network LED has the following states:
 + **Blinking green** – The appliance is communicating over the network\.
 + **Solid red** – An Ethernet cable is not connected\.
 + **Solid blue** – An Ethernet cable is not connected, but Wi\-Fi is enabled\.
+
+## Power and reset buttons<a name="appliance-buttons-reset"></a>
+
+To power down the appliance, press and hold the power button for 1 second\. The shutdown sequence takes about 10 seconds\.
+
+To reset the appliance, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. To start a reset operation, the appliance must be powered down\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
+
+**Reset operations**
++ **Full reset** – Long press power and reset\.
+
+  Restores the minimum software version and deletes all configuration files and applications\.
++ **Restore latest software version** – Short press reset\.
+
+  Reapplies the latest software update to the appliance\.
++ **Restore minimum software version** – Long press reset\.
+
+  Reapplies the latest required software update to the appliance\.

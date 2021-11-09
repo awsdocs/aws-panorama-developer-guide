@@ -2,3 +2,5 @@
 *.tar.gz
 bucket-name.txt
 out.yml
+.vscode
+aws-panorama-sample-dev

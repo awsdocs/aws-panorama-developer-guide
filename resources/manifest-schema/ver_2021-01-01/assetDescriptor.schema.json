@@ -25,7 +25,6 @@
                         "MXNET"
                     ]
                 },
-
                 "inputs":
                 {
                     "type": "array",
@@ -33,6 +32,16 @@
                     {
                         "$ref": "tensor/inputTensor.schema.json#"
                     }
+                },
+                "precisionMode":
+                {
+                    "description": "Specifies the precision of compiled model. Supported values are FP16/FP32. Default is FP32.",
+                    "type": "string",
+                    "enum": [
+                        "FP32",
+                        "FP16"
+                    ],
+                    "default": "FP32"
                 }
             },
 

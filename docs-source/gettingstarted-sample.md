@@ -14,6 +14,7 @@ In this example, the application uses the AWS Panorama Application SDK to get fr
 + [Changing the computer vision model](#gettingstarted-sample-model)
 + [Preprocessing images](#gettingstarted-sample-preprocessing)
 + [Uploading metrics with the SDK for Python](#gettingstarted-sample-metrics)
++ [Next steps](#gettingstarted-sample-nextsteps)
 
 ## The application manifest<a name="gettingstarted-sample-manifest"></a>
 
@@ -445,3 +446,15 @@ RUN pip install --no-cache-dir --upgrade pip && \
 To use the AWS SDK in your application code, first modify the template to add permissions for all API actions that the application uses\. Update the AWS CloudFormation stack by running the `1-create-role.sh` each time you make a change\. Then, deploy changes to your application code\.
 
 For actions that modify or use existing resources, it is a best practice to minimize the scope of this policy by specifying a name or pattern for the target `Resource` in a separate statement\. For details on the actions and resources supported by each service, see [Action, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the Service Authorization Reference
+
+## Next steps<a name="gettingstarted-sample-nextsteps"></a>
+
+For instructions on using the AWS Panorama Application CLI to build applications and create packages from scratch, see the CLI's README\.
+
+****
++ [github\.com/aws/aws\-panorama\-cli](https://github.com/aws/aws-panorama-cli)
+
+For more sample code and a test utility that you can use to validate your application code prior to deploying, visit the AWS Panorama samples repository\.
+
+****
++ [github\.com/aws\-samples/aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples)

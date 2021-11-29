@@ -4,7 +4,17 @@ The following topics provide troubleshooting advice for errors and issues that y
 
 You can find logs for your appliance in [the Amazon CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)\. The appliance uploads logs from your application code, the appliance software, and AWS IoT processes as they are generated\. For more information, see [Viewing AWS Panorama event logs in CloudWatch Logs](monitoring-logging.md)\.
 
-For more troubleshooting advice and answers to common support questions, visit the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
+## Provisioning<a name="troubleshooting-provisioning"></a>
+
+**Issue:** \(macOS\) *My computer doesn't recognize the included USB drive with a USB\-C adapter\.*
+
+This can occur if you plug the USB drive into a USB\-C adapter that is already connected to your computer\. Try disconnecting the adapter and reconnecting it with the USB drive already attached\.
+
+**Issue:** *Provisioning fails when I use my own USB drive\.*
+
+**Issue:** *Provisioning fails when I use the appliance's USB 2\.0 port\.*
+
+The AWS Panorama Appliance is compatible with USB flash memory devices between 1 and 32 GB, but not all are compatible\. Some issues have been observed when using the USB 2\.0 port for provisioning\. For consistent results, use the included USB drive with the USB 3\.0 port \(next to the HDMI port\)\.
 
 ## Appliance configuration<a name="troubleshooting-appliance"></a>
 

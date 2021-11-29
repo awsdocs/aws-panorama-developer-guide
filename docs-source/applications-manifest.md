@@ -1,6 +1,6 @@
-# The application manifest<a name="applications-manifest"></a>
+# The AWS Panorama application manifest<a name="applications-manifest"></a>
 
-When you deploy an application, you provide a configuration file called an application manifest\. This file defines the application in the form of a graph with nodes and edges\. The application manifest is part of the application's source code and is stored in the `graphs` directory\.
+When you deploy an application, you provide a configuration file called an application manifest\. This file defines the application as a graph with nodes and edges\. The application manifest is part of the application's source code and is stored in the `graphs` directory\.
 
 **Example graphs/aws\-panorama\-sample/graph\.json**  
 
@@ -92,7 +92,7 @@ Nodes are connected by edges, which specify mappings between nodes' inputs and o
 
 ## Nodes<a name="applications-manifest-nodes"></a>
 
-Nodes are models, code, camera streams, output, and parameters\. A node has an interface, which defines its inputs and outputs\. The interface can be defined in a package in your account, a package provided by AWS Panorama, or a builtin type\.
+Nodes are models, code, camera streams, output, and parameters\. A node has an interface, which defines its inputs and outputs\. The interface can be defined in a package in your account, a package provided by AWS Panorama, or a built\-in type\.
 
 In the following example, `code_node` and `model_node` refer to the sample code and model packages included with the sample application\. `camera_node` uses a package provided by AWS Panorama to create a placeholder for a camera stream that you specify during deployment\.
 
@@ -176,7 +176,7 @@ The `assets` section specifies the names of artifacts that the AWS Panorama Appl
 
 ## Edges<a name="applications-manifest-edges"></a>
 
-Edges map the output from one node to the input of another\. In the following example, the first edge maps the output from a camera stream node to the input of an application code node\. The names `video_in` and `video_out` are defined in the nodes' packages' interfaces\.
+Edges map the output from one node to the input of another\. In the following example, the first edge maps the output from a camera stream node to the input of an application code node\. The names `video_in` and `video_out` are defined in the node packages' interfaces\.
 
 **Example graph\.json – edges**  
 
@@ -212,7 +212,7 @@ Edges map the output from one node to the input of another\. In the following ex
 
 ## Parameters<a name="applications-manifest-parameters"></a>
 
-Parameters are nodes that have a basic type and can be overriden during deployment\. A parameter can have a default value and a *decorator*, which instructs the application's user how to configure it\.
+Parameters are nodes that have a basic type and can be overridden during deployment\. A parameter can have a default value and a *decorator*, which instructs the application's user how to configure it\.
 
 **Parameter types**
 + `string` – A string\. For example, `DEBUG`\.
@@ -264,7 +264,7 @@ The following example shows two parameters, a string and a number, which are sen
 
 ## Abstract nodes<a name="applications-manifest-abstract"></a>
 
-In an application manifest, an abstract node refers to a package in defined by AWS Panorama, which you can use as a placeholder in your application manifest\. AWS Panorama provides two types of abstract node\.
+In an application manifest, an abstract node refers to a package defined by AWS Panorama, which you can use as a placeholder in your application manifest\. AWS Panorama provides two types of abstract node\.
 
 ****
 + **Camera stream** – Choose the camera stream that the application uses during deployment\.
@@ -335,7 +335,7 @@ The following example shows a basic set of packages, nodes, and edges for an app
 
 ## Deploy\-time configuration with overrides<a name="applications-manifest-overrides"></a>
 
-You configure parameters and abstract nodes during deployment\. If you use the AWS Panorama console to deploy, the console lets you specify a value for each parameter and choose a camera stream as input\. If you use the AWS Panorama API to deploy applications, you specify these settings with an overrides document\.
+You configure parameters and abstract nodes during deployment\. If you use the AWS Panorama console to deploy, you can specify a value for each parameter and choose a camera stream as input\. If you use the AWS Panorama API to deploy applications, you specify these settings with an overrides document\.
 
 An overrides document is similar in structure to an application manifest\. For parameters with basic types, you define a node\. For camera streams, you define a node and a package that maps to a registered camera stream\. Then you define an override for each node that specifies the node from the application manifest that it replaces\.
 
@@ -388,7 +388,7 @@ In the preceding example, the document defines overrides for one string paramete
 
 ## JSON schema<a name="applications-manifest-schema"></a>
 
-The format of application manifest and override documents is defined in a JSON schema\. You can use the JSON schema to validate your configuration documents prior to deploying\. The JSON schema is available in this guide's GitHub repository\.
+The format of application manifest and override documents is defined in a JSON schema\. You can use the JSON schema to validate your configuration documents before deploying\. The JSON schema is available in this guide's GitHub repository\.
 
 ****
 + **JSON schema** – [aws\-panorama\-developer\-guide/resources](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources)

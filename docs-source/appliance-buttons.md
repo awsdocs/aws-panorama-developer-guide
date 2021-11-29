@@ -13,8 +13,8 @@ The LEDs change color and blink to indicate status\. A slow blink is once every 
 + **Solid green** – The appliance is operating normally\.
 + **Slow blinking blue** – The appliance is copying configuration files and attempting to register with AWS IoT\.
 + **Fast blinking red** – The appliance encountered an error during startup or is overheated\.
-+ **Slow blinking orange** – The appliance is restoring the latest software image\.
-+ **Fast blinking orange** – The appliance is restoring the factory software image\.
++ **Slow blinking orange** – The appliance is restoring the latest software version\.
++ **Fast blinking orange** – The appliance is restoring the minimum software version\.
 
 ## Network light<a name="appliance-buttons-network"></a>
 
@@ -24,7 +24,6 @@ The network LED has the following states:
 + **Solid green** – An Ethernet cable is connected\.
 + **Blinking green** – The appliance is communicating over the network\.
 + **Solid red** – An Ethernet cable is not connected\.
-+ **Solid blue** – An Ethernet cable is not connected, but Wi\-Fi is enabled\.
 
 ## Power and reset buttons<a name="appliance-buttons-reset"></a>
 

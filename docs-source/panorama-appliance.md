@@ -8,6 +8,7 @@ For tutorials that introduce the AWS Panorama Appliance with a sample applicatio
 
 **Topics**
 + [Managing an AWS Panorama Appliance](appliance-manage.md)
++ [Connecting the AWS Panorama Appliance to your network](appliance-network.md)
 + [Managing camera streams in AWS Panorama](appliance-cameras.md)
 + [Manage applications on an AWS Panorama Appliance](appliance-applications.md)
 + [AWS Panorama Appliance buttons and lights](appliance-buttons.md)

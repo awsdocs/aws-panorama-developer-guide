@@ -3,7 +3,7 @@
 To get started with AWS Panorama, first learn about [the service's concepts](gettingstarted-concepts.md) and the terminology used in this guide\. Then you can use the AWS Panorama console to [register your AWS Panorama Appliance](gettingstarted-setup.md) and [create an application](gettingstarted-deploy.md)\. In about an hour, you can configure the device, update its software, and deploy a sample application\. To complete the tutorials in this section, you use the AWS Panorama Appliance and a camera that streams video over a local network\.
 
 **Note**  
-To purchase an AWS Panorama Appliance, visit [AWS Panorama](https://aws.amazon.com/panorama)\.
+To purchase an AWS Panorama Appliance, visit [How to purchase](https://aws.amazon.com/panorama/appliance/purchase/)\.
 
 The [AWS Panorama sample application](gettingstarted-sample.md) analyzes a video stream to tally the number of people detected and display the results on a connected display\. It includes a model that has been trained with SageMaker and sample code that uses the AWS Panorama Application SDK to run inference and output video\.
 

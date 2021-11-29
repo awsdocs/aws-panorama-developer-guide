@@ -1,8 +1,8 @@
 # Granting permissions to an application<a name="permissions-application"></a>
 
-You can create a role for your application to grant it permission to call AWS services\. By default, applications do not have any permissions\. You create an application role in IAM and assign it to an application during deployment\. To grant your applications only the permissions that they need, create a separate role for each application and limit their permissions to specific API actions\.
+You can create a role for your application to grant it permission to call AWS services\. By default, applications do not have any permissions\. You create an application role in IAM and assign it to an application during deployment\. To grant your application only the permissions that it needs, create a role for it with permissions for specific API actions\.
 
-The [sample application](gettingstarted-sample.md) includes a AWS CloudFormation template and script that create an application role\. It is a [service role](permissions-services.md) that AWS Panorama can assume\. This role grants permission for the application to call CloudWatch to upload metrics\.
+The [sample application](gettingstarted-sample.md) includes an AWS CloudFormation template and script that create an application role\. It is a [service role](permissions-services.md) that AWS Panorama can assume\. This role grants permission for the application to call CloudWatch to upload metrics\.
 
 **Example [aws\-panorama\-sample\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/aws-panorama-sample.yml) – Application role**  
 

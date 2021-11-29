@@ -27,30 +27,20 @@ For long commands, we use an escape character \(`\`\) to split a command over mu
 
 On Linux and macOS, use your preferred shell and package manager\. On Windows 10, you can [install the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows\-integrated version of Ubuntu and Bash\.
 
-This tutorial uses the AWS Command Line Interface \(AWS CLI\) to call service API operations\. To install the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the AWS Command Line Interface User Guide\. If you already have the AWS CLI, upgrade it to the latest version\.
+You use Python to develop AWS Panorama applications and install tools with pip, Python's package manager\. If you don't already have Python, [install the latest version](https://www.python.org/downloads/)\. If you have Python 3 but not pip, install pip with your operating system's package manager, or install a new version of Python, which comes with pip\.
 
 In this tutorial, you use Docker to build the container that runs your application code\. Install Docker from the Docker website: [Get Docker](https://docs.docker.com/get-docker/)
 
-This tutorial uses the AWS Panorama Application CLI to import the sample application, build packages, and upload artifacts\.
+This tutorial uses the AWS Panorama Application CLI to import the sample application, build packages, and upload artifacts\. The AWS Panorama Application CLI uses the AWS Command Line Interface \(AWS CLI\) to call service API operations\. If you already have the AWS CLI, upgrade it to the latest version\. To install the AWS Panorama Application CLI and AWS CLI, use `pip`\.
 
-**To install the AWS Panorama Application CLI**
-
-1. Clone the [AWS Panorama Application CLI repo](https://github.com/aws/aws-panorama-cli)\.
-
-   ```
-   $ git clone git@github.com:aws/aws-panorama-cli.git
-   ```
-
-1. Run the installation script\. This creates a link to the CLI executable in `/usr/local/bin`\.
-
-   ```
-   panorama-cli$ ./install.sh
-   ```
+```
+$ pip3 install --upgrade awscli panoramacli
+```
 
 Download the sample application, and extract it into your workspace\.
 
 ****
-+ **Sample application** – [aws\-panorama\-sample\.zip](samples/aws-panorama-sample.zip)
++ **Sample application** – [aws\-panorama\-sample\.zip](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v1.0-ga/aws-panorama-sample.zip)
 
 ## Import the sample application<a name="gettingstarted-deploy-import"></a>
 

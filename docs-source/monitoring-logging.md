@@ -1,6 +1,6 @@
 # Viewing AWS Panorama event logs in CloudWatch Logs<a name="monitoring-logging"></a>
 
-AWS Panorama reports application and system events to Amazon CloudWatch Logs\. When you encounter issues, you can use the event logs to help debug your AWS Panorama application or to troubleshoot the application's configuration\. 
+AWS Panorama reports application and system events to Amazon CloudWatch Logs\. When you encounter issues, you can use the event logs to help debug your AWS Panorama application or troubleshoot the application's configuration\. 
 
 **To view logs in CloudWatch Logs**
 
@@ -12,7 +12,7 @@ AWS Panorama reports application and system events to Amazon CloudWatch Logs\. W
    + **AWS Panorama Appliance system** – `/aws/panorama/devices/device-id`
    + **Application instance** – `/aws/panorama/devices/device-id/applications/instance-id`
 
-The AWS Panorama Appliance creates a log group for the device, and a group for each application instance that you deploy\. The device contain information about application status, software upgrades, and system configuration\. 
+The AWS Panorama Appliance creates a log group for the device, and a group for each application instance that you deploy\. The device logs contain information about application status, software upgrades, and system configuration\. 
 
 **Device logs**
 + `occ_log` – Output from the controller process\. This process coordinates application deployments and reports on the status of each application instance's nodes\.

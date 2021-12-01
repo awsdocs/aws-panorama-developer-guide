@@ -25,6 +25,15 @@
                         "MXNET"
                     ]
                 },
+                "frameworkVersion":
+                {
+                    "type": "string",
+                    "description": "The version of the model framework to be used for model compilation. Please specify the version for PYTORCH/TENSORFLOW framework",
+                    "default": null,
+                    "maxLength": 10,
+                    "minLength": 3,
+                    "pattern": "^[0-9]+\\.[A-Za-z0-9.]+$"
+                },
                 "inputs":
                 {
                     "type": "array",

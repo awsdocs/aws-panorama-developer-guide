@@ -182,7 +182,7 @@ def get_logger(name=__name__,level=logging.INFO):
     logger = logging.getLogger(name)
     logger.setLevel(level)
     LOG_PATH = '/opt/aws/panorama/logs'
-    handler = RotatingFileHandler("{}/app.log".format(LOG_PATH), maxBytes=100000000, backupCount=2)
+    handler = RotatingFileHandler("{}/app.log".format(LOG_PATH), maxBytes=10000000, backupCount=1)
     formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-8s %(message)s',
                                     datefmt='%Y-%m-%d %H:%M:%S')
     handler.setFormatter(formatter)

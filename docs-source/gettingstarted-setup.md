@@ -52,7 +52,7 @@ The provisioning certificate that you generate in this procedure is only valid f
 1. Enter a name and description for the device resource that represents the appliance in AWS Panorama\. Choose **Next**  
 ![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/setup-name.png)
 
-1. If you need to manually assign an IP address and DNS settings, choose **Advanced network settings**\. Otherwise, choose **Next**\.
+1. If you need to manually assign an IP address, NTP server, or DNS settings, choose **Advanced network settings**\. Otherwise, choose **Next**\.
 
 1. Choose **Download archive**\. Choose **Next**\.
 

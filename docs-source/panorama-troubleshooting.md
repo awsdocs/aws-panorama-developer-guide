@@ -2,7 +2,7 @@
 
 The following topics provide troubleshooting advice for errors and issues that you might encounter when using the AWS Panorama console, appliance, or SDK\. If you find an issue that is not listed here, use the **Provide feedback** button on this page to report it\.
 
-You can find logs for your appliance in [the Amazon CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)\. The appliance uploads logs from your application code, the appliance software, and AWS IoT processes as they are generated\. For more information, see [Viewing AWS Panorama event logs in CloudWatch Logs](monitoring-logging.md)\.
+You can find logs for your appliance in [the Amazon CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups)\. The appliance uploads logs from your application code, the appliance software, and AWS IoT processes as they are generated\. For more information, see [Viewing AWS Panorama logs](monitoring-logging.md)\.
 
 ## Provisioning<a name="troubleshooting-provisioning"></a>
 
@@ -29,3 +29,13 @@ The appliance takes up to 10 seconds to shut down safely\. You need to hold the 
 **Issue:** *I need to generate a new configuration archive to change settings or replace a lost certificate\.*
 
 AWS Panorama does not store the device certificate or network configuration after you download it, and you can't reuse configuration archives\. Delete the appliance using the AWS Panorama console and create a new one with a new configuration archive\.
+
+## Application configuration<a name="troubleshooting-application"></a>
+
+**Issue:** *When I run multiple applications, I can't control which uses the HDMI output\.*
+
+When you deploy multiple applications that have output nodes, the application that started most recently uses the HDMI output\. If this application stops running, another application can use the output\. To give only one application access to the output, remove the output node and corresponding edge from the other application's [application manifest](applications-manifest.md) and redeploy\.
+
+**Issue:** *Application output doesn't appear in logs*
+
+[Configure a Python logger](monitoring-logging.md#monitoring-logging-configuration) to write log files to `/opt/aws/panorama/logs`\. These are captured in a log stream for the code container node\. Standard output and error streams are captured in a separate log stream called `console-output`\. If you use `print`, use the `flush=True` option to keep messages from getting stuck in the output buffer\.

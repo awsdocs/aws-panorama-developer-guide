@@ -43,7 +43,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Migrate applications from preview](applications-migrate.md)
 + [Monitoring AWS Panorama resources and applications](panorama-monitoring.md)
    + [Monitoring in the AWS Panorama console](monitoring-console.md)
-   + [Viewing AWS Panorama event logs in CloudWatch Logs](monitoring-logging.md)
+   + [Viewing AWS Panorama logs](monitoring-logging.md)
 + [Troubleshooting](panorama-troubleshooting.md)
 + [Security in AWS Panorama](panorama-security.md)
    + [Data protection in AWS Panorama](security-dataprotection.md)

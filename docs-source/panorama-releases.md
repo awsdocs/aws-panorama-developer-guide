@@ -4,6 +4,10 @@ The following table shows when features and software updates were released for t
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Updated managed policies](#panorama-releases) | AWS Identity and Access Management managed policies for AWS Panorama have been updated\. For details, see [AWS managed policies](https://docs.aws.amazon.com/panorama/latest/dev/security-iam-awsmanpol.html)\. | January 13, 2022 | 
+| [Provisioning logs](#panorama-releases) | With appliance software 4\.3\.23, the appliance writes logs to a USB drive during provisioning\. For more information, see [Logs](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html)\. | January 13, 2022 | 
+| [NTP server configuration](#panorama-releases) | You can now configure the AWS Panorama Appliance to use a specific NTP server for clock syncronization\. Configure NTP settings during appliance setup with other networking settings\. For more information, see [Setting up](https://docs.aws.amazon.com/panorama/latest/dev/gettingstarted-setup.html)\. | January 13, 2022 | 
+| [Additional regions](#panorama-releases) | AWS Panorama is now available in the Asia Pacific \(Singapore\) and Asia Pacific \(Sydney\) Regions\. | January 13, 2022 | 
 | [Appliance software update](#panorama-releases) | Version 4\.3\.4 adds support for the `precisionMode` setting for models and updates logging behavior\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | November 8, 2021 | 
 | [Updated managed policies](#panorama-releases) | AWS Identity and Access Management managed policies for AWS Panorama have been updated\. For details, see [AWS managed policies](https://docs.aws.amazon.com/panorama/latest/dev/security-iam-awsmanpol.html)\. | October 20, 2021 | 
 | [General availability](#panorama-releases) | AWS Panorama is now available to all customers in the US East \(N\. Virginia\), US West \(Oregon\), Europe \(Ireland\), and Canada \(Central\) Regions\. To purchase an AWS Panorama Appliance, visit [AWS Panorama](https://aws.amazon.com/panorama)\. | October 20, 2021 | 

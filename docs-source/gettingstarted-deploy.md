@@ -147,8 +147,8 @@ done
 1. Find AWS Panorama application and appliance logs in the following groups:
 
 ****
-   + **AWS Panorama Appliance system** – `/aws/panorama/devices/device-id`
-   + **Application instance** – `/aws/panorama/devices/device-id/applications/instance-id`
+   + **Device logs** – `/aws/panorama/devices/device-id`
+   + **Application logs** – `/aws/panorama/devices/device-id/applications/instance-id`
 
 If the application doesn't start running, check the [application and device logs](monitoring-logging.md) in Amazon CloudWatch Logs\.
 

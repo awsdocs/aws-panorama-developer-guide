@@ -20,7 +20,8 @@ The following table describes updates to managed policies for AWS Panorama\.
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  AWSPanoramaFullAccess – Update to an existing policy  |  Added permissions to the user role to allow users to manage the AWS Panorama [service\-linked role](using-service-linked-roles.md), and to access AWS Panorama resources in other services including IAM, Amazon S3, CloudWatch, and Secrets Manager\.  |  2021\-10\-20  | 
+|  AWSPanoramaFullAccess – Update to an existing policy  |  Added permissions to the user policy to allow users to view log groups in the CloudWatch Logs console\.  |  2022\-01\-13  | 
+|  AWSPanoramaFullAccess – Update to an existing policy  |  Added permissions to the user policy to allow users to manage the AWS Panorama [service\-linked role](using-service-linked-roles.md), and to access AWS Panorama resources in other services including IAM, Amazon S3, CloudWatch, and Secrets Manager\.  |  2021\-10\-20  | 
 |  AWSPanoramaApplianceServiceRolePolicy – New policy  |  New policy for the AWS Panorama Appliance service role  |  2021\-10\-20  | 
 |  AWSPanoramaServiceLinkedRolePolicy – New policy  |  New policy for the AWS Panorama service\-linked role\.  |  2021\-10\-20  | 
 |  AWS Panorama started tracking changes  |  AWS Panorama started tracking changes for its AWS managed policies\.  |  2021\-10\-20  | 

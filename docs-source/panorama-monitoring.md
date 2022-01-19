@@ -8,4 +8,4 @@ For help troubleshooting specific errors, see [Troubleshooting](panorama-trouble
 
 **Topics**
 + [Monitoring in the AWS Panorama console](monitoring-console.md)
-+ [Viewing AWS Panorama event logs in CloudWatch Logs](monitoring-logging.md)
++ [Viewing AWS Panorama logs](monitoring-logging.md)

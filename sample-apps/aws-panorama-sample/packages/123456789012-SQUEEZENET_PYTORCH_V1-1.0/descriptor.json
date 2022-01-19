@@ -2,6 +2,7 @@
     "mlModelDescriptor": {
         "envelopeVersion": "2021-01-01",
         "framework": "PYTORCH",
+        "frameworkVersion": "1.8",
         "precisionMode": "FP16",
         "inputs": [
             {

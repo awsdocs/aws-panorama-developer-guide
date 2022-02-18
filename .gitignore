@@ -1,6 +1,6 @@
 *.zip
 *.tar.gz
-bucket-name.txt
+bucket-nam*.txt
 out.yml
 .vscode
 aws-panorama-sample-dev

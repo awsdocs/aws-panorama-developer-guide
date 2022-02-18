@@ -2,6 +2,18 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, and the application SDK.
 
+# 4.3.35
+
+**Release date**: 2022-02-22
+
+**Type**: Optional
+
+Updated system software and libraries.
+
+Removed unused packages to reduce image size and complexity.
+
+Applied fix for [CVE-2021-4034](https://nvd.nist.gov/vuln/detail/CVE-2021-4034).
+
 # 4.3.23
 
 **Release date**: 2022-01-13
@@ -21,7 +33,7 @@ TensorFlow: 1.5, 2.4
 
 PyTorch: 1.4, 1.5, 1.6, 1.7, 1.8
 
-# Provisioning logs
+## Provisioning logs
 
 The appliance now writes logs to the USB drive during provisioning. This feature is available when you reprovision a device after updating it to this version.
 

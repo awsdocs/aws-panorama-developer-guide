@@ -201,7 +201,7 @@ Built-in values:
 | time_stamp | tuple | read only | Original frame timestamp as it comes from the source (sec, µsec) |
 | image | numpy_array  | read only | Numpy array representation of the image frame |
 
-**media.add_label(x, y, text)**
+**media.add_label(text, x, y)**
 
 Add a text label to the frame represented by the media object.
 The label is not drawn on the frame, but instead is associated as metadata only for later processing

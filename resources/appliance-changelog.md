@@ -51,10 +51,6 @@ Fixed an issue that sometimes caused the appliance software to crash.
 
 **Application SDK**: 4.3.23
 
-**Python**: 3.7.5
-
-**NumPy**: 1.18.2
-
 # 4.3.4
 
 **Release date**: 2021-11-08
@@ -83,9 +79,9 @@ Update script: [update-model-config.sh](/sample-apps/aws-panorama-sample/update-
 
 **Application SDK**: 1.0.0
 
-**Python**: 3.7.5
+**Python** (application base image): 3.7.5
 
-**NumPy**: 1.18.2
+**NumPy** (application base image): 1.18.2
 
 # 4.1.38
 

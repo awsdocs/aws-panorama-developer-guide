@@ -1,39 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
-Description: An AWS Panorama application that counts people.
+Description: SageMaker Neo compilation role
 Parameters:
   bucketName:
     Description: Name of the project bucket
     Type: String
 Resources:
-  permissions:
-    Type: AWS::IAM::Policy
-    Properties: 
-      Roles:
-        - AWSPanoramaGreengrassGroupRole
-      PolicyName: CloudWatch-permissions
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Action:
-              - 'cloudwatch:PutMetricData'
-            Resource: '*'
-            Condition:
-              StringEquals:
-                cloudwatch:namespace: PanoramaApp
-  function:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: lambda_function.main
-      Runtime: python3.7
-      CodeUri: code/.
-      Description: Classification application.
-      Timeout: 10
-      AutoPublishAlias: DEVELOPMENT
-      # Function's role
-      Policies:
-        - AWSLambdaBasicExecutionRole
   serviceRole:
     Type: AWS::IAM::Role
     Properties:

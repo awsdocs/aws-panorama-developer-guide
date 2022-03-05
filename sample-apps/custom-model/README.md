@@ -7,9 +7,8 @@ Prior to deploying a model in AWS Panorama, you can test it with Amazon Sagemake
 The project source includes Python code and supporting resources:
 
 - `code` - Python code that exports a model from Keras, uploads it to Amazon S3, and sends it to Amazon Sagemaker for compilation and packaging.
-- `custom-model.yml` - An AWS CloudFormation template that creates an AWS Lambda function and a service role for Amazon Sagemaker.
 - `ec2-instance.yml` - A template that launches an Amazon EC2 instance configured for use as a development environment.
-- `01-create-bucket.sh`, `02-deploy.sh`, etc. - Shell scripts that use the AWS CLI to deploy and manage the application.
+- `01-create-bucket.sh`, etc. - Shell scripts that use the AWS CLI to deploy and manage the application.
 
 Use the following instructions to deploy the sample application.
 
@@ -37,13 +36,13 @@ To create a new bucket for models and deployment artifacts, run `01-create-bucke
     custom-model$ ./01-create-bucket.sh
     make_bucket: aws-panorama-artifacts-a5e4xmplb5b22e0d
     
-To deploy the application code and IAM roles, run `02-deploy.sh`.
+To create an IAM role for SageMaker Neo to use, run `02-create-role.sh`.
 
     custom-model$ ./02-deploy.sh
     Successfully packaged artifacts and wrote output template to file out.yml.
     Waiting for changeset to be created..
     Waiting for stack create/update to complete
-    Successfully created/updated stack - custom-model
+    Successfully created/updated stack - panorama-custom-model
 
 This script uses AWS CloudFormation to create AWS resources, which are defined in the template [custom-model.yml](custom-model.yml). If the CloudFormation stack that contains the resources already exists, the script updates it with any changes to the template or function code.
 
@@ -95,6 +94,24 @@ To run the container interactively for exploration or debug, use `23-open-contai
     custom-model$ ./23-open-container.sh
 
 This script opens a terminal session inside the container. From within the container, you can run the application with `python /app/code/keras-model.py`. The project directory is also mapped to `/workspace`. 
+
+NVIDIA regularly updates the TensorFlow Docker image. For a list of available versions, see [TensorFlow](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow/tags) in the container registry. To use a different version, update the FROM statement in the project's Dockerfile. To confirm which version of TensorFlow is included and which Keras application models are present, open the container and inspect the module in a Python interpreter.
+
+    custom-model$ ./21-build-container.sh
+    custom-model$ ./23-open-container.sh
+            ================
+            == TensorFlow ==
+            ================
+
+            NVIDIA Release 21.11-tf2 (build 29194758)
+            TensorFlow Version 2.6.0
+    root@710b1dcdb9bb:/app# python3
+    >>> import tensorflow as tf
+    >>> tf.__version__
+    '2.6.0'
+    >>> from inspect import getmembers, isfunction
+    >>> [model[0] for model in getmembers(tf.keras.applications, isfunction)]
+    ['DenseNet121', 'DenseNet169', 'DenseNet201', 'EfficientNetB0', 'EfficientNetB1', 'EfficientNetB2', 'EfficientNetB3', 'EfficientNetB4', 'EfficientNetB5', 'EfficientNetB6', 'EfficientNetB7', 'InceptionResNetV2', 'InceptionV3', 'MobileNet', 'MobileNetV2', 'MobileNetV3Large', 'MobileNetV3Small', 'NASNetLarge', 'NASNetMobile', 'ResNet101', 'ResNet101V2', 'ResNet152', 'ResNet152V2', 'ResNet50', 'ResNet50V2', 'VGG16', 'VGG19', 'Xception']
 
 # Build in Amazon EC2
 
@@ -152,19 +169,14 @@ To get a list of available models, open a Python interpreter and run the followi
     >>> [model[0] for model in getmembers(tf.keras.applications, isfunction)]
     ['DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3', 'MobileNet', 'MobileNetV2', 'NASNetLarge', 'NASNetMobile', 'ResNet101', 'ResNet101V2', 'ResNet152', 'ResNet152V2', 'ResNet50', 'ResNet50V2', 'VGG16', 'VGG19', 'Xception']
 
-# Deploy AWS Panorama application
+# Get the model
 
-After confirming that the model compiles, you can deploy it to an AWS Panorama Appliance. Sample code for the model is available in `code/application.py`. The CloudFormation template that you deployed earlier created a Lambda function with this code that is ready to import into AWS Panorama. To get the function name, model name, and the URI of the model in Amazon S3, run `41-get-configuration.sh`
+To get the compiled model, run `41-download-model.sh`
 
-    custom-model$ ./41-get-configuration.sh
-    FUNCTION NAME
-    panorama-custom-model-function-nL4cxmplsIIi
-    MODEL NAME
-    custom-model
+    custom-model$ ./41-download-model.sh
     MODEL OBJECT URI
     s3://aws-panorama-artifacts-a5e4xmplb5b22e0d/models/DenseNet121-tf1155.tar.gz
 
-Use these details to create an application in the AWS Panorama console and deploy it to your appliance. For instructions, see [Deploying an application](https://docs.aws.amazon.com/panorama/latest/dev/gettingstarted-deploy.html#gettingstarted-deploy-create).
 
 # Cleanup
 

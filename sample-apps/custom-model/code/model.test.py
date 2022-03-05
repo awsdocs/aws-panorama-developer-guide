@@ -1,7 +1,5 @@
 import unittest
-import importlib
 import logging
-import json
 import tensorflow as tf
 import boto3
 from inspect import getmembers, isfunction
@@ -25,10 +23,10 @@ class TestFunction(unittest.TestCase):
 
     def test_function(self):
         """Tests the compilation and packaging workflows with a single model."""
-        #model_names = [model[0] for model in getmembers(tf.keras.applications, isfunction)]
+        model_names = [model[0] for model in getmembers(tf.keras.applications, isfunction)]
         #model_names = ['ResNet50V2']
         #model_names = ['MobileNetV2']
-        model_names = ['DenseNet121']
+        #model_names = ['DenseNet121']
         compilation_jobs = {}
         packaging_jobs = {}
 
@@ -36,8 +34,6 @@ class TestFunction(unittest.TestCase):
             model = Model(self.BUCKET_NAME, self.SERVICE_ROLE_ARN)
             model_class = getattr(tf.keras.applications, model_name)
             model_uri, model_input_name, model_input_shape = model.export_model(model_class, model_name)
-
-            input_name = model_input.get('name')
             job = model.compile_model(model_uri,model_input_name,model_input_shape)
             logger.info('Input name: {}'.format(model_input_name))
             logger.info('Input shape: {}'.format(model_input_shape))

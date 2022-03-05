@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nvcr.io/nvidia/tensorflow:21.05-tf1-py3
+FROM nvcr.io/nvidia/tensorflow:22.02-tf2-py3
 WORKDIR /app
 ENV AWS_DEFAULT_REGION=us-west-2
 

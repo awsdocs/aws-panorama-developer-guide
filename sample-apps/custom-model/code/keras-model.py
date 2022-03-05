@@ -32,15 +32,12 @@ class KerasModel():
 
     def compile(self, model_name='DenseNet121'):
         """Compiles a Keras application model."""
-        #model_names = [model[0] for model in getmembers(tf.keras.applications, isfunction)]
-        compilation_jobs = {}
-        packaging_jobs = {}
         # Export model
         model = Model(self.BUCKET_NAME, self.SERVICE_ROLE_ARN)
         model_class = getattr(tf.keras.applications, model_name)
         model_uri, model_input_name, model_input_shape = model.export_model(model_class, model_name)
         # Compile model
-        compilation_job = model.compile_model(model_uri,model_input_name,model_input_shape)
+        compilation_job = model.compile_model(model_uri, model_input_name, model_input_shape)
         logger.info('Input name: {}'.format(model_input_name))
         logger.info('Input shape: {}'.format(model_input_shape))
         with open('model-uri.txt', 'w') as f:

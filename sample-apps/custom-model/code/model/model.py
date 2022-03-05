@@ -3,7 +3,6 @@ import os
 import logging
 
 import boto3
-import json
 import os
 from pathlib import Path
 import shutil
@@ -66,7 +65,8 @@ class Model:
                 InputConfig={
                     'S3Uri': s3_uri,
                     'DataInputConfig': MODEL_INPUT_SHAPE,
-                    'Framework': framework
+                    'Framework': framework,
+                    'FrameworkVersion': '2.4'
                 },
                 OutputConfig={
                     'S3OutputLocation': COMPILED_MODEL_FOLDER_URI,
@@ -81,10 +81,9 @@ class Model:
 
     def package_model(self, model_name, compilation_job):
         """Packages a model with Amazon Sagemaker Neo."""
-        PACKAGING_JOB=compilation_job+"-packaging"
-        MODEL_VERSION = "1.0"
+        PACKAGING_JOB=compilation_job+'-packaging'
+        MODEL_VERSION = '1.0'
         PACKAGED_MODEL_FOLDER_URI = 's3://{}/models-packaged'.format(self.bucket_name)
-        MODEL_PACKAGE = '{}-{}.tar.gz'.format(model_name, MODEL_VERSION)
         response = sagemaker_client.create_edge_packaging_job(
             RoleArn=self.service_role_arn,
             OutputConfig={

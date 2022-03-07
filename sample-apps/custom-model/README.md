@@ -19,7 +19,7 @@ This project uses the following software.
 - The Bash shell. For Linux and macOS, this is included by default. In Windows 10, you can install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows-integrated version of Ubuntu and Bash.
 - [The AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) v1.17 or newer.
 - [Python 3.7](https://www.python.org/downloads/) (optional)
-- [TensorFlow 1.15.5](https://www.tensorflow.org/install) (optional)
+- [TensorFlow 2.4.4](https://www.tensorflow.org/install) (optional)
 - [Docker 19.03](https://docs.docker.com/get-docker/) (optional)
 
 The project provides options for exporting models locally in a Python virtual environment or Docker container, or in Amazon EC2 on an instance that comes with Docker and TensorFlow configured for GPU access.
@@ -103,12 +103,12 @@ NVIDIA regularly updates the TensorFlow Docker image. For a list of available ve
             == TensorFlow ==
             ================
 
-            NVIDIA Release 21.11-tf2 (build 29194758)
-            TensorFlow Version 2.6.0
+            NVIDIA Release 21.05-tf2 (build 22596402)
+            TensorFlow Version 2.4.0
     root@710b1dcdb9bb:/app# python3
     >>> import tensorflow as tf
     >>> tf.__version__
-    '2.6.0'
+    '2.4.0'
     >>> from inspect import getmembers, isfunction
     >>> [model[0] for model in getmembers(tf.keras.applications, isfunction)]
     ['DenseNet121', 'DenseNet169', 'DenseNet201', 'EfficientNetB0', 'EfficientNetB1', 'EfficientNetB2', 'EfficientNetB3', 'EfficientNetB4', 'EfficientNetB5', 'EfficientNetB6', 'EfficientNetB7', 'InceptionResNetV2', 'InceptionV3', 'MobileNet', 'MobileNetV2', 'MobileNetV3Large', 'MobileNetV3Small', 'NASNetLarge', 'NASNetMobile', 'ResNet101', 'ResNet101V2', 'ResNet152', 'ResNet152V2', 'ResNet50', 'ResNet50V2', 'VGG16', 'VGG19', 'Xception']
@@ -167,7 +167,7 @@ To get a list of available models, open a Python interpreter and run the followi
     >>> import tensorflow as tf
     >>> from inspect import getmembers, isfunction
     >>> [model[0] for model in getmembers(tf.keras.applications, isfunction)]
-    ['DenseNet121', 'DenseNet169', 'DenseNet201', 'InceptionResNetV2', 'InceptionV3', 'MobileNet', 'MobileNetV2', 'NASNetLarge', 'NASNetMobile', 'ResNet101', 'ResNet101V2', 'ResNet152', 'ResNet152V2', 'ResNet50', 'ResNet50V2', 'VGG16', 'VGG19', 'Xception']
+    ['DenseNet121', 'DenseNet169', 'DenseNet201', 'EfficientNetB0', 'EfficientNetB1', 'EfficientNetB2', 'EfficientNetB3', 'EfficientNetB4', 'EfficientNetB5', 'EfficientNetB6', 'EfficientNetB7', 'InceptionResNetV2', 'InceptionV3', 'MobileNet', 'MobileNetV2', 'MobileNetV3Large', 'MobileNetV3Small', 'NASNetLarge', 'NASNetMobile', 'ResNet101', 'ResNet101V2', 'ResNet152', 'ResNet152V2', 'ResNet50', 'ResNet50V2', 'VGG16', 'VGG19', 'Xception']
 
 # Get the model
 

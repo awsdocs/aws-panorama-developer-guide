@@ -7,7 +7,7 @@
     {
         "title":
         {
-            "description": "Title of the parameter or input",
+            "description": "Title of the parameter or input or network routing rule",
             "type": "string",
             "minLength": 1,
             "maxLength": 255

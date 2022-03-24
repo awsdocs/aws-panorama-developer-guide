@@ -9,6 +9,9 @@
         },
         {
             "$ref": "requirementDevice.schema.json#"
+        },
+        {
+            "$ref": "requirementHardwareAccess.schema.json#"
         }
     ]
 }

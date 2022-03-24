@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Inference Accelerator",
+  "type": "object",
+
+  "properties":
+  {
+    "deviceType":
+    {
+      "enum":
+      [
+        "nvhost_gpu"
+      ]
+    },
+    "sharedResourcePolicy":
+    {
+      "type": "object",
+      "description": "GPU access policy for the device.",
+      "properties": {
+        "policy": {
+          "enum": [
+            "allow_all"
+          ]
+        }
+      }
+    }
+  },
+
+  "required":
+  [
+    "deviceType",
+    "sharedResourcePolicy"
+  ],
+
+  "additionalProperties": false
+}

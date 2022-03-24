@@ -50,6 +50,10 @@
             {
                 "$ref": "portOutput/port.schema.json#"
             }
+        },
+        "network":
+        {
+            "$ref": "network/network.schema.json#"
         }
     },
     "required":

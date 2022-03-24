@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hardware access requirement",
+  "type": "object",
+
+  "properties":
+  {
+    "type":
+    {
+      "enum":
+      [
+        "hardware_access"
+      ]
+    },
+    "inferenceAccelerators":
+    {
+      "description": "List of inference accelerators for the hardware_access requirement",
+      "type": "array",
+      "items":
+      {
+        "$ref": "inferenceAccelerator/inferenceAccelerator.schema.json#"
+      }
+    }
+  },
+
+  "required":
+  [
+    "type",
+    "inferenceAccelerators"
+  ],
+
+  "additionalProperties": false
+}

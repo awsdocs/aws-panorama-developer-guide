@@ -52,6 +52,16 @@
                     {
                         "$ref": "edge.schema.json#"
                     }
+                },
+
+                "networkRoutingRules":
+                {
+                    "description": "List of network routing rules",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "network/networkRoutingRule.schema.json#"
+                    }
                 }
             },
 

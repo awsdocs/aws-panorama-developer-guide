@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Node network configuration schema",
+  "type": "object",
+
+  "properties":
+  {
+    "inboundPorts": {
+      "description": "List of inbound ports",
+      "type": "array",
+      "maxItems": 10,
+      "items":
+      {
+        "$ref": "inboundPort.schema.json#"
+      }
+    }
+  },
+
+  "additionalProperties": false
+}

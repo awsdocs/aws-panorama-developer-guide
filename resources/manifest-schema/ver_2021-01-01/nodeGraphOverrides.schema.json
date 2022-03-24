@@ -41,6 +41,15 @@
                         "$ref": "node/node.schema.json#"
                     }
                 },
+                "networkRoutingRules":
+                {
+                    "description": "List of network routing rules",
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "network/networkRoutingRule.schema.json#"
+                    }
+                },
 
                 "edges":
                 {
@@ -51,6 +60,7 @@
                         "$ref": "edge.schema.json#"
                     }
                 },
+
 
                 "nodeOverrides":
                 {

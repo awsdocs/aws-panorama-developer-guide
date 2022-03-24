@@ -3,4 +3,9 @@
 bucket-nam*.txt
 out.yml
 .vscode
+*.code-workspace
 aws-panorama-sample-dev
+*.pyc
+device-id.txt
+application-id.txt
+*.local.json

@@ -1,0 +1,180 @@
+{
+    "nodeGraph": {
+        "envelopeVersion": "2021-01-01",
+        "packages": [
+            {
+                "name": "123456789012::DEBUG_SERVER",
+                "version": "1.0"
+            },
+            {
+                "name": "123456789012::SQUEEZENET_PYTORCH",
+                "version": "1.0"
+            },
+            {
+                "name": "panorama::abstract_rtsp_media_source",
+                "version": "1.0"
+            },
+            {
+                "name": "panorama::hdmi_data_sink",
+                "version": "1.0"
+            }
+        ],
+        "nodes": [
+            {
+                "name": "code_node",
+                "interface": "123456789012::DEBUG_SERVER.interface"
+            },
+            {
+                "name": "model_node",
+                "interface": "123456789012::SQUEEZENET_PYTORCH.interface"
+            },
+            {
+                "name": "camera_node",
+                "interface": "panorama::abstract_rtsp_media_source.rtsp_v1_interface",
+                "overridable": true,
+                "overrideMandatory": true,
+                "decorator": {
+                    "title": "IP camera",
+                    "description": "Choose a camera stream."
+                }
+            },
+            {
+                "name": "output_node",
+                "interface": "panorama::hdmi_data_sink.hdmi0"
+            },
+            {
+                "name": "detection_threshold",
+                "interface": "float32",
+                "value": 20.0,
+                "overridable": true,
+                "decorator": {
+                    "title": "Threshold",
+                    "description": "The minimum confidence percentage for a positive classification."
+                }
+            },
+            {
+                "name": "region",
+                "interface": "string",
+                "value": "us-east-1",
+                "overridable": true,
+                "decorator": {
+                    "title": "Region",
+                    "description": "Region used by AWS SDK for Python."
+                }
+            },
+            {
+                "name": "device_id",
+                "interface": "string",
+                "value": "1234ABCD",
+                "overridable": true,
+                "decorator": {
+                    "title": "Device name",
+                    "description": "Name of the device for application metrics."
+                }
+            },
+            {
+                "name": "device_ip",
+                "interface": "string",
+                "value": "0.0.0.0",
+                "overridable": true,
+                "decorator": {
+                    "title": "Device IP address",
+                    "description": "The device's external IP address, to test inbound connections."
+                }
+            },
+            {
+                "name": "log_level",
+                "interface": "string",
+                "value": "INFO",
+                "overridable": true,
+                "decorator": {
+                    "title": "Logging level",
+                    "description": "DEBUG, INFO, WARNING, ERROR, or CRITICAL."
+                }
+            },
+            {
+                "name": "model_input_name",
+                "interface": "string",
+                "value": "data",
+                "overridable": true,
+                "decorator": {
+                    "title": "Model input name",
+                    "description": "The name of the input shape sent to the the model."
+                }
+            },
+            {
+                "name": "model_input_width",
+                "interface": "int32",
+                "value": 224,
+                "overridable": true,
+                "decorator": {
+                    "title": "Model input width",
+                    "description": "The width of images processed by the model."
+                }
+            },
+            {
+                "name": "model_input_order",
+                "interface": "string",
+                "value": "CHANNEL_FIRST",
+                "overridable": true,
+                "decorator": {
+                    "title": "Model input order",
+                    "description": "The input order for image data (CHANNEL_FIRST or CHANNEL_LAST)."
+                }
+            }
+        ],
+        "edges": [
+            {
+                "producer": "camera_node.video_out",
+                "consumer": "code_node.video_in"
+            },
+            {
+                "producer": "code_node.video_out",
+                "consumer": "output_node.video_in"
+            },
+            {
+                "producer": "detection_threshold",
+                "consumer": "code_node.threshold"
+            },
+            {
+                "producer": "region",
+                "consumer": "code_node.region"
+            },
+            {
+                "producer": "device_id",
+                "consumer": "code_node.device_id"
+            },
+            {
+                "producer": "device_ip",
+                "consumer": "code_node.device_ip"
+            },
+            {
+                "producer": "log_level",
+                "consumer": "code_node.log_level"
+            },
+            {
+                "producer": "model_input_name",
+                "consumer": "code_node.model_input_name"
+            },
+            {
+                "producer": "model_input_width",
+                "consumer": "code_node.model_input_width"
+            },
+            {
+                "producer": "model_input_order",
+                "consumer": "code_node.model_input_order"
+            }
+        ],
+        "networkRoutingRules": [
+            {
+                "node": "code_node",
+                "containerPort": 80,
+                "hostPort": 8080,
+                "decorator": {
+                    "title": "Listener port 8080",
+                    "description": "Container monitoring and debug."
+                }
+            }
+        ]
+    }
+}

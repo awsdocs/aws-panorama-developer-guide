@@ -1,0 +1,69 @@
+{
+    "nodePackage": {
+        "envelopeVersion": "2021-01-01",
+        "name": "DEBUG_SERVER",
+        "version": "1.0",
+        "description": "Computer vision application code.",
+        "assets": [],
+        "interfaces": [
+            {
+                "name": "interface",
+                "category": "business_logic",
+                "asset": "code_asset",
+                "inputs": [
+                    {
+                        "name": "video_in",
+                        "type": "media"
+                    },
+                    {
+                        "name": "threshold",
+                        "type": "float32"
+                    },
+                    {
+                        "name": "region",
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_ip",
+                        "type": "string"
+                    },
+                    {
+                        "name": "log_level",
+                        "type": "string"
+                    },
+                    {
+                        "name": "model_input_name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "model_input_width",
+                        "type": "int32"
+                    },
+                    {
+                        "name": "model_input_order",
+                        "type": "string"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "description": "Video stream output",
+                        "name": "video_out",
+                        "type": "media"
+                    }
+                ],
+                "network": {
+                    "inboundPorts": [
+                        {
+                            "port": 80,
+                            "description": "http"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

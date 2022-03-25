@@ -2,6 +2,26 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, and the application SDK.
 
+# 4.3.45
+
+**Release date**: 2022-03-24
+
+**Type**: Required
+
+## GPU access
+
+You can access the graphics processor (GPU) on the device to use GPU-accelerated libraries, or run machine learning models in your application code. To turn on GPU access, you add GPU access as a requirement to the package configuration after building your application code container.
+
+For more information, see [Using the GPU](https://docs.aws.amazon.com/panorama/latest/dev/applications-gpuaccess.html).
+
+## Inbound ports
+
+You can monitor or debug applications locally by running an HTTP server or other listener alongside your application code. To serve external traffic, you map ports on the device to ports on your application container.
+
+A new sample application, [debug-server](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/sample-apps/debug-server), demonstrates how to use inbound ports to serve HTTP traffic. It uses multithreading to run application code, an HTTP server, and an HTTP client simultaneously. After running for a few minutes, the application sends an HTTP request to the device over the local network that signals it to restart the application code.
+
+For more information, see [Serving inbound traffic](https://docs.aws.amazon.com/panorama/latest/dev/applications-gpuaccess.html).
+
 # 4.3.35
 
 **Release date**: 2022-02-22

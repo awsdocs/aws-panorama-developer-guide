@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Resources for an AWS Panorama application.
+Resources:
+  runtimeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - panorama.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: cloudwatch-putmetrics
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: 'cloudwatch:PutMetricData'
+                Resource: '*'
+      Path: /service-role/
+Outputs:
+  roleName:
+    Description: The application runtime role's name
+    Value: !Ref runtimeRole
+  roleArn:
+    Description: The application runtime role's ARN
+    Value: !GetAtt runtimeRole.Arn

@@ -1,0 +1,41 @@
+{
+    "nodePackage": {
+        "envelopeVersion": "2021-01-01",
+        "name": "SQUEEZENET_PYTORCH",
+        "version": "1.0",
+        "description": "Compact classification model",
+        "assets": [
+            {
+                "name": "model_asset",
+                "implementations": [
+                    {
+                        "type": "model",
+                        "assetUri": "fd1aef48acc3350a5c2673adacffab06af54c3f14da6fe4a8be24cac687a386e.tar.gz",
+                        "descriptorUri": "82b31405c50044128c67380afc768ec84c507394b9f9dfac031aad15ad9ad71d.json"
+                    }
+                ]
+            }
+        ],
+        "interfaces": [
+            {
+                "name": "interface",
+                "category": "ml_model",
+                "asset": "model_asset",
+                "inputs": [
+                    {
+                        "description": "Video stream input",
+                        "name": "video_in",
+                        "type": "media"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "description": "Video stream output",
+                        "name": "video_out",
+                        "type": "media"
+                    }
+                ]
+            }
+        ]
+    }
+}

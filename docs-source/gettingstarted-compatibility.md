@@ -10,14 +10,14 @@ To process video and get images to send to a model, the AWS Panorama Appliance c
 
 ## Supported models<a name="gettingstarted-compatibility-models"></a>
 
-When you build an application for AWS Panorama, you provide a machine learning model that the application uses for computer vision\. You can use pre\-built and pre\-trained models provided by model frameworks, [a sample model](applications-models.md#applications-models-sample), or a model that you build and train yourself\.
+When you build an application for AWS Panorama, you provide a machine learning model that the application uses for computer vision\. You can use pre\-built and pre\-trained models provided by model frameworks, [a sample model](gettingstarted-sample.md#gettingstarted-sample-model), or a model that you build and train yourself\.
 
 **Note**  
 For a list of pre\-built models that have been tested with AWS Panorama, see [Model compatibility](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/model-compatibility.md)\.
 
 When you deploy an application, AWS Panorama uses the SageMaker Neo compiler to compile your computer vision model\. SageMaker Neo is a compiler that optimizes models to run efficiently on a target platform, which can be an instance in Amazon Elastic Compute Cloud \(Amazon EC2\), or an edge device such as the AWS Panorama Appliance\.
 
-AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\. When you build your own model, you can use the framework versions listed in the [SageMaker Neo release notes](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/)\.
+AWS Panorama supports the versions of PyTorch, Apache MXNet, and TensorFlow that are supported for edge devices by SageMaker Neo\. When you build your own model, you can use the framework versions listed in the [SageMaker Neo release notes](https://aws.amazon.com/releasenotes/sagemaker-neo-supported-frameworks-and-operators/)\. In SageMaker, you can use the built\-in [image classification algorithm](https://docs.aws.amazon.com/sagemaker/latest/dg/image-classification.html)\.
 
 For more information about using models in AWS Panorama, see [Computer vision models](applications-models.md)\.
 

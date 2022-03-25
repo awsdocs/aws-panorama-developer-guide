@@ -22,11 +22,13 @@ Applications run on the AWS Panorama Appliance to perform computer vision tasks 
 
 To build and deploy applications, you use the AWS Panorama Application CLI\. The AWS Panorama Application CLI is a command\-line tool that generates default application folders and configuration files, builds containers with Docker, and uploads assets\.
 
-For more information, see [Building AWS Panorama applications](panorama-applications.md)\.
+For more information, see [Managing AWS Panorama applications](panorama-applications.md)\.
 
 ## Nodes<a name="gettingstarted-concepts-node"></a>
 
 An application comprises multiple components called *nodes*, which represent inputs, outputs, models, and code\. A node can be configuration only \(inputs and outputs\), or include artifacts \(models and code\)\. An application's nodes are bundled in *node packages* that you upload to an Amazon S3 access point, where the AWS Panorama Appliance can access them\. An *application manifest* is a configuration file that defines connections between the nodes\.
+
+For more information, see [Application nodes](applications-nodes.md)\.
 
 ## Models<a name="gettingstarted-concepts-model"></a>
 

@@ -9,3 +9,4 @@ For help troubleshooting specific errors, see [Troubleshooting](panorama-trouble
 **Topics**
 + [Monitoring in the AWS Panorama console](monitoring-console.md)
 + [Viewing AWS Panorama logs](monitoring-logging.md)
++ [Monitoring appliances and applications with Amazon CloudWatch](monitoring-metrics.md)

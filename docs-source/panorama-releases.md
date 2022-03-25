@@ -4,6 +4,8 @@ The following table shows when features and software updates were released for t
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Appliance software update](#panorama-releases) | Version 4\.3\.45 adds support for [GPU access](https://docs.aws.amazon.com/panorama/latest/dev/applications-gpuaccess.html) and [inbound ports](https://docs.aws.amazon.com/panorama/latest/dev/applications-ports.html)\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | March 24, 2022 | 
+| [Appliance software update](#panorama-releases) | Version 4\.3\.35 improves security and performance\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | February 22, 2022 | 
 | [Updated managed policies](#panorama-releases) | AWS Identity and Access Management managed policies for AWS Panorama have been updated\. For details, see [AWS managed policies](https://docs.aws.amazon.com/panorama/latest/dev/security-iam-awsmanpol.html)\. | January 13, 2022 | 
 | [Provisioning logs](#panorama-releases) | With appliance software 4\.3\.23, the appliance writes logs to a USB drive during provisioning\. For more information, see [Logs](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html)\. | January 13, 2022 | 
 | [NTP server configuration](#panorama-releases) | You can now configure the AWS Panorama Appliance to use a specific NTP server for clock syncronization\. Configure NTP settings during appliance setup with other networking settings\. For more information, see [Setting up](https://docs.aws.amazon.com/panorama/latest/dev/gettingstarted-setup.html)\. | January 13, 2022 | 

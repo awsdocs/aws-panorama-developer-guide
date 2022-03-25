@@ -5,40 +5,14 @@ A *computer vision model* is a software program that is trained to detect object
 **Note**  
 For a list of pre\-built models that have been tested with AWS Panorama, see [Model compatibility](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/model-compatibility.md)\.
 
-You can use a [sample model](#applications-models-sample) or build your own\. A model can detect multiple objects in an image, and each result can have multiple outputs, such as the name of a class, a confidence rating, and a bounding box\. You can train a model outside of AWS and store it in Amazon Simple Storage Service \(Amazon S3\), or train it with Amazon SageMaker\. To build a model in SageMaker, you can use the built\-in [image classification algorithm](https://docs.aws.amazon.com/sagemaker/latest/dg/image-classification.html)\. AWS Panorama can reference the training job to find the trained model that it created in Amazon S3\.
-
 **Topics**
-+ [Sample model](#applications-models-sample)
-+ [Building a custom model](#applications-models-custom)
 + [Using models in code](#applications-models-using)
++ [Building a custom model](#applications-models-custom)
 + [Training models](#applications-models-training)
 
-## Sample model<a name="applications-models-sample"></a>
-
-This guide uses a sample object detection model\. The sample model uses the object detection algorithm to identify multiple objects in an image\. For each object, the model outputs the type of object, a confidence score, and coordinates of a bounding box\. It uses the Single Shot multibox detector \(SSD\) framework and the ResNet base network\.
-
-****
-+ [Download the sample model](https://github.com/awsdocs/aws-panorama-developer-guide/releases/download/v0.1-preview/ssd_512_resnet50_v1_voc.tar.gz)
-
-## Building a custom model<a name="applications-models-custom"></a>
-
-You can use models that you build in PyTorch, Apache MXNet, and TensorFlow in AWS Panorama applications\. As an alternative to building and training models in SageMaker, you can use a trained model or build and train your own model with a supported framework and export it in a local environment or in Amazon EC2\.
-
-**Note**  
-For details about the framework versions and file formats supported by SageMaker Neo, see [Supported Frameworks](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html) in the Amazon SageMaker Developer Guide\.
-
-The repository for this guide provides a sample application that demonstrates this workflow for a Keras model in TensorFlow `SavedModel` format\. It uses TensorFlow 1\.15 and can run locally in a virtual environment or in a Docker container\. The sample app also includes templates and scripts for building the model on an Amazon EC2 instance\.
-
-****
-+ [Custom model sample application](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/custom-model)
-
-![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/sample-custom-model.png)
-
-AWS Panorama uses SageMaker Neo to compile models for use on the AWS Panorama Appliance\. For each framework, use the [format that's supported by SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-compilation-preparing-model.html), and package the model in a `.tar.gz` archive\.
-
-For more information, see [Compile and Deploy Models with Neo ](https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html) in the Amazon SageMaker Developer Guide\.
-
 ## Using models in code<a name="applications-models-using"></a>
+
+A model returns one or more results, which can include probabilities for detected classes, location information, and other data\.The following example shows how to run inference on an image from a video stream and send the model's output to a processing function\.
 
 **Example [application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/application.py) – Inference**  
 
@@ -59,7 +33,7 @@ For more information, see [Compile and Deploy Models with Neo ](https://docs.aws
         self.process_results(inference_results, stream)
 ```
 
-A model returns one or more results, which can include probabilities for detected classes, location information, and other data\. The following example shows a function that processes results from basic classification model\. The model returns an array of probabilities, which is the first and only value in the results array\. The application code finds the values with the highest probabilities and maps them to labels in a resource file that's loaded during initialization\.
+The following example shows a function that processes results from basic classification model\. The sample model returns an array of probabilities, which is the first and only value in the results array\.
 
 **Example [application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/application.py) – Processing results**  
 
@@ -81,6 +55,26 @@ A model returns one or more results, which can include probabilities for detecte
             label = 'Class [%s], with probability %.3f.'% (self.classes[indexes[j]], class_tuple[0][indexes[j]])
             stream.add_label(label, 0.1, 0.1 + 0.1*j)
 ```
+
+The application code finds the values with the highest probabilities and maps them to labels in a resource file that's loaded during initialization\.
+
+## Building a custom model<a name="applications-models-custom"></a>
+
+You can use models that you build in PyTorch, Apache MXNet, and TensorFlow in AWS Panorama applications\. As an alternative to building and training models in SageMaker, you can use a trained model or build and train your own model with a supported framework and export it in a local environment or in Amazon EC2\.
+
+**Note**  
+For details about the framework versions and file formats supported by SageMaker Neo, see [Supported Frameworks](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html) in the Amazon SageMaker Developer Guide\.
+
+The repository for this guide provides a sample application that demonstrates this workflow for a Keras model in TensorFlow `SavedModel` format\. It uses TensorFlow 1\.15 and can run locally in a virtual environment or in a Docker container\. The sample app also includes templates and scripts for building the model on an Amazon EC2 instance\.
+
+****
++ [Custom model sample application](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/custom-model)
+
+![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/sample-custom-model.png)
+
+AWS Panorama uses SageMaker Neo to compile models for use on the AWS Panorama Appliance\. For each framework, use the [format that's supported by SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-compilation-preparing-model.html), and package the model in a `.tar.gz` archive\.
+
+For more information, see [Compile and deploy models with Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html) in the Amazon SageMaker Developer Guide\.
 
 ## Training models<a name="applications-models-training"></a>
 

@@ -2,6 +2,12 @@
 
 Run these scripts from any directory.
 
+## provision-device.sh
+
+Provision a device.
+
+    $ ./provision-device.sh <device-name>
+
 ## register-camera.sh
 
 Register a camera.
@@ -53,3 +59,5 @@ Re-add the model to the application after updating the descriptor file. Before u
 ## view-logs.sh
 
 View logs for the current application instance (from `application-id.txt`).
+
+    my-app$ ./view-logs.sh

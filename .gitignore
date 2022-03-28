@@ -9,3 +9,6 @@ aws-panorama-sample-dev
 device-id.txt
 application-id.txt
 *.local.json
+samplify.sh
+push.sh
+view-logs.sh

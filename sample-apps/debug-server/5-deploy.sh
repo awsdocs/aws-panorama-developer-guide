@@ -26,6 +26,7 @@ else
     read D_INDEX
     echo "Deploying to device ${DEVICE_IDS[${D_INDEX}]}"
     echo -n ${DEVICE_IDS[${D_INDEX}]} > device-id.txt
+    DEVICE_ID=$(cat device-id.txt)
 fi
 # existing application instance id
 if [ -f "application-id.txt" ]; then

@@ -1,4 +1,5 @@
 #!/bin/bash
 set -eo pipefail
+CODE_PACKAGE=DEBUG_SERVER
 ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account')
-panorama-cli build-container --container-asset-name code_asset --package-path packages/${ACCOUNT_ID}-DEBUG_SERVER-1.0
+panorama-cli build-container --container-asset-name code_asset --package-path packages/${ACCOUNT_ID}-${CODE_PACKAGE}-1.0

@@ -1,5 +1,5 @@
 #!/bin/bash
 set -eo pipefail
-TEMPLATE_NAME=aws-panorama-sample
+TEMPLATE_NAME=${PWD##*/}
 STACK_NAME=panorama-$TEMPLATE_NAME
 aws cloudformation deploy --template-file $TEMPLATE_NAME.yml --stack-name $STACK_NAME --capabilities CAPABILITY_NAMED_IAM

@@ -7,7 +7,7 @@
                 "version": "1.0"
             },
             {
-                "name": "123456789012::SQUEEZENET_PYTORCH_V1",
+                "name": "123456789012::SQUEEZENET_PYTORCH",
                 "version": "1.0"
             },
             {
@@ -26,7 +26,7 @@
             },
             {
                 "name": "model_node",
-                "interface": "123456789012::SQUEEZENET_PYTORCH_V1.interface"
+                "interface": "123456789012::SQUEEZENET_PYTORCH.interface"
             },
             {
                 "name": "camera_node",

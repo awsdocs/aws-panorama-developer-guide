@@ -27,3 +27,6 @@ Outputs:
   roleName:
     Description: The application runtime role's name
     Value: !Ref runtimeRole
+  roleArn:
+    Description: The application runtime role's ARN
+    Value: !GetAtt runtimeRole.Arn

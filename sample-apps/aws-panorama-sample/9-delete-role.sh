@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-TEMPLATE=aws-panorama-sample
+TEMPLATE=${PWD##*/}
 STACK_NAME=panorama-$TEMPLATE
 while true; do
     read -p "Delete stack $STACK_NAME? (y/n)" response

@@ -295,7 +295,7 @@ class Application():
                 logger.exception('Exception on client thread.')
         # stop signal received
         logger.info("EXITING CLIENT THREAD")
-    # Interrupter processing loop
+    # Interrupt processing loop
     def stop(self):
         """Signal application to stop processing."""
         logger.info("STOPPING APPLICATION")

@@ -3,11 +3,12 @@
 The AWS Panorama Application SDK defines the following classes. 
 
 **Classes**
-+ [node](#applications-sdk-node)
-+ [port](#applications-sdk-port)
-+ [media](#applications-sdk-media)
++ [node](#node)
++ [port](#port)
++ [media](#media)
 
-#### CLASS: NODE
+# node
+
 Node is the class constructor for any AWS Panorama application. Your application code is contained in a class that inherits from `panoramasdk.node`. 
 
 **node.node()**
@@ -146,7 +147,7 @@ def process_streams(self):
     self.outputs.video_out.put(streams)
 ```
 
-#### CLASS: PORT
+# port
 
 Manages an instance of a port of a node and used to read and write pipeline data 
 
@@ -192,7 +193,7 @@ Pipeline data will be dequeued and returned as a media object.
 media_object = self.inputs.video_in.get()
 ```
     
-#### CLASS: MEDIA
+# media
 
 Built-in values:
 | Key | Type | Access | Description|

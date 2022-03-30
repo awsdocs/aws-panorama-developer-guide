@@ -62,6 +62,8 @@ class Application(panoramasdk.node):
         # Loop through attached video streams
         streams = self.inputs.video_in.get()
         for stream in streams:
+            if stream.is_cached:
+                return
             self.process_media(stream)
         # Log metrics
         frame_time = (time.time() - frame_start) * 1000

@@ -75,6 +75,8 @@ class Application():
         # Loop through attached video streams
         self.streams = self.panorama.inputs.video_in.get()
         for stream in self.streams:
+            if stream.is_cached:
+                return
             self.process_media(stream)
         # Log metrics
         self.frame_time_current = (time.time() - frame_start) * 1000

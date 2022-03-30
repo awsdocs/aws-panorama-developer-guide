@@ -1,8 +1,24 @@
 # AWS Panorama Appliance software change log
 
-The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, and the application SDK.
+The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
-# 4.3.45
+# Application base image 1.1.0
+
+Version 1.1 of the application SDK adds `is_cached` and `stream_id` attributes to the `media` type.
+
+Improved support for the `threading` library. The application SDK doesn't block other threads while waiting for inference with `node.call`.
+
+**Release date**: 2022-03-29
+
+**Application SDK**: 1.1.0
+
+**Python** : 3.7.5
+
+**NumPy** : 1.18.2
+
+**Reference docs**: [resources/applicationsdk-reference.md](/resources/applicationsdk-reference.md)
+
+# Appliance software 4.3.45
 
 **Release date**: 2022-03-24
 
@@ -22,7 +38,7 @@ A new sample application, [debug-server](https://github.com/awsdocs/aws-panorama
 
 For more information, see [Serving inbound traffic](https://docs.aws.amazon.com/panorama/latest/dev/applications-gpuaccess.html).
 
-# 4.3.35
+# Appliance software 4.3.35
 
 **Release date**: 2022-02-22
 
@@ -34,7 +50,7 @@ Removed unused packages to reduce image size and complexity.
 
 Applied fix for [CVE-2021-4034](https://nvd.nist.gov/vuln/detail/CVE-2021-4034).
 
-# 4.3.23
+# Appliance software 4.3.23
 
 **Release date**: 2022-01-13
 
@@ -71,7 +87,7 @@ Fixed an issue that sometimes caused the appliance software to crash.
 
 **Application SDK**: 4.3.23
 
-# 4.3.4
+# Appliance software 4.3.4
 
 **Release date**: 2021-11-08
 
@@ -95,25 +111,23 @@ Model descriptor: [packages/123456789012-SQUEEZENET_PYTORCH_V1-1.0/descriptor.js
 
 Update script: [update-model-config.sh](/sample-apps/aws-panorama-sample/update-model-config.sh)
 
-## Libraries
-
-**Application SDK**: 1.0.0
-
-**Python** (application base image): 3.7.5
-
-**NumPy** (application base image): 1.18.2
-
 # 4.1.38
 
 **Release date**: 2021-10-20
 
 **Type**: Mandatory
 
-## Application SDK
+Adds support for application base image v1.0.
 
-Version 1.0.0 of the application SDK replaces the application SDK from preview and changes the programming model for applications. If you have an application from preview, see the migration guide for more information.
+# Application base image 1.0.0
 
-**Version**: 1.0.0
+Version 1.0 of the application SDK replaces the application SDK from preview and changes the programming model for applications. If you have an application from preview, see the migration guide for more information.
+
+**Application SDK**: 1.0.0
+
+**Python** : 3.7.5
+
+**NumPy** : 1.18.2
 
 **Reference docs**: [resources/applicationsdk-reference.md](/resources/applicationsdk-reference.md)
 

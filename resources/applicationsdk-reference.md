@@ -198,9 +198,11 @@ media_object = self.inputs.video_in.get()
 Built-in values:
 | Key | Type | Access | Description|
 | ------ | ------ | ------ | ------ |
-| stream_uri | string | read only | Source ID or name/URL |
-| time_stamp | tuple | read only | Original frame timestamp as it comes from the source (sec, µsec) |
 | image | numpy_array  | read only | Numpy array representation of the image frame |
+| is_cached | boolean | read only | Indicates if the media has already been retrieved |
+| stream_id | string | read only | Camera data source name |
+| stream_uri | string | read only | Camera stream URL |
+| time_stamp | tuple | read only | Original frame timestamp as it comes from the source (sec, µsec) |
 
 **media.add_label(text, x, y)**
 

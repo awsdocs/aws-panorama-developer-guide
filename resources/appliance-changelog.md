@@ -8,6 +8,8 @@ Version 1.1 of the application SDK adds `is_cached` and `stream_id` attributes t
 
 Improved support for the `threading` library. The application SDK doesn't block other threads while waiting for inference with `node.call`.
 
+Removed unused components to reduce size of application container images.
+
 **Release date**: 2022-03-29
 
 **Application SDK**: 1.1.0

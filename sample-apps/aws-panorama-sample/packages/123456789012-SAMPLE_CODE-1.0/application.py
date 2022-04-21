@@ -163,21 +163,29 @@ class Application(panoramasdk.node):
 def preprocess(img, width):
     """Resizes and normalizes a frame of video."""
     resized = cv2.resize(img, (width, width))
-    mean = [0.485, 0.456, 0.406]
-    std = [0.229, 0.224, 0.225]
+    channels = {
+        'R': {
+            'mean': 0.485,
+            'std' : 0.229
+        },
+        'G': {
+            'mean': 0.456,
+            'std' : 0.224
+        },
+        'B': {
+            'mean': 0.406,
+            'std' : 0.225
+        }
+    }
     img = resized.astype(np.float32) / 255.
-    img_a = img[:, :, 0]
-    img_b = img[:, :, 1]
-    img_c = img[:, :, 2]
-    # normalizing per channel data:
-    img_a = (img_a - mean[0]) / std[0]
-    img_b = (img_b - mean[1]) / std[1]
-    img_c = (img_c - mean[2]) / std[2]
-    # putting the 3 channels back together:
+    img_r = img[:, :, 0]
+    img_g = img[:, :, 1]
+    img_b = img[:, :, 2]
+    # normalize each channel and flatten
     x1 = [[[], [], []]]
-    x1[0][0] = img_a
-    x1[0][1] = img_b
-    x1[0][2] = img_c
+    x1[0][0] = (img_r - channels['R']['mean']) / channels['R']['std']
+    x1[0][1] = (img_g - channels['G']['mean']) / channels['G']['std']
+    x1[0][2] = (img_b - channels['B']['mean']) / channels['B']['std']
     return np.asarray(x1)
 
 def get_logger(name=__name__,level=logging.INFO):

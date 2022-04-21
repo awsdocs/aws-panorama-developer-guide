@@ -160,7 +160,7 @@ class Application(panoramasdk.node):
         except AttributeError:
             logger.warning("CloudWatch client is not available.")
 
-def preprocess(img, width):
+def preprocess(img, width, color_order_out='RGB', color_order_in='BGR'):
     """Resizes and normalizes a frame of video."""
     resized = cv2.resize(img, (width, width))
     channels = {
@@ -178,14 +178,14 @@ def preprocess(img, width):
         }
     }
     img = resized.astype(np.float32) / 255.
-    img_r = img[:, :, 0]
-    img_g = img[:, :, 1]
-    img_b = img[:, :, 2]
+    img_r = img[:, :, color_order_in.index('R')]
+    img_g = img[:, :, color_order_in.index('G')]
+    img_b = img[:, :, color_order_in.index('B')]
     # normalize each channel and flatten
     x1 = [[[], [], []]]
-    x1[0][0] = (img_r - channels['R']['mean']) / channels['R']['std']
-    x1[0][1] = (img_g - channels['G']['mean']) / channels['G']['std']
-    x1[0][2] = (img_b - channels['B']['mean']) / channels['B']['std']
+    x1[0][color_order_out.index('R')] = (img_r - channels['R']['mean']) / channels['R']['std']
+    x1[0][color_order_out.index('G')] = (img_g - channels['G']['mean']) / channels['G']['std']
+    x1[0][color_order_out.index('B')] = (img_b - channels['B']['mean']) / channels['B']['std']
     return np.asarray(x1)
 
 def get_logger(name=__name__,level=logging.INFO):

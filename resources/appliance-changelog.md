@@ -2,6 +2,18 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Appliance software 4.3.55
+
+**Release date**: 2022-05-05
+
+**Type**: Optional
+
+## Logs
+
+The `console_output` log now rotates automatically and uses a maximum of 11 MB of storage on the appliance.
+
+For more information, see [Viewing AWS Panorama logs](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html).
+
 # Application base image 1.1.0
 
 Version 1.1 of the application SDK adds `is_cached` and `stream_id` attributes to the `media` type.

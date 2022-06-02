@@ -1,6 +1,6 @@
 # Deploying the AWS Panorama sample application<a name="gettingstarted-deploy"></a>
 
-After you've [set up your AWS Panorama Appliance](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you import a sample application with the AWS Panorama Application CLI and deploy it with the AWS Panorama console\.
+After you've [set up your AWS Panorama Appliance or compatible device](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you import a sample application with the AWS Panorama Application CLI and deploy it with the AWS Panorama console\.
 
 The sample application uses a machine learning model to detect people in frames of video from a network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
 
@@ -25,7 +25,7 @@ this is output
 
 For long commands, we use an escape character \(`\`\) to split a command over multiple lines\.
 
-On Linux and macOS, use your preferred shell and package manager\. On Windows 10, you can [install the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows\-integrated version of Ubuntu and Bash\.
+On Linux and macOS, use your preferred shell and package manager\. On Windows 10, you can [install the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Windows\-integrated version of Ubuntu and Bash\. For help setting up a development environment in Windows, see [Setting up a development environment in Windows](applications-devenvwindows.md)\.
 
 You use Python to develop AWS Panorama applications and install tools with pip, Python's package manager\. If you don't already have Python, [install the latest version](https://www.python.org/downloads/)\. If you have Python 3 but not pip, install pip with your operating system's package manager, or install a new version of Python, which comes with pip\.
 
@@ -69,7 +69,7 @@ Registered code with patch version 11fd7001cb31ea63df6aaed297d600a5ecf641a987044
 
 ## Deploy the application<a name="gettingstarted-deploy-deploy"></a>
 
-Use the AWS Panorama console to deploy the application to your AWS Panorama Appliance\.
+Use the AWS Panorama console to deploy the application to your appliance\.
 
 **To deploy the application**
 

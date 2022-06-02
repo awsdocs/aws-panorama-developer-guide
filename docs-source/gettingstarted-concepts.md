@@ -1,9 +1,10 @@
 # AWS Panorama concepts<a name="gettingstarted-concepts"></a>
 
-In AWS Panorama, you create computer vision applications and deploy them to the AWS Panorama Appliance to analyze video streams from network cameras\. You write application code in Python and build application containers with Docker\. You use the AWS Panorama Application CLI to import machine learning models locally or from Amazon Simple Storage Service \(Amazon S3\)\. Applications use the AWS Panorama Application SDK to receive video input from a camera and interact with a model\.
+In AWS Panorama, you create computer vision applications and deploy them to the AWS Panorama Appliance or a compatible device to analyze video streams from network cameras\. You write application code in Python and build application containers with Docker\. You use the AWS Panorama Application CLI to import machine learning models locally or from Amazon Simple Storage Service \(Amazon S3\)\. Applications use the AWS Panorama Application SDK to receive video input from a camera and interact with a model\.
 
 **Topics**
 + [The AWS Panorama Appliance](#gettingstarted-concepts-appliance)
++ [Compatible devices](#gettingstarted-concepts-devices)
 + [Applications](#gettingstarted-concepts-application)
 + [Nodes](#gettingstarted-concepts-node)
 + [Models](#gettingstarted-concepts-model)
@@ -12,9 +13,18 @@ In AWS Panorama, you create computer vision applications and deploy them to the 
 
 The AWS Panorama Appliance is the hardware that runs your applications\. You use the AWS Panorama console to register an appliance, update its software, and deploy applications to it\. The software on the AWS Panorama Appliance connects to camera streams, sends frames of video to your application, and displays video output on an attached display\.
 
-The AWS Panorama Appliance is an *edge device*\. Instead of sending images to the AWS Cloud for processing, it runs applications locally on optimized hardware\. This enables you to analyze video in real time and process the results locally\. The appliance requires an internet connection to report its status, to upload logs, and to perform software updates and deployments\.
+The AWS Panorama Appliance is an *edge device* [powered by Nvidia Jetson AGX Xavier](gettingstarted-hardware.md)\. Instead of sending images to the AWS Cloud for processing, it runs applications locally on optimized hardware\. This enables you to analyze video in real time and process the results locally\. The appliance requires an internet connection to report its status, to upload logs, and to perform software updates and deployments\.
 
 For more information, see [Managing the AWS Panorama Appliance](panorama-appliance.md)\.
+
+## Compatible devices<a name="gettingstarted-concepts-devices"></a>
+
+In addition to the AWS Panorama Appliance, AWS Panorama supports compatible devices from AWS Partners\. Compatible devices support the same features as the AWS Panorama Appliance\. You register and manage compatible devices with the AWS Panorama console and API, and build and deploy applications in the same way\.
+
+****
++ [Lenovo ThinkEdge® SE70](https://techtoday.lenovo.com/us/en/solutions/smb/thinkedge) – Powered by Nvidia Jetson Xavier NX
+
+The content and sample applications in this guide are developed with the AWS Panorama Appliance\. For more information about specific hardware and software features for your device, refer to the manufacturer's documentation\.
 
 ## Applications<a name="gettingstarted-concepts-application"></a>
 

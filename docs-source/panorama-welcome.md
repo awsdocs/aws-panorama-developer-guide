@@ -1,8 +1,13 @@
 # What is AWS Panorama?<a name="panorama-welcome"></a>
 
-With AWS Panorama, you can build computer vision applications for your business or customers without purchasing special cameras\. By using the AWS Panorama Appliance with your existing network cameras, you can run applications that use machine learning \(ML\) to collect data from video streams, output video with text and graphical overlays, and interact with other AWS services\.
+AWS Panorama is a service that brings computer vision to your on\-premises camera network\. You install the AWS Panorama Appliance or another compatible device in your datacenter, register it with AWS Panorama, and deploy computer vision applications from the cloud\. AWS Panorama works with your existing real time streaming protocol \(RTSP\) network cameras\. The appliance runs secure computer vision applications from [AWS Partners](https://aws.amazon.com//panorama/partners/), or applications that you build yourself with the AWS Panorama Application SDK\.
 
 The AWS Panorama Appliance is a compact edge appliance that uses a powerful system\-on\-module \(SOM\) that is optimized for machine learning workloads\. The appliance can run multiple computer vision models against multiple video streams in parallel and output the results in real time\. It is designed for use in commercial and industrial settings and is rated for dust and liquid protection \(IP\-62\)\.
+
+**Note**  
+The Lenovo ThinkEdge® SE70 is now also available for purchase\. For more information, see [Compatible devices](gettingstarted-concepts.md#gettingstarted-concepts-devices)\.  
+[Purchase the Lenovo ThinkEdge® SE70](https://techtoday.lenovo.com/us/en/solutions/smb/thinkedge)\.
+[Purchase the AWS Panorama Appliance](https://aws.amazon.com/panorama/appliance/purchase/)\.
 
 The AWS Panorama Appliance enables you to run self\-contained computer vision applications at the edge, without sending images to the AWS Cloud\. By using the AWS SDK, you can integrate with other AWS services and use them to track data from the application over time\. By integrating with other AWS services, you can use AWS Panorama to do the following:
 

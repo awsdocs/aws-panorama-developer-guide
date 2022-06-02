@@ -1,11 +1,11 @@
 # AWS Panorama Appliance specifications<a name="gettingstarted-hardware"></a>
 
-The AWS Panorama Appliance has the following hardware specifications\.
+The AWS Panorama Appliance has the following hardware specifications\. For other [compatible devices](gettingstarted-concepts.md#gettingstarted-concepts-devices), refer to the manufacturer's documentation\.
 
 
 | Component | Specification | 
 | --- | --- | 
-|  Processor and GPU  |  Nvidia Jetson Xavier AGX with 32GB RAM  | 
+|  Processor and GPU  |  [Nvidia Jetson AGX Xavier](https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit) with 32GB RAM  | 
 |  Ethernet  |  2x 1000 Base\-T \(Gigabyte\)  | 
 |  USB  |  1x USB 2\.0 and 1x USB 3\.0 type\-A female  | 
 |  HDMI output  |  2\.0a  | 

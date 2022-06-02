@@ -1,6 +1,6 @@
 # Setting up the AWS Panorama Appliance<a name="gettingstarted-setup"></a>
 
-To get started using your AWS Panorama Appliance, register it in the AWS Panorama console and update its software\. During the setup process, you create an appliance *resource* in AWS Panorama that represents the physical appliance, and copy files to the appliance with a USB drive\. The appliance uses these certificates and configuration files to connect to the AWS Panorama service\. Then you use the AWS Panorama console to update the appliance's software and register cameras\.
+To get started using your AWS Panorama Appliance or [compatible device](gettingstarted-concepts.md#gettingstarted-concepts-devices), register it in the AWS Panorama console and update its software\. During the setup process, you create an appliance *resource* in AWS Panorama that represents the physical appliance, and copy files to the appliance with a USB drive\. The appliance uses these certificates and configuration files to connect to the AWS Panorama service\. Then you use the AWS Panorama console to update the appliance's software and register cameras\.
 
 **Topics**
 + [Prerequisites](#gettingstarted-prerequisites)
@@ -11,7 +11,7 @@ To get started using your AWS Panorama Appliance, register it in the AWS Panoram
 
 ## Prerequisites<a name="gettingstarted-prerequisites"></a>
 
-To follow this tutorial, you need an AWS Panorama Appliance and the following hardware:
+To follow this tutorial, you need an AWS Panorama Appliance or compatible device and the following hardware:
 
 ****
 + **Display** – A display with HDMI input for viewing the sample application output\.
@@ -34,14 +34,14 @@ If you don't have permission to create roles in IAM, have an administrator open 
 
 The AWS Panorama Appliance is a hardware device that connects to network\-enabled cameras over a local network connection\. It uses a Linux\-based operating system that includes the AWS Panorama Application SDK and supporting software for running computer vision applications\.
 
-To connect to AWS for appliance management and application deployment, the AWS Panorama Appliance uses a device certificate\. You use the AWS Panorama console to generate a provisioning certificate\. The appliance uses this temporary certificate to complete initial setup and download a permanent device certificate\.
+To connect to AWS for appliance management and application deployment, the appliance uses a device certificate\. You use the AWS Panorama console to generate a provisioning certificate\. The appliance uses this temporary certificate to complete initial setup and download a permanent device certificate\.
 
 **Important**  
 The provisioning certificate that you generate in this procedure is only valid for 5 minutes\. If you do not complete the registration process within this time frame, you must start over\.
 
-**To register an AWS Panorama Appliance**
+**To register a appliance**
 
-1. Connect the USB drive to your computer\. Prepare the AWS Panorama Appliance by connecting the network and power cables\. The appliance powers on and waits for a USB drive to be connected\.
+1. Connect the USB drive to your computer\. Prepare the appliance by connecting the network and power cables\. The appliance powers on and waits for a USB drive to be connected\.
 
 1. Open the AWS Panorama console [Getting started page](https://console.aws.amazon.com/panorama/home#getting-started)\.
 

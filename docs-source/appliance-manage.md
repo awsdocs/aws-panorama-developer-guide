@@ -1,8 +1,10 @@
 # Managing an AWS Panorama Appliance<a name="appliance-manage"></a>
 
-You use the AWS Panorama console to configure, upgrade or deregister the AWS Panorama Appliance\.
+You use the AWS Panorama console to configure, upgrade or deregister the AWS Panorama Appliance and other [compatible devices](gettingstarted-concepts.md#gettingstarted-concepts-devices)\.
 
 To set up an appliance, follow the instructions in the [getting started tutorial](gettingstarted-setup.md)\. The setup process creates the resources in AWS Panorama that track your appliance and coordinate updates and deployments\.
+
+To register an appliance with the AWS Panorama API, see [Automate device registration](api-provision.md)\.
 
 **Topics**
 + [Update the appliance software](#appliance-manage-software)
@@ -10,7 +12,7 @@ To set up an appliance, follow the instructions in the [getting started tutorial
 
 ## Update the appliance software<a name="appliance-manage-software"></a>
 
-You view and deploy software updates for the AWS Panorama Appliance in the AWS Panorama console\. Updates can be required or optional\. When a required update is available, the console prompts you to apply it\. You can apply optional updates on the appliance **Settings** page\.
+You view and deploy software updates for the appliance in the AWS Panorama console\. Updates can be required or optional\. When a required update is available, the console prompts you to apply it\. You can apply optional updates on the appliance **Settings** page\.
 
 **To update the appliance software**
 
@@ -27,7 +29,7 @@ You view and deploy software updates for the AWS Panorama Appliance in the AWS P
 
 ## Deregister an appliance<a name="appliance-manage-delete"></a>
 
-If you are done working with the AWS Panorama Appliance, you can use the AWS Panorama console to deregister it and delete the associated AWS IoT resources\.
+If you are done working with an appliance, you can use the AWS Panorama console to deregister it and delete the associated AWS IoT resources\.
 
 When you delete an appliance from the AWS Panorama service, data on the appliance is not deleted automatically\. This data includes applications, camera information, the appliance certificate, network configuration, and logs\. You can remove [applications](appliance-applications.md) from the device prior to deregistering it, or reset the device to its factory state\.
 

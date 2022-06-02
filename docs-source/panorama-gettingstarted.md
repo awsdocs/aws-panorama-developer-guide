@@ -5,7 +5,7 @@ To get started with AWS Panorama, first learn about [the service's concepts](get
 **Note**  
 To purchase an AWS Panorama Appliance, visit [How to purchase](https://aws.amazon.com/panorama/appliance/purchase/)\.
 
-The [AWS Panorama sample application](gettingstarted-sample.md) analyzes a video stream to tally the number of people detected and display the results on a connected display\. It includes a model that has been trained with SageMaker and sample code that uses the AWS Panorama Application SDK to run inference and output video\.
+The [AWS Panorama sample application](gettingstarted-sample.md) demonstrates use of AWS Panorama features\. It includes a model that has been trained with SageMaker and sample code that uses the AWS Panorama Application SDK to run inference and output video\. The sample application include a AWS CloudFormation template and scripts that show how to automate development and deployment workflows from the command line\.
 
 The final two topics in this chapter detail [requirements for models and cameras](gettingstarted-compatibility.md), and the [hardware specifications of the AWS Panorama Appliance](gettingstarted-hardware.md)\. If you haven't obtained an appliance and cameras yet, or plan on developing your own computer vision models, see these topics first for more information\.
 

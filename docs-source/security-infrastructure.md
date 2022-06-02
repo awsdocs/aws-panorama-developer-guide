@@ -6,6 +6,8 @@ You use AWS published API calls to access AWS Panorama through the network\. Cli
 
 Additionally, requests must be signed by using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use [AWS Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) \(AWS STS\) to generate temporary security credentials to sign requests\.
 
+## Deploying the AWS Panorama Appliance in your datacenter<a name="security-infrastructure-network"></a>
+
 The AWS Panorama Appliance needs internet access to communicate with AWS services\. It also needs access to your internal network of cameras\. It is important to consider your network configuration carefully and only provide each device the access that it needs\. Be careful if your configuration allows the AWS Panorama Appliance to act as a bridge to a sensitive IP camera network\. 
 
 You are responsible for the following:

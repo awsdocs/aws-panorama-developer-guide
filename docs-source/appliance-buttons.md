@@ -29,7 +29,7 @@ The network LED has the following states:
 
 To power down the appliance, press and hold the power button for 1 second\. The shutdown sequence takes about 10 seconds\.
 
-To reset the appliance, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. To start a reset operation, the appliance must be powered down\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
+To reset the appliance, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
 
 **Reset operations**
 + **Full reset** – Long press power and reset\.
@@ -41,3 +41,5 @@ To reset the appliance, use the following button combinations\. A short press is
 + **Restore minimum software version** – Long press reset\.
 
   Reapplies the latest required software update to the appliance\.
+
+To start a reset operation, the appliance must be powered down\. After you release the reset button, the appliance powers on and blinks orange until the update is complete\. Wait until the status light is green before reprovisioning or disconnecting the appliance\.

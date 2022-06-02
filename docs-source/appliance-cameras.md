@@ -22,6 +22,8 @@ An application can connect to any camera stream that is routable from the local 
 
 1. Choose **Save**\.
 
+To register a camera stream with the AWS Panorama API, see [Automate device registration](api-provision.md)\.
+
 For a list of cameras that are compatible with the AWS Panorama Appliance, see [Supported computer vision models and cameras](gettingstarted-compatibility.md)\.
 
 ## Removing a stream<a name="appliance-cameras-remove"></a>
@@ -30,14 +32,10 @@ You can delete a camera stream in the AWS Panorama console\.
 
 **To remove a camera stream**
 
-1. Open the AWS Panorama console [Devices page](https://console.aws.amazon.com/panorama/home#devices)\.
+1. Open the AWS Panorama console [Data sources page](https://console.aws.amazon.com/panorama/home#data-sources)\.
 
-1. Choose an appliance\.
+1. Choose a camera stream\.
 
-1. Choose **Camera streams**\.
-
-1. Choose a stream\.
-
-1. Choose **Remove stream**\.
+1. Choose **Delete data source**\.
 
 Removing a camera stream from the service does not stop running applications or delete camera credentials from Secrets Manager\. To delete secrets, use the [Secrets Manager console](https://console.aws.amazon.com/secretsmanager/home#!/listSecrets)\.

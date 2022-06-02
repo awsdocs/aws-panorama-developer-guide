@@ -9,6 +9,8 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 This documentation helps you understand how to apply the shared responsibility model when using AWS Panorama\. The following topics show you how to configure AWS Panorama to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your AWS Panorama resources\.
 
 **Topics**
++ [AWS Panorama Appliance security features](security-features.md)
++ [AWS Panorama Appliance security best practices](security-bestpractices.md)
 + [Data protection in AWS Panorama](security-dataprotection.md)
 + [Identity and access management for AWS Panorama](security-iam.md)
 + [Compliance validation for AWS Panorama](security-compliance.md)

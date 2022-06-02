@@ -30,7 +30,9 @@ To turn on GPU access for your application, update the [package manifest](applic
                                 "inferenceAccelerators": [
                                     {
                                         "deviceType": "nvhost_gpu",
-                                        "accessType": "open"
+                                        "sharedResourcePolicy": {
+                                            "policy" : "allow_all"
+                                        }
                                     }
                                 ]
                             }

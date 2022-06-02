@@ -1,6 +1,6 @@
 # Sample applications, scripts, and templates<a name="panorama-samples"></a>
 
-The GitHub repository for this guide provides sample applications, scripts and templates for AWS Panorama devices\. Use these samples to learn best practices and automate development workflows\.
+The GitHub repository for this guide provides sample applications, scripts, and templates for AWS Panorama devices\. Use these samples to learn best practices and automate development workflows\.
 
 **Topics**
 + [Sample applications](#samples-applications)
@@ -23,9 +23,11 @@ For more sample applications, also visit the [aws\-panorama\-samples](https://gi
 The scripts in the `util-scripts` directory manage AWS Panorama resources or automate development workflows\.
 
 ****
++ [provision\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/register-camera.sh) – Provision a device\.
 + [register\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/register-camera.sh) – Register a camera\.
++ [cleanup\-patches\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/cleanup-patches.sh) – Deregister old patch versions and delete their manifests from Amazon S3\.
 + [deregister\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/deregister-camera.sh) – Delete a camera node\.
-+ [push\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/push.sh) – Build, upload, and deploy and application\.
++ [push\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/push.sh) – Build, upload, and deploy an application\.
 + [rename\-package\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/rename-package.sh) – Rename a node package\. Updates directory names, configuration files, and the application manifest\.
 + [samplify\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/samplify.sh) – Replace your account ID with an example account ID, and restore backup configurations to remove local configuration\.
 + [update\-model\-config\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/update-model-config.sh) – Re\-add the model to the application after updating the descriptor file\.
@@ -42,7 +44,7 @@ Use the AWS CloudFormation templates in the `cloudformation-templates` directory
 
 The `create-stack.sh` script in this directory creates AWS CloudFormation stacks\. It takes a variable number of arguments\. The first argument is the name of the template, and the remaining arguments are overrides for parameters in the template\.
 
-For example, the following comand creates an application role\.
+For example, the following command creates an application role\.
 
 ```
 $ ./create-stack.sh application-role

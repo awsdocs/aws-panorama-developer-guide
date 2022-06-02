@@ -1,0 +1,142 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  VPC with private subnet service access to the AWS Panorama service.
+  This template is part of the AWS Panorama guide repository at
+  https://github.com/awsdocs/aws-panorama-developer-guide
+Resources:
+  vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 172.31.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
+  privateSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      AvailabilityZone:
+        Fn::Select:
+         - 0
+         - Fn::GetAZs: ""
+      CidrBlock: 172.31.3.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub  ${AWS::StackName}-subnet-a
+  privateSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      AvailabilityZone:
+        Fn::Select:
+         - 1
+         - Fn::GetAZs: ""
+      CidrBlock: 172.31.2.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub  ${AWS::StackName}-subnet-b
+  privateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpc
+  privateSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref privateSubnetA
+      RouteTableId: !Ref privateRouteTable
+  privateSubnetBRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref privateSubnetB
+      RouteTableId: !Ref privateRouteTable
+  panoramaEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub com.amazonaws.${AWS::Region}.panorama
+      VpcId: !Ref vpc
+      VpcEndpointType: Interface
+      SecurityGroupIds:
+      - !GetAtt vpc.DefaultSecurityGroup
+      PrivateDnsEnabled: true
+      SubnetIds:
+      - !Ref privateSubnetA
+      - !Ref privateSubnetB
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+        - Effect: Allow
+          Principal: "*"
+          Action:
+            - "panorama:*"
+          Resource:
+            - "*"
+  publicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      AvailabilityZone:
+        Fn::Select:
+         - 0
+         - Fn::GetAZs: ""
+      CidrBlock: 172.31.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub  ${AWS::StackName}-public-subnet
+  internetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub  ${AWS::StackName}-gateway
+  gatewayToInternet:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref vpc
+      InternetGatewayId: !Ref internetGateway
+  publicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpc
+  publicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: gatewayToInternet
+    Properties:
+      RouteTableId: !Ref publicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref internetGateway
+  publicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref publicSubnet1
+      RouteTableId: !Ref publicRouteTable
+Outputs:
+  vpcID:
+    Description: VPC ID
+    Value: !Ref vpc
+    Export:
+      Name: !Sub  ${AWS::StackName}-vpc
+  vpcSecurityGroup:
+    Description: Default security group for VPC
+    Value: !GetAtt vpc.DefaultSecurityGroup
+    Export:
+      Name: !Sub  ${AWS::StackName}-vpc-sg
+  privateSubnetAID:
+    Description: Private Subnet A ID
+    Value: !Ref privateSubnetA
+    Export:
+      Name: !Sub  ${AWS::StackName}-subnet-a
+  privateSubnetBID:
+    Description: Private Subnet B ID
+    Value: !Ref privateSubnetB
+    Export:
+      Name: !Sub  ${AWS::StackName}-subnet-b
+  publicSubnet1ID:
+    Description: Public Subnet A ID
+    Value: !Ref publicSubnet1
+    Export:
+      Name: !Sub  ${AWS::StackName}-subnet-public

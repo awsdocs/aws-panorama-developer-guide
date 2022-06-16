@@ -42,6 +42,14 @@ version_is_newer() {
     fi
 }
 
+apply_update() {
+    DEVICE_ID=$1
+    NEW_VERSION=$2
+    CONFIG='{"OTAJobConfig": {"ImageVersion": "NEW_VERSION"}}'
+    CONFIG=${CONFIG/NEW_VERSION/$NEW_VERSION}
+    aws panorama create-job-for-devices --device-ids ${DEVICE_ID} --device-job-config "${CONFIG}" --job-type OTA
+}
+
 echo "Checking for updates."
 DEVICE=$(aws panorama describe-device --device-id ${DEVICE_ID})
 
@@ -50,8 +58,15 @@ NEW_VERSION=$(echo $DEVICE | jq -r .LatestSoftware)
 IS_NEWER=$(version_is_newer ${NEW_VERSION} ${OLD_VERSION})
 
 if [ ${IS_NEWER} = "TRUE" ]; then
-    echo "A new version is available for device ${DEVICE_ID}: ${NEW_VERSION}"
+    echo "A new version is available for device ${DEVICE_ID}: ${OLD_VERSION} -> ${NEW_VERSION}"
+    while true; do
+        read -p "Apply update? (y/n)" response
+        case $response in
+            [Yy]* ) apply_update ${DEVICE_ID} ${NEW_VERSION}; break;;
+            [Nn]* ) exit;;
+            * ) echo "Response must start with y or n.";;
+        esac
+    done
 else
-    echo "Device is up-to-date"
+    echo "Device is up-to-date."
 fi
-echo "(current version: ${OLD_VERSION})"

@@ -8,6 +8,22 @@ Provision a device.
 
     $ ./provision-device.sh <device-name>
 
+## check-updates.sh
+
+Check a device for software updates.
+
+    $ ./check-updates.sh <device-id>
+
+    $ ./check-updates.sh
+    Getting devices...
+    0: device-ulagxmplffb3zwkgltmkj43lyq     my-manh-23
+    Choose a device
+    0
+    Deploying to device device-ulagxmplffb3zwkgltmkj43lyq
+    Checking for updates.
+    A new version is available for device device-ulagxmplffb3zwkgltmkj43lyq: 4.3.55
+    (current version: 4.3.45)
+
 ## register-camera.sh
 
 Register a camera.

@@ -1,10 +1,9 @@
 #!/bin/bash
 set -eo pipefail
-# Deregisters old application node package patch versions, which are subject to a servie quota.
-# Each patch version corresponds to a package manifest in an AWS Panorama managed access point in 
-# Amazon S3. Deletes the manifest file, but not binary assets such as container images. Binary
-# assets can be used by multiple patch versions. Verify that no in-use manifests reference binary
-# assets before deleting them from the access point.
+# Deregisters old application package versions. Each patch version corresponds to a package manifest
+# in an Amazon S3 access point managed by AWS Panorama. Deletes the manifest file, but not binary
+# assets such as container images. Binary assets can be used by multiple patch versions. Verify that
+# no in-use manifests reference binary assets before deleting them from the access point.
 if [[ $# -eq 1 ]] ; then
     PACKAGE_NAME=$1
 else
@@ -16,7 +15,7 @@ while [ -x ${PACKAGE_ID} ]; do
     PACKAGE_ID=$(echo "${PACKAGE_LIST}" | jq -r --arg PACKAGE_NAME "${PACKAGE_NAME}" '.Packages[] | select (.PackageName == $PACKAGE_NAME) | .PackageId')
     NEXT_TOKEN=$(echo "${PACKAGE_LIST}" | jq -r '.NextToken')
     if [ -x ${PACKAGE_ID} ]; then
-        if [ -x ${NEXT_TOKEN} ]; then
+        if [ "${NEXT_TOKEN}" = "null" ]; then
             echo "Package not found."
             exit 1
         fi
@@ -53,8 +52,10 @@ do
     PACKAGE_VERSION=$(get_package_version ${MANI_PATHS[${c}]})
     echo "${PATCH_DATES[${c}]} : Version ${PACKAGE_VERSION}.${PATCH_ID}"
 done
-echo "Deregister how many old versions?"
-read NUM_VERSIONS
+while [ -x ${NUM_VERSIONS} ]; do
+    echo "Deregister how many old versions?"
+    read NUM_VERSIONS
+done
 if [[ "${NUM_VERSIONS}" -ge "${#PATCH_DATES[@]}" ]]; then
     echo "Only ${#PATCH_DATES[@]} patch versions available."
     exit 1

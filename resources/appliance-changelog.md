@@ -135,7 +135,7 @@ Adds support for application base image v1.0.
 
 # Application base image 1.0.0
 
-Version 1.0 of the application SDK replaces the application SDK from preview and changes the programming model for applications. If you have an application from preview, see the migration guide for more information.
+Version 1.0 of the application SDK replaces the application SDK from preview and changes the programming model for applications.
 
 **Application SDK**: 1.0.0
 
@@ -145,4 +145,3 @@ Version 1.0 of the application SDK replaces the application SDK from preview and
 
 **Reference docs**: [resources/applicationsdk-reference.md](/resources/applicationsdk-reference.md)
 
-**Migration guide**: [Migrate applications from preview](https://docs.aws.amazon.com/panorama/latest/dev/applications-migrate.html)

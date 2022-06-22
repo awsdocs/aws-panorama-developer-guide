@@ -2,7 +2,7 @@
 
 You can run your application logic on a processing thread and use other threads for other background processes\. For example, you can create a thread that [serves HTTP traffic](applications-ports.md) for debugging, or a thread that monitors inference results and sends data to AWS\.
 
-To run multiple threads, you use the [threading module](https://docs.python.org/3/library/threading.html) from the Python standard library to create a thread for each process\. The following example shows the main loop of the debug server sample application, which creates an application object and uses it to run 3 threads\.
+To run multiple threads, you use the [threading module](https://docs.python.org/3/library/threading.html) from the Python standard library to create a thread for each process\. The following example shows the main loop of the debug server sample application, which creates an application object and uses it to run three threads\.
 
 **Example [packages/123456789012\-DEBUG\_SERVER\-1\.0/application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/debug-server/packages/123456789012-DEBUG_SERVER-1.0/application.py) – Main loop**  
 
@@ -58,7 +58,7 @@ When all of the threads exit, the application restarts itself\. The `run_cv` loo
         logger.info("EXITING RUN THREAD")
 ```
 
-Threads communicate via the application's `self` object\. To shut down the application and trigger a restart, the debugger thread calls the `stop` method\. This method sets a `terminate` attribute, which signals the other threads to shut down\.
+Threads communicate via the application's `self` object\. To restart the application processing loop, the debugger thread calls the `stop` method\. This method sets a `terminate` attribute, which signals the other threads to shut down\.
 
 **Example [packages/123456789012\-DEBUG\_SERVER\-1\.0/application\.py](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/debug-server/packages/123456789012-DEBUG_SERVER-1.0/application.py) – Stop method**  
 

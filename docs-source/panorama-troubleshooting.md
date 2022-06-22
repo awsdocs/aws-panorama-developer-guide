@@ -32,12 +32,6 @@ AWS Panorama does not store the device certificate or network configuration afte
 
 ## Application configuration<a name="troubleshooting-application"></a>
 
-**Error:** *liveMedia0: Failed to get SDP description: Connection to server failed: Connection timed out \(\-115\)*
-
-**Source:** Camera node log
-
-The appliance can't connect to the application's camera stream\. When this happens, the video output is blank or freezes on the last processed frame while the application waits for a frame of video from the AWS Panorama Application SDK\. The appliance software attempts to connect to the camera stream and logs timeout errors in the camera node log\. Verify that your camera stream URL is correct and that RTSP traffic is routable between the camera and appliance within your network\. For more information, see [Connecting the AWS Panorama Appliance to your network](appliance-network.md)\.
-
 **Issue:** *When I run multiple applications, I can't control which uses the HDMI output\.*
 
 When you deploy multiple applications that have output nodes, the application that started most recently uses the HDMI output\. If this application stops running, another application can use the output\. To give only one application access to the output, remove the output node and corresponding edge from the other application's [application manifest](applications-manifest.md) and redeploy\.
@@ -51,3 +45,17 @@ When you deploy multiple applications that have output nodes, the application th
 **Source:** AWS Panorama service
 
 Each time you deploy a change to an application, you register a *patch version* that represents the package manifest and asset files for each package that it uses\. Use the [cleanup patches script](panorama-samples.md#samples-scripts) to deregister unused patch versions\.
+
+## Camera streams<a name="troubleshooting-camera"></a>
+
+**Error:** *liveMedia0: Failed to get SDP description: Connection to server failed: Connection timed out \(\-115\)*
+
+**Source:** Camera node log
+
+The appliance can't connect to the application's camera stream\. When this happens, the video output is blank or freezes on the last processed frame while the application waits for a frame of video from the AWS Panorama Application SDK\. The appliance software attempts to connect to the camera stream and logs timeout errors in the camera node log\. Verify that your camera stream URL is correct and that RTSP traffic is routable between the camera and appliance within your network\. For more information, see [Connecting the AWS Panorama Appliance to your network](appliance-network.md)\.
+
+**Error:** *ERROR finalizeInterface\(35\) Camera credential fetching for port \[username\] failed*
+
+**Source:** OCC log
+
+The AWS Secrets Manager secret with the camera stream's credentials can't be found\. Delete the camera stream and recreate it\.

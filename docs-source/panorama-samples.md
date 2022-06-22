@@ -23,7 +23,8 @@ For more sample applications, also visit the [aws\-panorama\-samples](https://gi
 The scripts in the `util-scripts` directory manage AWS Panorama resources or automate development workflows\.
 
 ****
-+ [provision\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/register-camera.sh) – Provision a device\.
++ [provision\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/provision-device.sh) – Provision a device\.
++ [check\-updates\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/check-updates.sh) – Check for and apply appliance software updates\.
 + [register\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/register-camera.sh) – Register a camera\.
 + [cleanup\-patches\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/cleanup-patches.sh) – Deregister old patch versions and delete their manifests from Amazon S3\.
 + [deregister\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/deregister-camera.sh) – Delete a camera node\.

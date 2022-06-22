@@ -10,6 +10,7 @@ To get images from a stream, interact with a model, and output video, applicatio
 
 **Topics**
 + [Computer vision models](applications-models.md)
++ [Building an application image](applications-image.md)
 + [Calling AWS services from your application code](applications-awssdk.md)
 + [The AWS Panorama Application SDK](applications-panoramasdk.md)
 + [Running multiple threads](applications-threading.md)

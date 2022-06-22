@@ -405,6 +405,8 @@ The sample application uses the SDK for Python to upload metrics to Amazon Cloud
 
 It gets permission from a runtime role that you assign during deployment\. The role is defined in the `aws-panorama-sample.yml` AWS CloudFormation template\.
 
+**Example [aws\-panorama\-sample\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/aws-panorama-sample.yml)**  
+
 ```
 Resources:
   runtimeRole:
@@ -433,7 +435,7 @@ Resources:
 
 The sample application installs the SDK for Python and other dependencies with pip\. When you build the application container, the `Dockerfile` runs commands to install libraries on top of what comes with the base image\.
 
-**Example Dockerfile**  
+**Example [Dockerfile](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/Dockerfile)**  
 
 ```
 FROM public.ecr.aws/panorama/panorama-application

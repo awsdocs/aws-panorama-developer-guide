@@ -7,6 +7,7 @@ The AWS Panorama Appliance requires connectivity to both the AWS cloud and your 
 + [Dual network configuration](#appliance-network-dual)
 + [Configuring internet access](#security-infrastructure-internet)
 + [Configuring local network access](#security-infrastructure-local)
++ [Private connectivity](#appliance-network-vpn)
 
 ## Single network configuration<a name="appliance-network-single"></a>
 
@@ -36,7 +37,7 @@ The appliance uses multiple AWS services in addition to AWS Panorama\. Configure
 + **AWS IoT \(HTTPS and MQTT, port 443\)** – AWS IoT Core and device management endpoints\. For details, see [AWS IoT Device Management endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html) in the Amazon Web Services General Reference\.
 + **Amazon CloudWatch \(HTTPS, port 443\)** – `monitoring.<region>.aws.amazon.com`\.
 + **Amazon CloudWatch Logs \(HTTPS, port 443\)** – `logs.<region>.aws.amazon.com`\.
-+ **Amazon Simple Storage Service \(HTTPS, port 443\)** – `s3-accesspoint.<region>.aws.amazon.com`\.
++ **Amazon Simple Storage Service \(HTTPS, port 443\)** – `s3-accesspoint.<region>.aws.amazon.com` and subdomains\.
 
 If your application calls other AWS services, the appliance needs access to the endpoints for those services as well\. For more information, see [Service endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)\.
 
@@ -47,3 +48,7 @@ The appliance needs access to RTSP video streams locally, but not over the inter
 **Local access**
 + **Real\-time streaming protocol \(RTSP, port 554\)** – To read camera streams\.
 + **Network time protocol \(NTP, port 123\)** – To keep the appliance's clock in sync\. If you don't run an NTP server on your network, the appliance can also connect to public NTP servers over the internet\.
+
+## Private connectivity<a name="appliance-network-vpn"></a>
+
+The AWS Panorama Appliance does not need internet access if you deploy it in a private VPC subnet with a VPN connection to AWS\. You can use Site\-to\-Site VPN or AWS Direct Connect to create a VPN connection between an on\-premises router and AWS\. Within your private VPC subnet, you create endpoints that let the appliance connect to Amazon Simple Storage Service, AWS IoT, and other services\. For more information, see [Connecting an appliance to a private subnet](api-endpoints.md#services-vpc-appliance)\.

@@ -8,6 +8,7 @@ For a list of pre\-built models that have been tested with AWS Panorama, see [Mo
 **Topics**
 + [Using models in code](#applications-models-using)
 + [Building a custom model](#applications-models-custom)
++ [Packaging a model](#applications-models-package)
 + [Training models](#applications-models-training)
 
 ## Using models in code<a name="applications-models-using"></a>
@@ -65,7 +66,7 @@ You can use models that you build in PyTorch, Apache MXNet, and TensorFlow in AW
 **Note**  
 For details about the framework versions and file formats supported by SageMaker Neo, see [Supported Frameworks](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html) in the Amazon SageMaker Developer Guide\.
 
-The repository for this guide provides a sample application that demonstrates this workflow for a Keras model in TensorFlow `SavedModel` format\. It uses TensorFlow 1\.15 and can run locally in a virtual environment or in a Docker container\. The sample app also includes templates and scripts for building the model on an Amazon EC2 instance\.
+The repository for this guide provides a sample application that demonstrates this workflow for a Keras model in TensorFlow `SavedModel` format\. It uses TensorFlow 2 and can run locally in a virtual environment or in a Docker container\. The sample app also includes templates and scripts for building the model on an Amazon EC2 instance\.
 
 ****
 + [Custom model sample application](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/custom-model)
@@ -75,6 +76,41 @@ The repository for this guide provides a sample application that demonstrates th
 AWS Panorama uses SageMaker Neo to compile models for use on the AWS Panorama Appliance\. For each framework, use the [format that's supported by SageMaker Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-compilation-preparing-model.html), and package the model in a `.tar.gz` archive\.
 
 For more information, see [Compile and deploy models with Neo](https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html) in the Amazon SageMaker Developer Guide\.
+
+## Packaging a model<a name="applications-models-package"></a>
+
+A model package comprises a descriptor, package manifest, and model archive\. Like in an [application image package](applications-image.md), the package manifest tells the AWS Panorama service where the model and descriptor are stored in Amazon S3\. 
+
+**Example [packages/123456789012\-SQUEEZENET\_PYTORCH\-1\.0/descriptor\.json](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SQUEEZENET_PYTORCH-1.0/descriptor.json)**  
+
+```
+{
+    "mlModelDescriptor": {
+        "envelopeVersion": "2021-01-01",
+        "framework": "PYTORCH",
+        "frameworkVersion": "1.8",
+        "precisionMode": "FP16",
+        "inputs": [
+            {
+                "name": "data",
+                "shape": [
+                    1,
+                    3,
+                    224,
+                    224
+                ]
+            }
+        ]
+    }
+}
+```
+
+**Note**  
+Specify the framework version's major and minor version only\. For a list of supported PyTorch, Apache MXNet, and TensorFlow versions versions, see [Supported frameworks](https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html)\.
+
+To import a model, use the AWS Panorama Application CLI `import-raw-model` command\. If you make any changes to the model or its descriptor, you must rerun this command to update the application's assets\. For more information, see [Changing the computer vision model](gettingstarted-sample.md#gettingstarted-sample-model)\.
+
+For the descriptor file's JSON schema, see [assetDescriptor\.schema\.json](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/resources/manifest-schema/ver_2021-01-01/assetDescriptor.schema.json)\.
 
 ## Training models<a name="applications-models-training"></a>
 

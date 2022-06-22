@@ -6,11 +6,11 @@ You can monitor or debug applications locally by running an HTTP server alongsid
 By default, the AWS Panorama Appliance does not accept incoming traffic on any ports\. Opening ports on the appliance has implicit security risk\. When you use this feature, you must take additional steps to [secure your appliance from external traffic](appliance-network.md) and secure communications between authorized clients and the appliance\.  
 The sample code included with this guide is for demonstration purposes and does not implement authentication, authorization, or encryption\.
 
-You can open up ports in the range 8000\-9000 on the appliance\. These ports, when opened, can receive traffic from any routable client\. When you deploy your application, you specify which ports to open, and map ports on the appliance to ports on your application container\. The appliance software forwards traffic to the container, and sends responses back to the requestor\. Requests are received on the appliance port you specify and responses go out on a random ephemeral port\.
+You can open up ports in the range 8000–9000 on the appliance\. These ports, when opened, can receive traffic from any routable client\. When you deploy your application, you specify which ports to open, and map ports on the appliance to ports on your application container\. The appliance software forwards traffic to the container, and sends responses back to the requestor\. Requests are received on the appliance port that you specify and responses go out on a random ephemeral port\.
 
 ## Configuring inbound ports<a name="applications-ports-configuration"></a>
 
-You specify port mappings in 3 places in your application configuration\. The code package's `package.json`, you specify the port that the code node listens on in a `network` block\. The following example declares that the node listens on port 80\.
+You specify port mappings in three places in your application configuration\. The code package's `package.json`, you specify the port that the code node listens on in a `network` block\. The following example declares that the node listens on port 80\.
 
 **Example [packages/123456789012\-DEBUG\_SERVER\-1\.0/package\.json](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/debug-server/packages/123456789012-DEBUG_SERVER-1.0/package.json)**  
 

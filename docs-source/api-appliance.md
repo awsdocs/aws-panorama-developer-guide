@@ -64,6 +64,20 @@ $ aws panorama create-job-for-devices --device-ids device-4taf3j43htmzabv5lsacba
 }
 ```
 
+In a script, you can populate the image version field in the job configuration file with Bash string manipulation\.
+
+**Example [check\-updates\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/check-updates.sh)**  
+
+```
+apply_update() {
+    DEVICE_ID=$1
+    NEW_VERSION=$2
+    CONFIG='{"OTAJobConfig": {"ImageVersion": "NEW_VERSION"}}'
+    CONFIG=${CONFIG/NEW_VERSION/$NEW_VERSION}
+    aws panorama create-job-for-devices --device-ids ${DEVICE_ID} --device-job-config "${CONFIG}" --job-type OTA
+}
+```
+
 The appliance downloads the specified software version and updates itself\. Watch the update's progress with the [DescribeDeviceJob](https://docs.aws.amazon.com/panorama/latest/api/API_DescribeDeviceJob.html) API\.
 
 ```
@@ -95,3 +109,5 @@ $ aws panorama list-devices-jobs
     ]
 }
 ```
+
+For a sample script that checks for and applies updates, see [check\-updates\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/check-updates.sh) in this guide's GitHub repository\.

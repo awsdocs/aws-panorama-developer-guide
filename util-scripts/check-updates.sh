@@ -28,6 +28,10 @@ version_is_newer() {
     NEW_MIN=$(echo $NEW_VERSION | cut -d "." -f 2)
     NEW_PAT=$(echo $NEW_VERSION | cut -d "." -f 3)
     OLD_VERSION=$2
+    if [ ${OLD_VERSION} = "NOT_AVAILABLE" ]; then
+        echo "TRUE"
+        exit
+    fi
     OLD_MAJ=$(echo $OLD_VERSION | cut -d "." -f 1)
     OLD_MIN=$(echo $OLD_VERSION | cut -d "." -f 2)
     OLD_PAT=$(echo $OLD_VERSION | cut -d "." -f 3)

@@ -2,6 +2,20 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Appliance software 4.3.72
+
+**Release date**: 2022-06-23
+
+**Type**: Optional
+
+## Bug fixes
+
+Fixed an issue that caused cameras to disconnect with a *dqBuffer(131) Failed due to Resource temporarily unavailable after retry* error.
+
+Fixed an issue that caused an *apparmor="DENIED"* error to appear in appliances' `kern_log` log stream.
+
+Updates to improve system stability, performance, and security.
+
 # Appliance software 4.3.55
 
 **Release date**: 2022-05-05
@@ -51,6 +65,10 @@ You can monitor or debug applications locally by running an HTTP server or other
 A new sample application, [debug-server](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/sample-apps/debug-server), demonstrates how to use inbound ports to serve HTTP traffic. It uses multithreading to run application code, an HTTP server, and an HTTP client simultaneously. After running for a few minutes, the application sends an HTTP request to the device over the local network that signals it to restart the application code.
 
 For more information, see [Serving inbound traffic](https://docs.aws.amazon.com/panorama/latest/dev/applications-gpuaccess.html).
+
+## Logs
+
+Added `kern_log` to appliance log streams to capture Linux kernel events. For more information, see [Viewing AWS Panorama logs](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html).
 
 # Appliance software 4.3.35
 

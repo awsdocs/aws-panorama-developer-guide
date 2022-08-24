@@ -4,7 +4,7 @@ The following table shows when features and software updates were released for t
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Appliance software update](#panorama-releases) | Version 4\.3\.93 includes bug fixes and security updates\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | August 24, 2022 | 
+| [Appliance software update](#panorama-releases) | Version 4\.3\.93 adds support for [retrieving logs from an offline device](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html#monitoring-logging-egress)\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | August 24, 2022 | 
 | [Appliance software update](#panorama-releases) | Version 4\.3\.72 includes bug fixes and security updates\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | June 23, 2022 | 
 | [AWS PrivateLink support](#panorama-releases) | AWS Panorama supports VPC endpoints for managing AWS Panorama resources from a private subnet\. For more information, see [Using VPC endpoints](https://docs.aws.amazon.com/panorama/latest/dev/api-endpoints.html)\. | June 2, 2022 | 
 | [Appliance software update](#panorama-releases) | Version 4\.3\.55 improves storage utilization for [the `console_output` log](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html)\. For more information, see [the change log](https://github.com/awsdocs/aws-panorama-developer-guide/tree/main/resources/appliance-changelog.md)\. | May 5, 2022 | 

@@ -39,7 +39,7 @@ The `pip install` command in the Dockerfile installs these libraries to the Pyth
 
 ## Building image assets<a name="applications-image-build"></a>
 
-When you build a image for your application package with the AWS Panorama Application CLI, the CLI runs `docker build` in the package directory\. This builds an application image that contains your application code\. The CLI then creates a container, exports its filesystem, compresses it, and stores it in the `assets` folder\.
+When you build an image for your application package with the AWS Panorama Application CLI, the CLI runs `docker build` in the package directory\. This builds an application image that contains your application code\. The CLI then creates a container, exports its filesystem, compresses it, and stores it in the `assets` folder\.
 
 ```
 $ panorama-cli build-container --container-asset-name code_asset --package-path packages/123456789012-SAMPLE_CODE-1.0

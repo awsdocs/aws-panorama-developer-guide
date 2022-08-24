@@ -6,6 +6,7 @@ The GitHub repository for this guide provides sample applications, scripts, and 
 + [Sample applications](#samples-applications)
 + [Utility scripts](#samples-scripts)
 + [AWS CloudFormation templates](#samples-templates)
++ [More samples and tools](#samples-more)
 
 ## Sample applications<a name="samples-applications"></a>
 
@@ -50,3 +51,12 @@ For example, the following command creates an application role\.
 ```
 $ ./create-stack.sh application-role
 ```
+
+## More samples and tools<a name="samples-more"></a>
+
+The [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples) repository has more sample applications and useful tools\.
+
+****
++ [Applications](https://github.com/aws-samples/aws-panorama-samples/tree/main/samples) – Sample applications for various model architectures and use cases\.
++ [Camera stream validation](https://github.com/aws-samples/aws-panorama-samples/tree/main/tools/camera_stream_validation) – Validate camera streams\.
++ [PanoJupyter](https://github.com/aws-samples/aws-panorama-samples/tree/main/tools/pano_jupyter) – Run JupyterLab on an AWS Panorama Appliance\.

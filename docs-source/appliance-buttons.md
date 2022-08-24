@@ -12,6 +12,7 @@ The LEDs change color and blink to indicate status\. A slow blink is once every 
 + **Fast blinking green** – The appliance is booting up\.
 + **Solid green** – The appliance is operating normally\.
 + **Slow blinking blue** – The appliance is copying configuration files and attempting to register with AWS IoT\.
++ **Fast blinking blue** – The appliance is [copying a log image](monitoring-logging.md#monitoring-logging-egress) to a USB drive\.
 + **Fast blinking red** – The appliance encountered an error during startup or is overheated\.
 + **Slow blinking orange** – The appliance is restoring the latest software version\.
 + **Fast blinking orange** – The appliance is restoring the minimum software version\.

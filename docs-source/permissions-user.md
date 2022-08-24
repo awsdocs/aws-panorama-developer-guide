@@ -5,7 +5,7 @@ To grant users in your account access to AWS Panorama, you use identity\-based p
 AWS Panorama provides managed policies that grant access to AWS Panorama API actions and, in some cases, access to other services used to develop and manage AWS Panorama resources\. AWS Panorama updates the managed policies as needed, to ensure that your users have access to new features when they're released\.
 + **AWSPanoramaFullAccess** – Provides full access to AWS Panorama, AWS Panorama access points in Amazon S3, appliance credentials in AWS Secrets Manager, and appliance logs in Amazon CloudWatch\. Includes permission to create a [service\-linked role](permissions-services.md) for AWS Panorama\. [View policy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSPanoramaFullAccess)
 
-The `AWSPanoramaFullAccess` does not include permissions for tagging resources\. To grant these permissions, use the following policy\.
+The `AWSPanoramaFullAccess` policy does not include permissions for tagging resources\. To grant these permissions, add the following policy\.
 + **ResourceGroupsandTagEditorFullAccess** – [View policy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/ResourceGroupsandTagEditorFullAccess)
 
 Managed policies grant permission to API actions without restricting the resources that a user can modify\. For finer\-grained control, you can create your own policies that limit the scope of a user's permissions\. Use the full\-access policy as a starting point for your policies\.

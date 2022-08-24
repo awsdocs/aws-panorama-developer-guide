@@ -10,7 +10,7 @@ AWS Panorama uses other AWS services to manage the AWS Panorama Appliance, store
 
   Managed policy: [AWSPanoramaApplianceServiceRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/aws-service-role/AWSPanoramaApplianceServiceRolePolicy)
 
-To view the permissions attached to each role, use the [IAM console](https://console.aws.amazon.com/iam)\. Wherever possible, the role's permissions are restricted to resources that match a naming pattern that AWS Panorama uses\. For example, **AWSServiceRoleForAWSPanorama** grants only permission for the service to access AWS IoT resources that have `panorama` in their name\.
+To view the permissions attached to each role, use the [IAM console](https://console.aws.amazon.com/iam)\. Wherever possible, the role's permissions are restricted to resources that match a naming pattern that AWS Panorama uses\. For example, `AWSServiceRoleForAWSPanorama` grants only permission for the service to access AWS IoT resources that have `panorama` in their name\.
 
 **Topics**
 + [Securing the appliance role](#permissions-services-appliance)
@@ -18,7 +18,7 @@ To view the permissions attached to each role, use the [IAM console](https://con
 
 ## Securing the appliance role<a name="permissions-services-appliance"></a>
 
-The AWS Panorama Appliance uses the AWSPanoramaApplianceServiceRole role to access resources in your account\. The appliance has permission to upload logs to CloudWatch Logs, read camera stream credentials from AWS Secrets Manager, and to access application artifacts in Amazon Simple Storage Service \(Amazon S3\) access points that AWS Panorama creates\.
+The AWS Panorama Appliance uses the `AWSPanoramaApplianceServiceRole` role to access resources in your account\. The appliance has permission to upload logs to CloudWatch Logs, read camera stream credentials from AWS Secrets Manager, and to access application artifacts in Amazon Simple Storage Service \(Amazon S3\) access points that AWS Panorama creates\.
 
 **Note**  
 Applications don't use the appliance's permissions\. To give your application permission to use AWS services, create an [application role](permissions-application.md)\.

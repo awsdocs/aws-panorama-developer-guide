@@ -19,6 +19,7 @@ When you reprovision an appliance after updating the system software, you can al
 + [Viewing application logs](#monitoring-logging-application)
 + [Configuring application logs](#monitoring-logging-configuration)
 + [Viewing provisioning logs](#monitoring-logging-provisioning)
++ [Egressing logs from a device](#monitoring-logging-egress)
 
 ## Viewing device logs<a name="monitoring-logging-device"></a>
 
@@ -28,6 +29,7 @@ The AWS Panorama Appliance creates a log group for the device, and a group for e
 + `occ_log` – Output from the controller process\. This process coordinates application deployments and reports on the status of each application instance's nodes\.
 + `ota_log` – Output from the process that coordinates over\-the\-air \(OTA\) software upgrades\.
 + `syslog` – Output from the device's syslog process, which captures messages sent between processes\.
++ `kern_log` – Events from the device's Linux kernel\.
 + `logging_setup_logs` – Output from the process that configures the CloudWatch Logs agent\.
 + `cloudwatch_agent_logs` – Output from the CloudWatch Logs agent\.
 + `shadow_log` – Output from the [AWS IoT device shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\.
@@ -99,3 +101,34 @@ Provisioning logs are available for appliances updated to software version 4\.3\
 + `/panorama/ota_agent.log` – AWS Panorama over\-the\-air update agent logs\.
 + `/panorama/syslog.log` – Linux system logs\.
 + `/panorama/kern.log` – Linux kernel logs\.
+
+## Egressing logs from a device<a name="monitoring-logging-egress"></a>
+
+If your device and application logs don't appear in CloudWatch Logs, you can use a USB drive to get an encrypted log image off of the device\. The AWS Panorama service team can decrypt the logs on your behalf and assist in debugging\.
+
+### Prerequisites<a name="monitoring-logging-egress-prerequisites"></a>
+
+To follow the procedure you will need the following hardware:
++ **USB drive** – A FAT32\-formatted USB flash memory drive with at least 1 GB of storage, for transferring the log files off the AWS Panorama Appliance\. 
+
+**To egress logs from the device**
+
+1. Prepare a USB drive with a `managed_logs` folder inside of a `panorama` folder\.
+
+   ```
+   /
+    └── panorama
+        └── managed_logs
+   ```
+
+1. Connect the USB drive to the device\.
+
+1. [Power off](appliance-buttons.md#appliance-buttons-reset) the AWS Panorama Appliance\.
+
+1. Power on the AWS Panorama Appliance\.
+
+1. The device copies logs to the device\. The status LED [blinks blue](appliance-buttons.md) while this is in progress\.
+
+1. Log files can then be found inside `managed_logs` directory with the format `panorama_device_log_v1_dd_hh_mm.img`
+
+You can't decrypt the log image yourself\. Work with customer support, a technical account manager for AWS Panorama, or a solutions architect to coordinate with the service team\.

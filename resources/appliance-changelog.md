@@ -2,6 +2,22 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Appliance software 4.3.93
+​
+**Release date**: 2022-08-24
+
+**Type**: Optional
+​
+## Bug fixes
+​
+Fixed an issue that causes the device to go offline and require a factory reset. To learn how to perform a factory reset, see [Power and reset buttons](https://docs.aws.amazon.com/panorama/latest/dev/appliance-buttons.html#appliance-buttons-reset).
+​
+Fixed an issue that prevents you from removing faulty applications from the appliance.
+​
+## Log egress
+​
+You can use a USB drive to get an encrypted log image off of the device. The AWS Panorama service team can decrypt the logs on your behalf and assist in debugging. For more information see, [Egressing logs from a device](https://docs.aws.amazon.com/panorama/latest/dev/monitoring-logging.html#monitoring-logging-egress).
+
 # Appliance software 4.3.72
 
 **Release date**: 2022-06-23

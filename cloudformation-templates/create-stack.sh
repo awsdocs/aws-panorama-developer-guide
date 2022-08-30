@@ -11,13 +11,13 @@ elif [[ $# -eq 1 ]]; then
     TEMPLATE=$(cat ${TEMPLATE_NAME}.yml)
     if [[ "$TEMPLATE" =~ PLACEHOLDER ]]; then
         echo "Usage: ./create-stack.sh <template-name> <parameters>"
-        echo "e.g.   ./create-stack.sh metric-alarms notificationEmail=me@example.com"
+        echo "e.g.   ./create-stack.sh alarm-device notificationEmail=me@example.com deviceName=my-appliance deviceId=device-6talxmpl5mmik6qh5moba6jium"
         exit 0
     fi
 else
     echo "Usage: ./create-stack.sh <template-name> <parameters>"
     echo "e.g.   ./create-stack.sh application-role"
-    echo "e.g.   ./create-stack.sh metric-alarms notificationEmail=me@example.com"
+    echo "e.g.   ./create-stack.sh alarm-device notificationEmail=me@example.com deviceName=my-appliance deviceId=device-6talxmpl5mmik6qh5moba6jium"
     exit 0
 fi
 STACK_NAME=panorama-${TEMPLATE_NAME}

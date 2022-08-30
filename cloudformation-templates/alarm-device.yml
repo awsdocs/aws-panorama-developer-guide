@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates an alarm and a notification topic for AWS Panorama device metrics.
+Parameters:
+  notificationEmail:
+    Type: String
+    Description: Email address to notify when a alarms are triggered
+    Default: PLACEHOLDER
+  deviceName:
+    Type: String
+    Description: Device name
+    Default: PLACEHOLDER
+  deviceId:
+    Type: String
+    Description: Device ID
+    Default: PLACEHOLDER
+Resources:
+  # needs DeviceID and DeviceName dimensions
+  deviceOfflineAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: DeviceOfflineAlarm
+      AlarmDescription: Alarms when a device is offline
+      AlarmActions:
+      - !Ref alarmNotificationTopic
+      MetricName: DeviceActive
+      Dimensions:
+      - Name: DeviceName
+        Value: !Ref deviceName
+      - Name: DeviceId
+        Value: !Ref deviceId
+      Namespace: PanoramaDeviceMetrics
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 5
+      Period: 60
+      ComparisonOperator: LessThanThreshold
+      Threshold: 1
+      Statistic: Sum
+      TreatMissingData: breaching
+  alarmNotificationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+      - Endpoint: !Ref notificationEmail
+        Protocol: email

@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates an alarm and a notification topic for AWS Panorama application metrics.
+Parameters:
+  notificationEmail:
+    Type: String
+    Description: Email address to notify when a alarms are triggered
+    Default: PLACEHOLDER
+  applicationName:
+    Type: String
+    Description: Application name
+    Default: PLACEHOLDER
+  applicationId:
+    Type: String
+    Description: Application ID
+    Default: PLACEHOLDER
+Resources:
+  # needs ApplicationInstanceName and ApplicationInstanceId dimensions
+  applicationErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: ApplicationErrorAlarm
+      AlarmDescription: Alarms when an application is in error
+      AlarmActions:
+      - !Ref alarmNotificationTopic
+      MetricName: ApplicationErrors
+      Dimensions:
+      - Name: ApplicationInstanceName
+        Value: !Ref applicationName
+      - Name: ApplicationInstanceId
+        Value: !Ref applicationId
+      Namespace: PanoramaDeviceMetrics
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 5
+      Period: 60
+      Threshold: 1
+      Statistic: Sum
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: breaching
+  alarmNotificationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+      - Endpoint: !Ref notificationEmail
+        Protocol: email

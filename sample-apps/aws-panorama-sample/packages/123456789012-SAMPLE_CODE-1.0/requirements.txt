@@ -1,2 +1,2 @@
-boto3
-opencv-python
+boto3==1.24.*
+opencv-python==4.6.*

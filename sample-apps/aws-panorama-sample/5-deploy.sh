@@ -18,6 +18,11 @@ else
     DEVICES=$(aws panorama list-devices)
     DEVICE_NAMES=($((echo ${DEVICES} | jq -r '.Devices |=sort_by(.LastUpdatedTime) | [.Devices[].Name] | @sh') | tr -d \'\"))
     DEVICE_IDS=($((echo ${DEVICES} | jq -r '.Devices |=sort_by(.LastUpdatedTime) | [.Devices[].DeviceId] | @sh') | tr -d \'\"))
+    if [ -x ${DEVICE_IDS} ]; then
+        echo "No devices found. Provision a device with the management console or"
+        echo "use the provision-device.sh script under util-scripts/ in this repository."
+        exit
+    fi
     for (( c=0; c<${#DEVICE_NAMES[@]}; c++ ))
     do
         echo "${c}: ${DEVICE_IDS[${c}]}     ${DEVICE_NAMES[${c}]}"

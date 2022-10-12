@@ -2,6 +2,17 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Device software version 5.0.7
+
+This release upgrades NVIDIA JetPack software on the appliance. After the update, deployed models will stop working due to the changes. Redeploy your applications to compile models against the new software version. If you use GPU access in your application container, recompile your application with libraries supported by [JetPack 4.6.2](https://developer.nvidia.com/embedded/jetpack-sdk-462). 
+
+## Changes
+
+- **BREAKING** Upgrade to Jetpack 4.6.2. Requires applications to be redeployed.
+- Fixed an issue that caused applications with multiple input streams to only display 1 output, instead of tiling the output.
+- Fixed an issue that caused application logs to have incorrect timestamps in CloudWatch logs.
+- Improved format and usability of deployment-related logs.
+
 # Appliance software 4.3.93
 ​
 **Release date**: 2022-08-24

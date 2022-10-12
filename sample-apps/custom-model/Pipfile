@@ -8,7 +8,7 @@ sagemaker = "*"
 boto3 = "*"
 botocore = "*"
 protobuf = "*"
-tensorflow = "==2.4.4"
+tensorflow = "*"
 
 [dev-packages]
 

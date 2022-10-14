@@ -4,14 +4,29 @@ The following sections detail updates to the AWS Panorama Appliance software, in
 
 # Device software version 5.0.7
 
-This release upgrades NVIDIA JetPack software on the appliance. After the update, deployed models will stop working due to the changes. Redeploy your applications to compile models against the new software version. If you use GPU access in your application container, recompile your application with libraries supported by [JetPack 4.6.2](https://developer.nvidia.com/embedded/jetpack-sdk-462). 
+**Release date**: 2022-10-13
 
-## Changes
+**Type**: Optional
 
-- **BREAKING** Upgrade to Jetpack 4.6.2. Requires applications to be redeployed.
-- Fixed an issue that caused applications with multiple input streams to only display 1 output, instead of tiling the output.
-- Fixed an issue that caused application logs to have incorrect timestamps in CloudWatch logs.
-- Improved format and usability of deployment-related logs.
+## JetPack 4.6.2
+
+**BREAKING** This release upgrades NVIDIA JetPack software on the appliance. After the update, deployed models will stop working due to the changes. Redeploy your applications to compile models against the new software version. If you use GPU access in your application container, recompile your application with libraries supported by [JetPack 4.6.2](https://developer.nvidia.com/embedded/jetpack-sdk-462). 
+
+## Appliance reboot
+
+You can use the AWS Panorama console or API to reboot an appliance remotely. For more information, see [Reboot an appliance](https://docs.aws.amazon.com/panorama/latest/dev/appliance-manage.html#appliance-manage-reboot) and [Manage appliances with the AWS Panorama API](https://docs.aws.amazon.com/panorama/latest/dev/api-appliance.html).
+
+## Pause camera streams
+
+You can pause and resume camera streams with the AWS Panorama API. When a camera stream is paused, your application doesn't receive images from that stream. You can connect multiple streams to an application and use pause and resume to switch between them. For more information, see [Manage applications with the AWS Panorama API](https://docs.aws.amazon.com/panorama/latest/dev/api-applications.html)
+
+## Bug fixes
+
+Fixed an issue that caused applications with multiple input streams to only display 1 output, instead of tiling the output.
+
+Fixed an issue that caused application logs to have incorrect timestamps in CloudWatch logs.
+
+Improved format and usability of deployment-related logs.
 
 # Appliance software 4.3.93
 ​

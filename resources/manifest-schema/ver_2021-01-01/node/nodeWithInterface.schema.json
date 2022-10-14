@@ -34,7 +34,8 @@
             "enum":
             [
                 "onDemand",
-                "onAppStart"
+                "onAppStart",
+                "onSignal"
             ],
             "default": "onAppStart"
         },

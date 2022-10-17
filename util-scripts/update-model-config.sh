@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 MODEL_ASSET=fd1aef48acc3350a5c2673adacffab06af54c3f14da6fe4a8be24cac687a386e
 MODEL_PACKAGE=SQUEEZENET_PYTORCH

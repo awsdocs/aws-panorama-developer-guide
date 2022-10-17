@@ -1,8 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
-if [[ $# -eq 1 ]] ; then
-    DEVICE_ID=${1}
-else
+
+hash jq 2>/dev/null || {
+    echo >&2 "This script uses jq. Download at https://stedolan.github.io/jq/"
+    exit 1
+}
+
+choose_device() {
     echo "Getting devices..."
     DEVICES=$(aws panorama list-devices)
     DEVICE_NAMES=($((echo ${DEVICES} | jq -r '.Devices |=sort_by(.LastUpdatedTime) | [.Devices[].Name] | @sh') | tr -d \'\"))
@@ -18,9 +22,8 @@ else
     done
     echo "Choose a device"
     read D_INDEX
-    echo "Deploying to device ${DEVICE_IDS[${D_INDEX}]}"
     DEVICE_ID=${DEVICE_IDS[${D_INDEX}]}
-fi
+}
 
 version_is_newer() {
     NEW_VERSION=$1
@@ -54,7 +57,13 @@ apply_update() {
     aws panorama create-job-for-devices --device-ids ${DEVICE_ID} --device-job-config "${CONFIG}" --job-type OTA
 }
 
-echo "Checking for updates."
+if [[ $# -eq 1 ]] ; then
+    DEVICE_ID=${1}
+else
+    choose_device
+fi
+
+echo "Checking ${DEVICE_ID} for updates."
 DEVICE=$(aws panorama describe-device --device-id ${DEVICE_ID})
 
 OLD_VERSION=$(echo $DEVICE | jq -r .CurrentSoftware)

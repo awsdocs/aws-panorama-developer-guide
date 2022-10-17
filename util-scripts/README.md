@@ -24,6 +24,26 @@ Check a device for software updates.
     A new version is available for device device-ulagxmplffb3zwkgltmkj43lyq: 4.3.55
     (current version: 4.3.45)
 
+## reboot-device.sh
+
+Reboot a device.
+
+    $ ./reboot-device.sh
+    Getting devices...
+    0: device-53amxmplyn3gmj72epzanacniy     my-se70-1
+    1: device-6talxmpl5mmik6qh5moba6jium     my-manh-24
+    Choose a device
+    1
+    Reboot device device-6talxmpl5mmik6qh5moba6jium? (y/n)y
+    {
+        "Jobs": [
+            {
+                "DeviceId": "device-6talxmpl5mmik6qh5moba6jium",
+                "JobId": "device-6talxmpl5mmik6qh5moba6jium-8"
+            }
+        ]
+    }
+
 ## register-camera.sh
 
 Register a camera.
@@ -55,7 +75,32 @@ Delete a camera node.
 
 # Application scripts
 
-Copy these scripts into a sample app directory, or an application adapted from a sample app. 
+Run these scripts from a sample app directory, or an application adapted from a sample app.
+
+## pause-camera.sh
+
+Pause or resume a camera stream. You can specify the camera stream or choose it interactively.
+
+    $ ./pause-camera.sh <application-instance-id> <stream-name> <PAUSE|RESUME>
+
+From an application directory (with `application-id.txt` file present). If you choose a node
+that's paused, the script resumes instead of pausing.
+
+    my-app$ ./pause-camera.sh
+
+    Getting nodes...
+    0: SAMPLE_CODE              RUNNING
+    1: warehouse-floor          RUNNING
+    2: hdmi_data_sink           RUNNING
+    3: entrance-north           PAUSED
+    4: SQUEEZENET_PYTORCH       RUNNING
+    Choose a node
+    1
+    Signalling node warehouse-floor
+    + aws panorama signal-application-instance-node-instances --application-instance-id applicationInstance-r3a7xmplcbmpjqeds7vj4b6pjy --node-signals '[{"NodeInstanceId": "warehouse-floor", "Signal": "PAUSE"}]'
+    {
+        "ApplicationInstanceId": "applicationInstance-r3a7xmplcbmpjqeds7vj4b6pjy"
+    }
 
 ## push.sh
 

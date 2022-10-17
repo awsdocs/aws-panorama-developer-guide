@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 # Deregisters old application package versions. Each patch version corresponds to a package manifest
 # in an Amazon S3 access point managed by AWS Panorama. Deletes the manifest file, but not binary

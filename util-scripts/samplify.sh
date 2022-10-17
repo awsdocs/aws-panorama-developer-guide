@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 CODE_PACKAGE=SAMPLE_CODE
 MODEL_PACKAGE=SQUEEZENET_PYTORCH

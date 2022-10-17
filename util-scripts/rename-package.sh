@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 if [[ $# -eq 2 ]] ; then
     OLD=$1

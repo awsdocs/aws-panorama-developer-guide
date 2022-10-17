@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 if [[ $# -eq 1 ]] ; then
     NAME=$1

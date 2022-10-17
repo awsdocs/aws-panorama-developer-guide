@@ -1,5 +1,11 @@
-#!/bin/bash
-# device id
+#!/usr/bin/env bash
+set -eo pipefail
+
+hash jq 2>/dev/null || {
+    echo >&2 "This script uses jq. Download at https://stedolan.github.io/jq/"
+    exit 1
+}
+
 if [[ $# -eq 2 ]] ; then
     DEVICE_ID=$1
     APPLICATION_ID=$2

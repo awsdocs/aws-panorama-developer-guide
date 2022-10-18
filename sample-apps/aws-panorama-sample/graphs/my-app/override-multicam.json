@@ -1,0 +1,79 @@
+{
+    "nodeGraphOverrides": {
+        "nodes": [
+            {
+                "name": "CAMERA_A",
+                "interface": "123456789012::CAMERA_A.CAMERA_A",
+                "launch": "onAppStart"
+            },
+            {
+                "name": "CAMERA_B",
+                "interface": "123456789012::CAMERA_B.CAMERA_B",
+                "launch": "onSignal"
+            },
+            {
+                "name": "region_override",
+                "interface": "string",
+                "value": "MY_REGION"
+            },
+            {
+                "name": "device_id_override",
+                "interface": "string",
+                "value": "MY_DEVICE_ID"
+            },
+            {
+                "name": "log_level_override",
+                "interface": "string",
+                "value": "INFO"
+            }
+        ],
+        "packages": [
+            {
+                "name": "123456789012::CAMERA_A",
+                "version": "1.0"
+            },
+            {
+                "name": "123456789012::CAMERA_B",
+                "version": "1.0"
+            }
+        ],
+        "nodeOverrides": [
+            {
+                "replace": "region",
+                "with": [
+                    {
+                        "name": "region_override"
+                    }
+                ]
+            },
+            {
+                "replace": "device_id",
+                "with": [
+                    {
+                        "name": "device_id_override"
+                    }
+                ]
+            },
+            {
+                "replace": "log_level",
+                "with": [
+                    {
+                        "name": "log_level_override"
+                    }
+                ]
+            },
+            {
+                "replace": "camera_node",
+                "with": [
+                    {
+                        "name": "CAMERA_A"
+                    },
+                    {
+                        "name": "CAMERA_B"
+                    }
+                ]
+            }
+        ],
+        "envelopeVersion": "2021-01-01"
+    }
+}

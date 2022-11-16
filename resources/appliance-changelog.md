@@ -2,6 +2,42 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Device software version 5.0.42
+
+**Release date**: 2022-11-16
+
+**Type**: Optional
+
+## Error handling
+
+Improved format and usability of application logs.
+
+## Bug fixes
+
+Fixed an issue that caused application state to be incorrect after power loss.
+
+Fixed an issue that caused application files to remain on the appliance after the application instance is removed.
+
+# Application base image 1.2
+
+**Release date**: 2022-11-16
+
+**Application SDK**: 1.2.0
+
+**Python** : 3.7.5
+
+**NumPy** : 1.18.2
+
+Version 1.2 of the application SDK adds a `timeout` parameter to `video_in.get()`. If you specify a timeout, the SDK raises  `TimeoutException` if no frames are received within the specified number of seconds. The default behavior, which blocks the thread until a frame is received, is unchanged.
+
+The SDK now sets the `AWS_REGION` environment variable to the device's AWS Region. You can use the AWS SDK for Python in your application without specifying a Region in code or your container image, and the device's Region is used automatically.
+
+Improved error handling for `self.call()` to check model name against manifest and raise `KeyError` if the model is not in the application.
+
+Improved error handling for `put()` to raise `ValueError` if the input frame list is empty.
+
+Fixed a race condition in `video_in.get()` that caused the SDK to return old frames with `is_cached` set instead of blocking until at least one new frame is received. `is_cached` should only be set when a batch of frames from multiple sources includes some old frames and some new.
+
 # Device software version 5.0.7
 
 **Release date**: 2022-10-13
@@ -20,13 +56,17 @@ You can use the AWS Panorama console or API to reboot an appliance remotely. For
 
 You can pause and resume camera streams with the AWS Panorama API. When a camera stream is paused, your application doesn't receive images from that stream. You can connect multiple streams to an application and use pause and resume to switch between them. For more information, see [Manage applications with the AWS Panorama API](https://docs.aws.amazon.com/panorama/latest/dev/api-applications.html)
 
+## Error handling
+
+Improved format and usability of deployment-related logs.
+
 ## Bug fixes
 
 Fixed an issue that caused applications with multiple input streams to only display 1 output, instead of tiling the output.
 
 Fixed an issue that caused application logs to have incorrect timestamps in CloudWatch logs.
 
-Improved format and usability of deployment-related logs.
+Fixed an issue that allowed two code nodes to run side-by-side in one application.
 
 # Appliance software 4.3.93
 ​
@@ -156,10 +196,6 @@ Fixed an issue that sometimes caused active nodes to be reported as inactive.
 Fixed an issue that sometimes caused applications to crash.
 
 Fixed an issue that sometimes caused the appliance software to crash.
-
-## Libraries
-
-**Application SDK**: 4.3.23
 
 # Appliance software 4.3.4
 

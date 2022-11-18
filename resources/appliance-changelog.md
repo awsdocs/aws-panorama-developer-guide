@@ -18,6 +18,8 @@ Fixed an issue that caused application state to be incorrect after power loss.
 
 Fixed an issue that caused application files to remain on the appliance after the application instance is removed.
 
+Fixed an issue that caused storage and memory metrics to be shown in incorrect units in Amazon CloudWatch.
+
 # Application base image 1.2
 
 **Release date**: 2022-11-16

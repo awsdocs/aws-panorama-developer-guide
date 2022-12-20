@@ -63,7 +63,7 @@ logger = get_logger(level=logging.INFO)
 main()
 ```
 
-**node.call(name,  input,  time_out = None)**'
+**node.call(name,  input,  time_out = None)**
 
 Callable API is used to “call” another node (listed in the application graph manifest) 
 
@@ -170,15 +170,15 @@ If SDK is unable to convert “data” objects to the port format, an exception 
 self.outputs.video_out.put(frame)
 ```
     
-**port.get()**
-get the next available *set of* values from the port streams
+**port.get(timeout = None)**
+Get the next available set of values from a port stream, such as parameters and video input. For video input, you can set a timeout to raise an exception if no video is returned. By default, `get` blocks until a value is returned.
     
 ***Return Value:***
 Returned data can be a literal (string, integer, float) or stream/pipeline data (e.g. media frame)
 Literal values are like string/integer/float values that can be used as parameter of the application
 
 ***Exceptions:***
-If SDK is unable to convert “data” objects to the port format, an exception is thrown.
+If the SDK is unable to convert data objects to the port format, an exception is thrown.
 
 ***Example***
 ```python
@@ -191,6 +191,13 @@ self.inputs.url.get()
 Pipeline data will be dequeued and returned as a media object.
 ```python
 media_object = self.inputs.video_in.get()
+```
+Get media with 30 second timeout.
+```python
+try:
+    self.inputs.video_in.get(timeout=30)
+except TimeoutError as e:
+    # log or handle exception
 ```
     
 # media

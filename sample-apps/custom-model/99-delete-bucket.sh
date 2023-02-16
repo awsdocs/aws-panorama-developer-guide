@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-SERVICE=panorama
+SERVICE=aws-panorama
 if [ -f bucket-name.txt ]; then
     ARTIFACT_BUCKET=$(cat bucket-name.txt)
     if [[ ! $ARTIFACT_BUCKET =~ $SERVICE-artifacts-[a-z0-9]{16} ]] ; then

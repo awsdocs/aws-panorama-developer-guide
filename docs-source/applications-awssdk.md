@@ -31,7 +31,7 @@ topic = "panorama/panorama_my-appliance_Thing_a01e373b"
 iot_client.publish(topic=topic, payload="my message")
 ```
 
-The topic name can be anything\. To publish messages, the device needs permission to call `iot:Publish`\.
+Choose a name that indicates the device ID or other identifier of your choice\. To publish messages, the application needs permission to call `iot:Publish`\.
 
 **To monitor an MQTT queue**
 

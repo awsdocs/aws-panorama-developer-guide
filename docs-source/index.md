@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -22,6 +22,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Developing AWS Panorama applications](gettingstarted-sample.md)
    + [Supported computer vision models and cameras](gettingstarted-compatibility.md)
    + [AWS Panorama Appliance specifications](gettingstarted-hardware.md)
+   + [Service quotas](gettingstarted-quotas.md)
 + [AWS Panorama permissions](panorama-permissions.md)
    + [Identity-based IAM policies for AWS Panorama](permissions-user.md)
    + [AWS Panorama service roles and cross-service resources](permissions-services.md)
@@ -33,7 +34,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Manage applications on an AWS Panorama Appliance](appliance-applications.md)
    + [AWS Panorama Appliance buttons and lights](appliance-buttons.md)
 + [Managing AWS Panorama applications](panorama-applications.md)
-   + [Managing applications in AWS Panorama](applications-manage.md)
+   + [Deploy an application](applications-deploy.md)
+   + [Managing applications in the AWS Panorama console](applications-manage.md)
    + [Package configuration](applications-packages.md)
    + [The AWS Panorama application manifest](applications-manifest.md)
    + [Application nodes](applications-nodes.md)
@@ -50,8 +52,9 @@ Amazon's trademarks and trade dress may not be used in
    + [Setting up a development environment in Windows](applications-devenvwindows.md)
 + [The AWS Panorama API](panorama-api.md)
    + [Automate device registration](api-provision.md)
-   + [Manage appliances](api-appliance.md)
+   + [Manage appliances with the AWS Panorama API](api-appliance.md)
    + [Automate application deployment](api-deploy.md)
+   + [Manage applications with the AWS Panorama API](api-applications.md)
    + [Using VPC endpoints](api-endpoints.md)
 + [Sample applications, scripts, and templates](panorama-samples.md)
 + [Monitoring AWS Panorama resources and applications](panorama-monitoring.md)

@@ -37,6 +37,10 @@ opencv-python==4.6.*
 
 The `pip install` command in the Dockerfile installs these libraries to the Python `dist-packages` directory under `/usr/local/lib`, so that they can be imported by your application code\.
 
+## Local storage<a name="applications-image-storage"></a>
+
+AWS Panorama reserves the `/opt/aws/panorama/storage` directory for application storage\. Your application can create and modify files at this path\. Files created in the storage directory persist across reboots\. Other temporary file locations are cleared on boot\.
+
 ## Building image assets<a name="applications-image-build"></a>
 
 When you build an image for your application package with the AWS Panorama Application CLI, the CLI runs `docker build` in the package directory\. This builds an application image that contains your application code\. The CLI then creates a container, exports its filesystem, compresses it, and stores it in the `assets` folder\.

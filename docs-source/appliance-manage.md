@@ -9,6 +9,8 @@ To register an appliance with the AWS Panorama API, see [Automate device registr
 **Topics**
 + [Update the appliance software](#appliance-manage-software)
 + [Deregister an appliance](#appliance-manage-delete)
++ [Reboot an appliance](#appliance-manage-reboot)
++ [Reset an appliance](#appliance-manage-reset)
 
 ## Update the appliance software<a name="appliance-manage-software"></a>
 
@@ -31,16 +33,36 @@ You view and deploy software updates for the appliance in the AWS Panorama conso
 
 If you are done working with an appliance, you can use the AWS Panorama console to deregister it and delete the associated AWS IoT resources\.
 
-When you delete an appliance from the AWS Panorama service, data on the appliance is not deleted automatically\. This data includes applications, camera information, the appliance certificate, network configuration, and logs\. You can remove [applications](appliance-applications.md) from the device prior to deregistering it, or reset the device to its factory state\.
-
 **To delete an appliance**
 
 1. Open the AWS Panorama console [Devices page](https://console.aws.amazon.com/panorama/home#devices)\.
 
-1. Choose the appliance\.
+1. Choose the appliance's name\.
 
 1. Choose **Delete**\.
 
 1. Enter the appliance's name and choose **Delete**\.
 
-To fully reset the device and delete all data, press both the power button and the reset button for over 5 seconds\. For more information, see [AWS Panorama Appliance buttons and lights](appliance-buttons.md)\.
+When you delete an appliance from the AWS Panorama service, data on the appliance is not deleted automatically\. A deregistered appliance can't connect to AWS services and can't be registered again until it is reset\.
+
+## Reboot an appliance<a name="appliance-manage-reboot"></a>
+
+You can reboot an appliance remotely\.
+
+**To reboot an appliance**
+
+1. Open the AWS Panorama console [Devices page](https://console.aws.amazon.com/panorama/home#devices)\.
+
+1. Choose the appliance's name\.
+
+1. Choose **Reboot**\.
+
+The console sends a message to the appliance to reboot it\. To receive the signal, the appliance must be able to connect to AWS IoT\. To reboot an appliance with the AWS Panorama API, see [Reboot appliances](api-appliance.md#api-appliance-reboot)\.
+
+## Reset an appliance<a name="appliance-manage-reset"></a>
+
+To use an appliance in a different Region or with a different account, you must reset it and reprovision it with a new certificate\. Resetting the device applies the most recent required software version and deletes all account data\.
+
+To start a reset operation, the appliance must be plugged in and powered down\. Press and hold both the power and reset buttons for five seconds\. When you release the buttons, the status light blinks orange\. Wait until the status light blinks green before provisioning or disconnecting the appliance\.
+
+You can also reset the appliance software without deleting certificates from the device\. For more information, see [Power and reset buttons](appliance-buttons.md#appliance-buttons-reset)\.

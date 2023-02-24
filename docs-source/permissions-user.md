@@ -1,12 +1,15 @@
 # Identity\-based IAM policies for AWS Panorama<a name="permissions-user"></a>
 
-To grant users in your account access to AWS Panorama, you use identity\-based policies in AWS Identity and Access Management \(IAM\)\. Identity\-based policies can apply directly to IAM users, or to IAM groups and roles that are associated with a user\. You can also grant users in another account permission to assume a role in your account and access your AWS Panorama resources\.
+To grant users in your account access to AWS Panorama, you use identity\-based policies in AWS Identity and Access Management \(IAM\)\. Apply identity\-based policies to IAM roles that are associated with a user\. You can also grant users in another account permission to assume a role in your account and access your AWS Panorama resources\.
 
 AWS Panorama provides managed policies that grant access to AWS Panorama API actions and, in some cases, access to other services used to develop and manage AWS Panorama resources\. AWS Panorama updates the managed policies as needed, to ensure that your users have access to new features when they're released\.
 + **AWSPanoramaFullAccess** – Provides full access to AWS Panorama, AWS Panorama access points in Amazon S3, appliance credentials in AWS Secrets Manager, and appliance logs in Amazon CloudWatch\. Includes permission to create a [service\-linked role](permissions-services.md) for AWS Panorama\. [View policy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSPanoramaFullAccess)
 
-The `AWSPanoramaFullAccess` policy does not include permissions for tagging resources\. To grant these permissions, add the following policy\.
+The `AWSPanoramaFullAccess` policy allows you to tag AWS Panorama resources, but does not have all tag\-related permissions used by the AWS Panorama console\. To grant these permissions, add the following policy\.
 + **ResourceGroupsandTagEditorFullAccess** – [View policy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/ResourceGroupsandTagEditorFullAccess)
+
+The `AWSPanoramaFullAccess` policy does not include permission to purchase devices from the AWS Panorama console\. To grant these permissions, add the following policy\.
++ **ElementalAppliancesSoftwareFullAccess** – [View policy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/ElementalAppliancesSoftwareFullAccess)
 
 Managed policies grant permission to API actions without restricting the resources that a user can modify\. For finer\-grained control, you can create your own policies that limit the scope of a user's permissions\. Use the full\-access policy as a starting point for your policies\.
 

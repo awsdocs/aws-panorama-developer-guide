@@ -7,6 +7,7 @@ You can use the AWS Panorama service's public API to automate device and applica
 
 **Topics**
 + [Automate device registration](api-provision.md)
-+ [Manage appliances](api-appliance.md)
++ [Manage appliances with the AWS Panorama API](api-appliance.md)
 + [Automate application deployment](api-deploy.md)
++ [Manage applications with the AWS Panorama API](api-applications.md)
 + [Using VPC endpoints](api-endpoints.md)

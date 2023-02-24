@@ -2,7 +2,7 @@
 
 After you've [set up your AWS Panorama Appliance or compatible device](gettingstarted-setup.md) and upgraded its software, deploy a sample application\. In the following sections, you import a sample application with the AWS Panorama Application CLI and deploy it with the AWS Panorama console\.
 
-The sample application uses a machine learning model to detect people in frames of video from a network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
+The sample application uses a machine learning model to classify objects in frames of video from a network camera\. It uses the AWS Panorama Application SDK to load a model, get images, and run the model\. The application then overlays the results on top of the original video and outputs it to a connected display\.
 
 In a retail setting, analyzing foot traffic patterns enables you to predict traffic levels\. By combining the analysis with other data, you can plan for increased staffing needs around holidays and other events, measure the effectiveness of advertisements and sales promotions, or optimize display placement and inventory management\.
 
@@ -10,6 +10,7 @@ In a retail setting, analyzing foot traffic patterns enables you to predict traf
 + [Prerequisites](#gettingstarted-deploy-prerequisites)
 + [Import the sample application](#gettingstarted-deploy-import)
 + [Deploy the application](#gettingstarted-deploy-deploy)
++ [View the output](#gettingstarted-deploy-view)
 + [Enable the SDK for Python](#gettingstarted-deploy-redeploy)
 + [Clean up](#gettingstarted-deploy-cleanup)
 + [Next steps](#gettingstarted-deploy-next)
@@ -138,6 +139,10 @@ done
 ...
 ```
 
+If the application doesn't start running, check the [application and device logs](monitoring-logging.md) in Amazon CloudWatch Logs\.
+
+## View the output<a name="gettingstarted-deploy-view"></a>
+
  When the deployment is complete, the application starts processing the video stream and sends logs to CloudWatch\.
 
 **To view logs in CloudWatch Logs**
@@ -150,7 +155,46 @@ done
    + **Device logs** – `/aws/panorama/devices/device-id`
    + **Application logs** – `/aws/panorama/devices/device-id/applications/instance-id`
 
-If the application doesn't start running, check the [application and device logs](monitoring-logging.md) in Amazon CloudWatch Logs\.
+```
+2022-08-26 17:43:39 INFO     INITIALIZING APPLICATION
+2022-08-26 17:43:39 INFO     ## ENVIRONMENT VARIABLES
+{'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'TERM': 'xterm', 'container': 'podman'...}
+2022-08-26 17:43:39 INFO     Configuring parameters.
+2022-08-26 17:43:39 INFO     Configuring AWS SDK for Python.
+2022-08-26 17:43:39 INFO     Initialization complete.
+2022-08-26 17:43:39 INFO     PROCESSING STREAMS
+2022-08-26 17:46:19 INFO     epoch length: 160.183 s (0.936 FPS)
+2022-08-26 17:46:19 INFO     avg inference time: 805.597 ms
+2022-08-26 17:46:19 INFO     max inference time: 120023.984 ms
+2022-08-26 17:46:19 INFO     avg frame processing time: 1065.129 ms
+2022-08-26 17:46:19 INFO     max frame processing time: 149813.972 ms
+2022-08-26 17:46:29 INFO     epoch length: 10.562 s (14.202 FPS)
+2022-08-26 17:46:29 INFO     avg inference time: 7.185 ms
+2022-08-26 17:46:29 INFO     max inference time: 15.693 ms
+2022-08-26 17:46:29 INFO     avg frame processing time: 66.561 ms
+2022-08-26 17:46:29 INFO     max frame processing time: 123.774 ms
+```
+
+To view the application's video output, connect the appliance to a monitor with an HDMI cable\. By default, the application shows any classification result that has more than 20% confidence\.
+
+**Example [squeezenet\_classes\.json](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/sample-apps/aws-panorama-sample/packages/123456789012-SAMPLE_CODE-1.0/squeezenet_classes.json)**  
+
+```
+["tench", "goldfish", "great white shark", "tiger shark",
+"hammerhead", "electric ray", "stingray", "cock", "hen", "ostrich",
+"brambling", "goldfinch", "house finch", "junco", "indigo bunting",
+"robin", "bulbul", "jay", "magpie", "chickadee", "water ouzel",
+"kite", "bald eagle", "vulture", "great grey owl",
+"European fire salamander", "common newt", "eft",
+"spotted salamander", "axolotl", "bullfrog", "tree frog",
+...
+```
+
+The sample model has 1000 classes including many animals, food, and common objects\. Try pointing your camera at a keyboard or coffee mug\.
+
+![\[\]](http://docs.aws.amazon.com/panorama/latest/dev/images/mug.jpg)
+
+For simplicity, the sample application uses a lightweight classification model\. The model outputs a single array with a probability for each of its classes\. Real\-world applications more frequently use object detection models that have multidimensional output\. For sample applications with more complex models, see [Sample applications, scripts, and templates](panorama-samples.md)\.
 
 ## Enable the SDK for Python<a name="gettingstarted-deploy-redeploy"></a>
 

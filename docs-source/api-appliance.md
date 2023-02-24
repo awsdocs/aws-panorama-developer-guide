@@ -1,12 +1,16 @@
-# Manage appliances<a name="api-appliance"></a>
+# Manage appliances with the AWS Panorama API<a name="api-appliance"></a>
 
-You can automate appliance management tasks with the AWS Panorama API\. To get a list of appliances with device IDs, use the [ListDevices](https://docs.aws.amazon.com/panorama/latest/api/API_ListDevices.html) API\.
+You can automate appliance management tasks with the AWS Panorama API\.
+
+## View devices<a name="api-appliance-view"></a>
+
+To get a list of appliances with device IDs, use the [ListDevices](https://docs.aws.amazon.com/panorama/latest/api/API_ListDevices.html) API\.
 
 ```
 $ aws panorama list-devices
     "Devices": [
         {
-            "DeviceId": "device-4taf3j43htmzabv5lsacba4ere",
+            "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere",
             "Name": "my-appliance",
             "CreatedTime": 1652409973.613,
             "ProvisioningStatus": "SUCCEEDED",
@@ -20,11 +24,11 @@ $ aws panorama list-devices
 To get more details about an appliance, use the [DescribeDevice](https://docs.aws.amazon.com/panorama/latest/api/API_DescribeDevice.html) API\.
 
 ```
-$ aws panorama describe-device --device-id device-4taf3j43htmzabv5lsacba4ere
+$ aws panorama describe-device --device-id device-4tafxmplhtmzabv5lsacba4ere
 {
-    "DeviceId": "device-4taf3j43htmzabv5lsacba4ere",
+    "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere",
     "Name": "my-appliance",
-    "Arn": "arn:aws:panorama:us-west-2:123456789012:device/device-4taf3j43htmzabv5lsacba4ere",
+    "Arn": "arn:aws:panorama:us-west-2:123456789012:device/device-4tafxmplhtmzabv5lsacba4ere",
     "Type": "PANORAMA_APPLIANCE",
     "DeviceConnectionStatus": "ONLINE",
     "CreatedTime": 1648232043.421,
@@ -49,16 +53,18 @@ $ aws panorama describe-device --device-id device-4taf3j43htmzabv5lsacba4ere
 }
 ```
 
-If the `LatestSoftware` version is newer than the `CurrentSoftware`, you can upgrade the device\. Use the [CreateJobForDevices](https://docs.aws.amazon.com/panorama/latest/api/API_CreateJobForDevices.html) API to create an over\-the\-air \(OTA\) update\.
+## Upgrade appliance software<a name="api-appliance-upgrade"></a>
+
+If the `LatestSoftware` version is newer than the `CurrentSoftware`, you can upgrade the device\. Use the [CreateJobForDevices](https://docs.aws.amazon.com/panorama/latest/api/API_CreateJobForDevices.html) API to create an over\-the\-air \(OTA\) update job\.
 
 ```
-$ aws panorama create-job-for-devices --device-ids device-4taf3j43htmzabv5lsacba4ere \
+$ aws panorama create-job-for-devices --device-ids device-4tafxmplhtmzabv5lsacba4ere \
   --device-job-config '{"OTAJobConfig": {"ImageVersion": "4.3.55"}}' --job-type OTA
 {
     "Jobs": [
         {
-            "JobId": "device-4taf3j43htmzabv5lsacba4ere-0",
-            "DeviceId": "device-4taf3j43htmzabv5lsacba4ere"
+            "JobId": "device-4tafxmplhtmzabv5lsacba4ere-0",
+            "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere"
         }
     ]
 }
@@ -81,11 +87,11 @@ apply_update() {
 The appliance downloads the specified software version and updates itself\. Watch the update's progress with the [DescribeDeviceJob](https://docs.aws.amazon.com/panorama/latest/api/API_DescribeDeviceJob.html) API\.
 
 ```
-$ aws panorama describe-device-job --job-id device-4taf3j43htmzabv5lsacba4ere-0
+$ aws panorama describe-device-job --job-id device-4tafxmplhtmzabv5lsacba4ere-0
 {
-    "JobId": "device-4taf3j43htmzabv5lsacba4ere-0",
-    "DeviceId": "device-4taf3j43htmzabv5lsacba4ere",
-    "DeviceArn": "arn:aws:panorama:us-west-2:559823168634:device/device-4taf3j43htmzabv5lsacba4ere",
+    "JobId": "device-4tafxmplhtmzabv5lsacba4ere-0",
+    "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere",
+    "DeviceArn": "arn:aws:panorama:us-west-2:559823168634:device/device-4tafxmplhtmzabv5lsacba4ere",
     "DeviceName": "my-appliance",
     "DeviceType": "PANORAMA_APPLIANCE",
     "ImageVersion": "4.3.55",
@@ -102,8 +108,8 @@ $ aws panorama list-devices-jobs
     "DeviceJobs": [
         {
             "DeviceName": "my-appliance",
-            "DeviceId": "device-4taf3j43htmzabv5lsacba4ere",
-            "JobId": "device-4taf3j43htmzabv5lsacba4ere-0",
+            "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere",
+            "JobId": "device-4tafxmplhtmzabv5lsacba4ere-0",
             "CreatedTime": 1652410232.465
         }
     ]
@@ -111,3 +117,41 @@ $ aws panorama list-devices-jobs
 ```
 
 For a sample script that checks for and applies updates, see [check\-updates\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/check-updates.sh) in this guide's GitHub repository\.
+
+## Reboot appliances<a name="api-appliance-reboot"></a>
+
+To reboot an appliance, use the [CreateJobForDevices](https://docs.aws.amazon.com/panorama/latest/api/API_CreateJobForDevices.html) API\.
+
+```
+$ aws panorama create-job-for-devices --device-ids device-4tafxmplhtmzabv5lsacba4ere --job-type REBOOT
+{
+    "Jobs": [
+        {
+            "JobId": "device-4tafxmplhtmzabv5lsacba4ere-0",
+            "DeviceId": "device-4tafxmplhtmzabv5lsacba4ere"
+        }
+    ]
+}
+```
+
+In a script, you can get a list of devices and choose one to reboot interactively\.
+
+**Example [reboot\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/reboot-device.sh) – usage**  
+
+```
+$ ./reboot-device.sh
+Getting devices...
+0: device-53amxmplyn3gmj72epzanacniy     my-se70-1
+1: device-6talxmpl5mmik6qh5moba6jium     my-manh-24
+Choose a device
+1
+Reboot device device-6talxmpl5mmik6qh5moba6jium? (y/n)y
+{
+    "Jobs": [
+        {
+            "DeviceId": "device-6talxmpl5mmik6qh5moba6jium",
+            "JobId": "device-6talxmpl5mmik6qh5moba6jium-8"
+        }
+    ]
+}
+```

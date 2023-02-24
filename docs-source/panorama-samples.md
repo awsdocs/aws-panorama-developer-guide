@@ -26,14 +26,16 @@ The scripts in the `util-scripts` directory manage AWS Panorama resources or aut
 ****
 + [provision\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/provision-device.sh) – Provision a device\.
 + [check\-updates\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/check-updates.sh) – Check for and apply appliance software updates\.
++ [reboot\-device\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/reboot-device.sh) – Reboot a device\.
 + [register\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/register-camera.sh) – Register a camera\.
-+ [cleanup\-patches\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/cleanup-patches.sh) – Deregister old patch versions and delete their manifests from Amazon S3\.
 + [deregister\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/deregister-camera.sh) – Delete a camera node\.
++ [view\-logs\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/view-logs.sh) – View logs for an application instance\.
++ [pause\-camera\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/pause-camera.sh) – Pause or resume a camera stream\.
 + [push\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/push.sh) – Build, upload, and deploy an application\.
 + [rename\-package\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/rename-package.sh) – Rename a node package\. Updates directory names, configuration files, and the application manifest\.
 + [samplify\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/samplify.sh) – Replace your account ID with an example account ID, and restore backup configurations to remove local configuration\.
 + [update\-model\-config\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/update-model-config.sh) – Re\-add the model to the application after updating the descriptor file\.
-+ [view\-logs\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/view-logs.sh) – View logs for an application instance\.
++ [cleanup\-patches\.sh](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts/cleanup-patches.sh) – Deregister old patch versions and delete their manifests from Amazon S3\.
 
 For usage details, see [the README](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/util-scripts)\.
 
@@ -42,7 +44,11 @@ For usage details, see [the README](https://github.com/awsdocs/aws-panorama-deve
 Use the AWS CloudFormation templates in the `cloudformation-templates` directory to create resources for AWS Panorama applications\.
 
 ****
++ [alarm\-application\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/alarm-application.yml) – Create an alarm that monitors an application for errors\. If the application instance raises errors or stops running for 5 minutes, the alarm sends a notification email\.
++ [alarm\-device\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/alarm-device.yml) – Create an alarm that monitors a device's connectivity\. If the device stops sending metrics for 5 minutes, the alarm sends a notification email\.
 + [application\-role\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/application-role.yml) – Create an application role\. The role includes permission to send metrics to CloudWatch\. Add permissions to the policy statement for other API operations that your application uses\.
++ [vpc\-appliance\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/vpc-appliance.yml) – Create a VPC with private subnet service access for the AWS Panorama Appliance\. To connect the appliance to a VPC, use AWS Direct Connect or AWS Site\-to\-Site VPN\.
++ [vpc\-endpoint\.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/vpc-endpoint.yml) – Create a VPC with private subnet service access to the AWS Panorama service\. Resources inside of the VPC can connect to AWS Panorama to monitor and manage AWS Panorama resources without connecting to the internet\.
 
 The `create-stack.sh` script in this directory creates AWS CloudFormation stacks\. It takes a variable number of arguments\. The first argument is the name of the template, and the remaining arguments are overrides for parameters in the template\.
 
@@ -60,3 +66,4 @@ The [aws\-panorama\-samples](https://github.com/aws-samples/aws-panorama-samples
 + [Applications](https://github.com/aws-samples/aws-panorama-samples/tree/main/samples) – Sample applications for various model architectures and use cases\.
 + [Camera stream validation](https://github.com/aws-samples/aws-panorama-samples/tree/main/tools/camera_stream_validation) – Validate camera streams\.
 + [PanoJupyter](https://github.com/aws-samples/aws-panorama-samples/tree/main/tools/pano_jupyter) – Run JupyterLab on an AWS Panorama Appliance\.
++ [Sideloading](https://github.com/aws-samples/aws-panorama-samples/tree/main/tools/sideloading) – Update application code without building or deploying an application container\.

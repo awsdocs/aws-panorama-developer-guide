@@ -28,19 +28,25 @@ The network LED has the following states:
 
 ## Power and reset buttons<a name="appliance-buttons-reset"></a>
 
-To power down the appliance, press and hold the power button for 1 second\. The shutdown sequence takes about 10 seconds\.
+The power and reset buttons are on the front of the device underneath a protective cover\. The reset button is smaller and recessed\. Use a small screwdriver or paperclip to press it\.
 
-To reset the appliance, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
+**To reset an appliance**
 
-**Reset operations**
-+ **Full reset** – Long press power and reset\.
+1. The appliance must be plugged in and powered off\. To power off the appliance, hold the power button for 1 second and wait for the shutdown sequence to complete\. The shutdown sequence takes about 10 seconds\.
 
-  Restores the minimum software version and deletes all configuration files and applications\.
-+ **Restore latest software version** – Short press reset\.
+1. To reset the appliance, use the following button combinations\. A short press is 1 second\. A long press is 5 seconds\. For operations that require multiple buttons, press and hold both buttons simultaneously\.
+   + **Full reset** – Long press power and reset\.
 
-  Reapplies the latest software update to the appliance\.
-+ **Restore minimum software version** – Long press reset\.
+     Restores the minimum software version and deletes all configuration files and applications\.
+   + **Restore latest software version** – Short press reset\.
 
-  Reapplies the latest required software update to the appliance\.
+     Reapplies the latest software update to the appliance\.
+   + **Restore minimum software version** – Long press reset\.
 
-To start a reset operation, the appliance must be powered down\. After you release the reset button, the appliance powers on and blinks orange until the update is complete\. Wait until the status light is green before reprovisioning or disconnecting the appliance\.
+     Reapplies the latest required software update to the appliance\.
+
+1. Release both buttons\. The appliance powers on and the status light blinks orange for several minutes\.
+
+1. When the appliance is ready, the status light blinks green\.
+
+Resetting an appliance does not delete it from the AWS Panorama service\. For more information, see [Deregister an appliance](appliance-manage.md#appliance-manage-delete)\.

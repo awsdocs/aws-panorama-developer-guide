@@ -23,7 +23,9 @@ For more information about using models in AWS Panorama, see [Computer vision mo
 
 ## Supported cameras<a name="gettingstarted-compatibility-cameras"></a>
 
-The AWS Panorama Appliance supports H\.264 video streams from cameras that output RTSP over a local network\. The following camera models have been tested for compatibility with the AWS Panorama Appliance:
+The AWS Panorama Appliance supports H\.264 video streams from cameras that output RTSP over a local network\. For camera streams greater than 2 megapixels, the appliance scales down the image to 1920x1080 pixels or an equivalent size that preserves the stream's aspect ratio\.
+
+The following camera models have been tested for compatibility with the AWS Panorama Appliance:
 + [Anpviz](https://anpvizsecurity.com/) – IPC\-B850W\-S\-3X, IPC\-D250W\-S
 + [Axis](https://www.axis.com/) – M3057\-PLVE, M3058\-PLVE, P1448\-LE, P3225\-LV Mk II
 + [LaView](https://www.laviewsecurity.com/) – LV\-PB3040W

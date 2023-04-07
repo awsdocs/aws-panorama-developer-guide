@@ -12,6 +12,10 @@ The following sections detail updates to the AWS Panorama Appliance software, in
 
 Fixed a race condition that caused disk corruption during shutdown, and improved autorecovery from disk corruption.
 
+Improved error handling for unsupported (non-H.264) RTSP stream encodings.
+
+Improved camera stream connection retry behavior to improve interoperability with media gateways.
+
 # Device software version 5.0.74
 
 **Release date**: 2023-01-23

@@ -2,6 +2,18 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Device software version 6.0.8
+
+**Release date**: 2023-07-06
+
+**Type**: Required
+
+## Updates
+
+Updated error handling to improve interoperability with media gateways.
+
+Updates to improve system stability, performance, and security.
+
 # Device software version 5.1.7
 
 **Release date**: 2023-03-31

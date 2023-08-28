@@ -1,43 +1,43 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Application network routing rule schema",
-  "type": "object",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Application network routing rule schema",
+    "type": "object",
 
-  "properties":
-  {
-    "node":
+    "properties":
     {
-      "description": "Name of one of the node instantiations used in the application",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 128,
-      "pattern": "^[$A-Z_a-z0-9\\-]+$"
+        "node":
+        {
+            "description": "Name of one of the node instantiations used in the application",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[$A-Z_a-z0-9\\-]+$"
+        },
+        "containerPort":
+        {
+            "description": "Port defined in the network configuration of the instantiated node's interface",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+        },
+        "hostPort":
+        {
+            "description": "Host port to which the container port is routed",
+            "type": "integer"
+        },
+        "decorator":
+        {
+            "type": "object",
+            "description": "Decorator elements providing installer more information about the network routing rule",
+            "$ref": "../node/nodeDecorator.schema.json#"
+        }
     },
-    "containerPort":
-    {
-      "description": "Port defined in the network configuration of the instantiated node's interface",
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 65535
-    },
-    "hostPort":
-    {
-      "description": "Host port to which the container port is routed",
-      "type": "integer"
-    },
-    "decorator":
-    {
-      "type": "object",
-      "description": "Decorator elements providing installer more information about the network routing rule",
-      "$ref": "../node/nodeDecorator.schema.json#"
-    }
-  },
 
-  "required":
-  [
-    "node",
-    "containerPort"
-  ],
+    "required":
+    [
+        "node",
+        "containerPort"
+    ],
 
-  "additionalProperties": false
+    "additionalProperties": false
 }

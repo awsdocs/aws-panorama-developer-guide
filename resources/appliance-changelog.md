@@ -2,6 +2,20 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Application base image 1.2.0-py3.8
+
+**Release date**: 2023-10-17
+
+**Application SDK**: 1.2.0
+
+**Python** : 3.8.0
+
+**NumPy** : 1.24.3
+
+**Image URI**: `public.ecr.aws/panorama/panorama-application:1.2.0-py3.8`
+
+This release updates Python to version 3.8 in the base image. For all available tags, see https://gallery.ecr.aws/panorama/panorama-application
+
 # Device software version 6.2.1
 
 **Release date**: 2023-09-06

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eo pipefail
+set -o pipefail
 # Deregisters old application package versions. Each patch version corresponds to a package manifest
 # in an Amazon S3 access point managed by AWS Panorama. Deletes the manifest file, but not binary
 # assets such as container images. Binary assets can be used by multiple patch versions. Verify that
@@ -66,7 +66,15 @@ do
     PACKAGE_VERSION=$(get_package_version ${MANI_PATHS[${c}]})
     echo "DEREGISTERING ${PATCH_ID}"
     echo "aws panorama deregister-package-version --package-id ${PACKAGE_ID} --package-version ${PACKAGE_VERSION} --patch-version ${PATCH_ID}"
-    aws panorama deregister-package-version --package-id ${PACKAGE_ID} --package-version ${PACKAGE_VERSION} --patch-version ${PATCH_ID}
+    RESPONSE=$(aws panorama deregister-package-version --package-id ${PACKAGE_ID} --package-version ${PACKAGE_VERSION} --patch-version ${PATCH_ID} 2>&1)
+    if [[ ${RESPONSE} =~ "ResourceNotFoundException" ]]; then
+        echo "Patch not found, continuing"
+    else
+        if [[ ${RESPONSE} =~ "Exception" ]]; then
+            echo "${RESPONSE}"
+            exit 1
+        fi
+    fi
     echo "SAVING COPY OF MANIFEST"
     aws s3 cp s3://${BUCKET}/${MANI_PATHS[${c}]} .
     echo "DELETING MANIFEST FROM AMAZON S3"

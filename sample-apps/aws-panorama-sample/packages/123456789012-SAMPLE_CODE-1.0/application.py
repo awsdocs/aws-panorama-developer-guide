@@ -202,6 +202,7 @@ def get_logger(name=__name__,level=logging.INFO):
 def main():
     try:
         logger.info("INITIALIZING APPLICATION")
+        logger.info('Numpy version %s' % np.__version__)
         app = Application()
         logger.info("PROCESSING STREAMS")
         while True:

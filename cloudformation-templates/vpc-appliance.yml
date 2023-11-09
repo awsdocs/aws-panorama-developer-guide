@@ -150,7 +150,14 @@ Resources:
       # first DNS entry, split on :, second value
       ResourceRecords: 
       - !Select [1, !Split [":", !Select [0, !GetAtt s3Endpoint.DnsEntries ] ] ]
-  iotEndpoint:
+  iotHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Sub iot.${AWS::Region}.amazonaws.com
+      VPCs:
+        - VPCId: !Ref vpc
+          VPCRegion: !Ref AWS::Region
+  iotDataEndpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
       ServiceName: !Sub com.amazonaws.${AWS::Region}.iot.data
@@ -162,14 +169,7 @@ Resources:
       SubnetIds:
       - !Ref privateSubnetA
       - !Ref privateSubnetB
-  iotHostedZone:
-    Type: AWS::Route53::HostedZone
-    Properties:
-      Name: !Sub iot.${AWS::Region}.amazonaws.com
-      VPCs: 
-        - VPCId: !Ref vpc
-          VPCRegion: !Ref AWS::Region
-  iotRecords:
+  iotDataRecords:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref iotHostedZone
@@ -177,10 +177,58 @@ Resources:
       Type: A
       AliasTarget:
         # first DNS entry, split on :, second value
-        DNSName: !Select [1, !Split [":", !Select [0, !GetAtt iotEndpoint.DnsEntries ] ] ]
+        DNSName: !Select [1, !Split [":", !Select [0, !GetAtt iotDataEndpoint.DnsEntries ] ] ]
         # hosted zone of the endpoint, not in this account
-        HostedZoneId: !Select [0, !Split [":", !Select [0, !GetAtt iotEndpoint.DnsEntries ] ] ]
+        HostedZoneId: !Select [0, !Split [":", !Select [0, !GetAtt iotDataEndpoint.DnsEntries ] ] ]
         EvaluateTargetHealth: true
+  iotCredentialsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub com.amazonaws.${AWS::Region}.iot.credentials
+      VpcId: !Ref vpc
+      VpcEndpointType: Interface
+      SecurityGroupIds:
+      - !GetAtt vpc.DefaultSecurityGroup
+      PrivateDnsEnabled: false
+      SubnetIds:
+      - !Ref privateSubnetA
+      - !Ref privateSubnetB
+  iotCredentialsRecords:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref iotHostedZone
+      Name: !Sub "*.credentials.iot.${AWS::Region}.amazonaws.com"
+      Type: A
+      AliasTarget:
+        # first DNS entry, split on :, second value
+        DNSName: !Select [1, !Split [":", !Select [0, !GetAtt iotCredentialsEndpoint.DnsEntries ] ] ]
+        # hosted zone of the endpoint, not in this account
+        HostedZoneId: !Select [0, !Split [":", !Select [0, !GetAtt iotCredentialsEndpoint.DnsEntries ] ] ]
+        EvaluateTargetHealth: true
+  ecrServiceEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub com.amazonaws.${AWS::Region}.ecr.api
+      VpcId: !Ref vpc
+      VpcEndpointType: Interface
+      SecurityGroupIds:
+      - !GetAtt vpc.DefaultSecurityGroup
+      PrivateDnsEnabled: true
+      SubnetIds:
+      - !Ref privateSubnetA
+      - !Ref privateSubnetB
+  ecrDockerEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      ServiceName: !Sub com.amazonaws.${AWS::Region}.ecr.dkr
+      VpcId: !Ref vpc
+      VpcEndpointType: Interface
+      SecurityGroupIds:
+      - !GetAtt vpc.DefaultSecurityGroup
+      PrivateDnsEnabled: true
+      SubnetIds:
+      - !Ref privateSubnetA
+      - !Ref privateSubnetB
   publicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:

@@ -2,6 +2,30 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Device software version 7.0.13
+
+**Release date** 2023-12-28
+
+**Type**: Optional
+
+## Network requirements
+
+With this update, the appliance uses additional AWS services to manage software updates. If you restrict network communication outbound from the appliance, or connect it to a private VPC subnet, you must allow access to additional endpoints and ports before applying the update.
+
+- Amazon ECR service and Docker registry endpoints
+- AWS IoT Core credential provider endpoints
+- AWS IoT Core data plane endpoints (additional ports)
+
+For details on ports and endpoints used by the AWS Panorama Appliance, see [Network setup](https://docs.aws.amazon.com/panorama/latest/dev/appliance-network.html).
+
+If you connect your appliance to a private VPC subnet, create VPC endpoints for these services and, for IoT Core, add an additional Route53 record set for subdomains of the credentials endpoint. For more information, see [Using VPC endpoints](https://docs.aws.amazon.com/panorama/latest/dev/api-endpoints.html).
+
+This repo provides a CloudFormation template that demonstrates how to configure VPC endpoints, hosted zones, and record sets in your private subnets: [vpc-appliance.yml](https://github.com/awsdocs/aws-panorama-developer-guide/blob/main/cloudformation-templates/vpc-appliance.yml)
+
+## Bug fixes
+
+Fixed an issue that causes connectivity issues in application containers when using custom DNS settings.
+
 # Device software version 7.0.11
 
 **Release date**: 2023-11-08

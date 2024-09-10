@@ -34,7 +34,6 @@ Download or clone this repository.
 To create a new bucket for models and deployment artifacts, run `01-create-bucket.sh`.
 
     custom-model$ ./01-create-bucket.sh
-    make_bucket: aws-panorama-artifacts-a5e4xmplb5b22e0d
     
 To create an IAM role for SageMaker Neo to use, run `02-create-role.sh`.
 

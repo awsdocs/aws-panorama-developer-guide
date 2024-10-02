@@ -2,6 +2,34 @@
 
 The following sections detail updates to the AWS Panorama Appliance software, including changes to the operation system, AWS Panorama libraries, the application SDK, and the application container image.
 
+# Device software version 8.0.29
+
+**Release date** 2024-09-27
+
+**Type**: Mandatory
+
+## Migrate from Jetpack 4.6 to Jetpack 5.1.
+
+Sagemaker Neo Model nodes are not supported on this image. Applications currently using Sagemaker Neo
+model nodes will need to be rebuilt without them. Jetpack 4 is not supported on 8.0.29,
+although you can still deploy Jetpack 4 Neo models on older images. It’s recommended that you rebuild your 
+application without the Neo models for use with Jetpack 5, using OpenGPU to run models directly on the 
+GPU instead. Alternatively, you may decline the update to 8.0.29 and keep using Neo model nodes.
+
+*While the 8.0.29 image is marked as "Mandatory", you will not be forced to upgrade to 
+it. All regular functions are available under the old image, including managing (deploying) applications and OTA from one 
+pre-8.0.29 image to another pre-8.0.29 image. However, you cannot OTA from a 
+post-8.0.29 image to a previous, older image. 
+
+## Application base image 8.0.29
+
+Change base image from Ubuntu 18 to Ubuntu 20
+Software versions:
+Python - 3.8.10
+NumPy - 1.24.4
+
+Image URI: public.ecr.aws/panorama/panorama-application:1.2.1-arm64v8
+
 # Device software version 7.0.13
 
 **Release date** 2023-12-28

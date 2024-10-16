@@ -8,12 +8,12 @@ The following sections detail updates to the AWS Panorama Appliance software, in
 
 **Type**: Mandatory
 
-## Migrate from Jetpack 4.6 to Jetpack 5.1.
+## Migrate from Jetpack 4.6 to Jetpack 5.1.1.
 
 Sagemaker Neo Model nodes are not supported on this image. Applications currently using Sagemaker Neo
-model nodes will need to be rebuilt without them. Jetpack 4 is not supported on 8.0.29,
-although you can still deploy Jetpack 4 Neo models on older images. It’s recommended that you rebuild your 
-application without the Neo models for use with Jetpack 5, using OpenGPU to run models directly on the 
+model nodes will need to be rebuilt without them. Jetpack 4.6 is not supported on 8.0.29,
+although you can still deploy Jetpack 4.6 Neo models on older images. It’s recommended that you rebuild your 
+application without the Neo models for use with Jetpack 5.1.1, using OpenGPU to run models directly on the 
 GPU instead. Alternatively, you may decline the update to 8.0.29 and keep using Neo model nodes.
 
 *While the 8.0.29 image is marked as "Mandatory", you will not be forced to upgrade to 
